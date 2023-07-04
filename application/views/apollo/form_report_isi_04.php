@@ -31,7 +31,7 @@
                             <th rowspan="2">No</th>
                             <th rowspan="2">Sandi Kantor</th>
                             <th rowspan="2">Nama Kantor</th>
-                            <th rowspan="2">Kordinat Kantor</th>
+                            <th rowspan="2">Koordinat Kantor</th>
                             <th colspan="4" class="text-center">Alamat Kantor</th>
                             <th rowspan="2">Nama Pemimpin</th>
                             <th rowspan="2">No. Tlp</th>
