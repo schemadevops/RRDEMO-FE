@@ -82,7 +82,7 @@
         let timerInterval
         Swal.fire({
             title: 'Auto close alert!',
-            html: 'I will close in <b></b> milliseconds.',
+            html: 'Sedang menyimpan data dalam <b></b> milliseconds.',
             timer: 2000,
             timerProgressBar: true,
             didOpen: () => {
@@ -104,7 +104,7 @@
                     'success'
                 )
                 window.setTimeout(function() {
-                    window.location.href = 'user_management.html';
+                    window.location.href = '<?= base_url('common/user_management') ?>';
                 }, 1500);
             }
         })

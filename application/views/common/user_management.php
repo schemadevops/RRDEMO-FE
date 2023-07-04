@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </form>
-                    <a href="user_management_tambah.html" class="btn btn-primary">Tambah Data</a>
+                    <a href="<?= base_url('common/user_management_tambah'); ?>" class="btn btn-primary">Tambah Data</a>
                 </div>
             </div>
             <!-- Responsive Table -->
@@ -54,15 +54,15 @@
                                 <td>refiahmad2@gmail.com</td>
                                 <td>Report</td>
                                 <td>
-                                    <a href="user_management_access.html" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>Edit
+                                    <a href="<?= base_url('common/user_management_access'); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>Edit
                                         Access
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="user_management_edit.html" class="btn rounded-pill btn-info">
+                                    <a href="<?= base_url('common/user_management_edit'); ?>" class="btn rounded-pill btn-info">
                                         <i class='bx bx-edit-alt'></i>Edit User
                                     </a>
-                                    <a href="#" class="btn rounded-pill btn-danger">
+                                    <a href="javascript:;" onclick="hapus_user()" class="btn rounded-pill btn-danger">
                                         <i class='bx bx-trash-alt'></i>Hapus User
                                     </a>
                                 </td>
@@ -74,15 +74,15 @@
                                 <td>refiahmad2@gmail.com</td>
                                 <td>Admin</td>
                                 <td>
-                                    <a href="user_management_access.html" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>Edit
+                                    <a href="<?= base_url('common/user_management_access'); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>Edit
                                         Access
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="user_management_edit.html" class="btn rounded-pill btn-info">
+                                    <a href="<?= base_url('common/user_management_edit'); ?>" class="btn rounded-pill btn-info">
                                         <i class='bx bx-edit-alt'></i>Edit User
                                     </a>
-                                    <a href="#" class="btn rounded-pill btn-danger">
+                                    <a href="javascript:;" onclick="hapus_user()" class="btn rounded-pill btn-danger">
                                         <i class='bx bx-trash-alt'></i>Hapus User
                                     </a>
                                 </td>
@@ -94,15 +94,15 @@
                                 <td>refiahmad2@gmail.com</td>
                                 <td>Approval</td>
                                 <td>
-                                    <a href="user_management_access.html" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>Edit
+                                    <a href="<?= base_url('common/user_management_access'); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>Edit
                                         Access
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="user_management_edit.html" class="btn rounded-pill btn-info">
+                                    <a href="<?= base_url('common/user_management_edit'); ?>" class="btn rounded-pill btn-info">
                                         <i class='bx bx-edit-alt'></i>Edit User
                                     </a>
-                                    <a href="#" class="btn rounded-pill btn-danger">
+                                    <a href="javascript:;" onclick="hapus_user()" class="btn rounded-pill btn-danger">
                                         <i class='bx bx-trash-alt'></i>Hapus User
                                     </a>
                                 </td>
@@ -126,3 +126,25 @@
 <!--</div>-->
 
 <?php $this->view('temp/footer'); ?>
+
+<script>
+    function hapus_user() {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'User berhasil dihapus.',
+                    'success'
+                )
+            }
+        })
+    }
+</script>

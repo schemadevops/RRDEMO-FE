@@ -34,6 +34,31 @@ class Common extends CI_Controller
 		$this->load->view('temp/navbar');
 		$this->load->view('common/user_management');
 	}
+
+	public function user_management_access()
+	{
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('common/user_management_access');
+	}
+
+	public function user_management_tambah()
+	{
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('common/user_management_tambah');
+	}
+
+	public function user_management_edit()
+	{
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('common/user_management_edit');
+	}
+
 	public function module_document()
 	{
 		$this->load->view('temp/head');
