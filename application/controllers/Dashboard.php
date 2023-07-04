@@ -26,4 +26,12 @@ class Dashboard extends CI_Controller
 		$this->load->view('temp/navbar');
 		$this->load->view('dashboard');
 	}
+
+	public function profile()
+	{
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('profile');
+	}
 }
