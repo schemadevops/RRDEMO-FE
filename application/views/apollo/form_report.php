@@ -111,7 +111,7 @@
                             <tr>
                                 <th scope="row">17</th>
                                 <td>
-                                    <a href="#" class="btn rounded-pill btn-outline-primary">
+                                    <a href="<?= base_url('apollo/form_report_isi_101'); ?>" class="btn rounded-pill btn-outline-primary">
                                         Form 01.01 - Off Balance Sheet
                                     </a>
                                 </td>
@@ -151,7 +151,7 @@
                             <tr>
                                 <th scope="row">22</th>
                                 <td>
-                                    <a href="#form_report_isi_600.html" class="btn rounded-pill btn-outline-primary">
+                                    <a href="<?= base_url('apollo/form_report_isi_600'); ?>" class="btn rounded-pill btn-outline-primary">
                                         Form 06.00 - List of Credits Granted
                                     </a>
                                 </td>

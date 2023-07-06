@@ -171,6 +171,13 @@ class Apollo extends CI_Controller
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_100');
 	}
+	public function form_report_isi_101()
+	{
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_isi_101');
+	}
 	public function form_report_isi_300()
 	{
 		$this->load->view('temp/head');
