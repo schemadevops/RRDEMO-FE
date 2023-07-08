@@ -4,7 +4,7 @@
  <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
      <div class="app-brand demo">
          <a href="index.html">
-             <img src="<?= base_url('assets/logo/Logo_Schema_black.png'); ?>" alt="logo" height="40">
+             <img src="<?= base_url('assets/logo/transparent-bpr1.png'); ?>" alt="logo" height="60">
          </a>
 
          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
