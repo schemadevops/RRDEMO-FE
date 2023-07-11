@@ -146,13 +146,14 @@
 
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="#" class="btn rounded-pill btn-primary my-2">Export to Excel
+                        <!-- <a href="#" class="btn rounded-pill btn-primary my-2">Export to Excel
                         </a>
                         <a href="#" class="btn rounded-pill btn-primary my-2">Export to Txt
-                        </a>
+                        </a> -->
+                        &nbsp;
                     </div>
                     <div class="col-md-6">
-                        ;&nbsp
+                        &nbsp;
                     </div>
                     <div class="col-md-3">
                         <div class="input-group">
@@ -177,13 +178,26 @@
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 <script>
-    $(document).ready(function() {        
-        $('#table-res').DataTable( {
+    $(document).ready(function() {
+        $('#table-res').DataTable({
             dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
+            buttons: [{
+                    extend: 'copyHtml5',
+                    messageTop: 'Apollo - Form 06.00 - List of Credits Granted',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    messageTop: 'Apollo - Form 06.00 - List of Credits Granted',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
+                    }
+                },
+                'colvis'
             ]
-        } );
+        });
     });
 </script>
 </body>
