@@ -41,6 +41,8 @@
                         <tbody>
                             <?php
                             for ($i = 1; $i < 20; $i++) {
+                                $tigaangkarandom = mt_rand(111,999);
+                                $rp_angka = $tigaangkarandom . "00000";
                             ?>
                                 <tr>
                                     <td><?= $i; ?></td>
@@ -56,14 +58,14 @@
                                     <td>
                                         <p>-</p>
                                         <ul>
-                                            <li>000</li>
-                                            <li>000</li>
+                                            <li><?= "00". $i; ?></li>
+                                            <li><?= "00". $i; ?></li>
                                         </ul>
                                         <p>-</p>
                                         <ul>
-                                            <li>000</li>
-                                            <li>000</li>
-                                            <li>000</li>
+                                            <li><?= "00". $i; ?></li>
+                                            <li><?= "00". $i; ?></li>
+                                            <li><?= "00". $i; ?></li>
                                         </ul>
                                     </td>
                                     <td>
@@ -95,98 +97,23 @@
                                     <td>
                                         <p>-</p>
                                         <ul>
-                                            <li>000</li>
-                                            <li>000</li>
+                                            <li><?= number_format($rp_angka,0,',','.'); ?></li>
+                                            <li><?= number_format($rp_angka,0,',','.'); ?></li>
                                         </ul>
                                         <p>-</p>
                                         <ul>
-                                            <li>000</li>
-                                            <li>000</li>
-                                            <li>000</li>
+                                            <li><?= number_format($rp_angka,0,',','.'); ?></li>
+                                            <li><?= number_format($rp_angka,0,',','.'); ?></li>
+                                            <li><?= number_format($rp_angka,0,',','.'); ?></li>
                                         </ul>
                                     </td>
                                     <td>
-                                        <p>-</p>
-                                        <ul>
-                                            <li><button class="btn btn-primary">Edit</button></li>
-                                            <li><button class="btn btn-primary">Edit</button></li>
-                                        </ul>
-                                        <p>-</p>
-                                        <ul>
-                                            <li><button class="btn btn-primary">Edit</button></li>
-                                            <li><button class="btn btn-primary">Edit</button></li>
-                                            <li><button class="btn btn-primary">Edit</button></li>
-                                        </ul>
-
+                                        <button class="btn btn-primary">Edit</button>
                                     </td>
                                 </tr>
                             <?php }
                             ?>
-                            <tr>
-                                <td>
-                                    <p>T</p>
-                                    <p>Y</p>
-                                    <p>Y</p>
-                                    <p>T</p>
-                                    <p>Y</p>
-                                    <p>Y</p>
-                                    <p>Y</p>
-                                </td>
-                                <td>
-                                    <p>-</p>
-                                    <ul>
-                                        <li>000</li>
-                                        <li>000</li>
-                                    </ul>
-                                    <p>-</p>
-                                    <ul>
-                                        <li>000</li>
-                                        <li>000</li>
-                                        <li>000</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <p>Tagihan Komitmen</p>
-                                    <ul>
-                                        <li>Fasilitas Pinjaman yang Diterima yang Belum Ditarik</li>
-                                        <li>Tagihan Komitmen Lainnya</li>
-                                    </ul>
-                                    <p>Kewajiban Komitmen</p>
-                                    <ul>
-                                        <li>Fasilitas Kredit kepada Nasabah yang Belum Ditarik</li>
-                                        <li>Penerusan Kredit (Channeling)</li>
-                                        <li>Kewajiban Komitmen Lainnya</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <p>-</p>
-                                    <ul>
-                                        <li>6101010000</li>
-                                        <li>6101990000</li>
-                                    </ul>
-                                    <p>-</p>
-                                    <ul>
-                                        <li>6101010000</li>
-                                        <li>6101990000</li>
-                                        <li>6101990000</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <p>-</p>
-                                    <ul>
-                                        <li>000</li>
-                                        <li>000</li>
-                                    </ul>
-                                    <p>-</p>
-                                    <ul>
-                                        <li>000</li>
-                                        <li>000</li>
-                                        <li>000</li>
-                                    </ul>
-                                </td>
-                                <td> <button class="btn btn-primary">Edit</button></td>
-                            </tr>
-                        </tbody>
+                           </tbody>
 
                     </table>
                 </div>
@@ -217,8 +144,19 @@
 </div>
 
 <?php $this->view('temp/footer'); ?>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#table-res').DataTable({});
+    $(document).ready(function() {        
+        $('#table-res').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
     });
 </script>

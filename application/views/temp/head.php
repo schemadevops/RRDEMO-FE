@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
 
     <!-- Page CSS -->
 
