@@ -32,49 +32,44 @@
                                 <th>ID number</th>
                                 <th>Detail Flag</th>
                                 <th>Customer ID/ CIF</th>
-                                <th>Type of identity number</th>
-                                <th>Identity number</th>
-                                <th>Name according to Identity Card</th>
-                                <th>Full name</th>
-                                <th>Education Code</th>
-                                <th>Gender</th>
-                                <th>Place of birth</th>
-                                <th>Date of birth</th>
-                                <th>TAX ID number</th>
+                                <th>Tax Number (NPWP)</th>
+                                <th>Debtor name</th>
+                                <th>Type of corporate</th>
+                                <th>Place of established</th>
+                                <th>First deed number</th>
+                                <th>First deed date</th>
+                                <th>Last deed number</th>
+                                <th>Last deed date</th>
+                                <th>Phone number</th>
+                                <th>Mobile phone number</th>
+                                <th>Email</th>
                                 <th>Address</th>
                                 <th>Village</th>
                                 <th>Districts</th>
                                 <th>Regency code</th>
                                 <th>Postal code</th>
-                                <th>Phone number1</th>
-                                <th>Phone number2 (mobile phone number)</th>
-                                <th>Email address</th>
-                                <th>Country</th>
-                                <th>Job code</th>
-                                <th>Place of work</th>
+                                <th>Country code</th>
                                 <th>Economic sector</th>
-                                <th>Work place address</th>
-                                <th>Gross income in a year</th>
-                                <th>Source of income</th>
-                                <th>The number of dependents</th>
-                                <th>Relation with Bank</th>
-                                <th>Debtor type:</th>
-                                <th>Marital status</th>
-                                <th>Spouse - ID Number</th>
-                                <th>Spouse Name</th>
-                                <th>Spouse - Date of birth</th>
-                                <th>Split Property with Couple?</th>
-                                <th>Break the maximal loan limit?</th>
-                                <th>Greather than maximal loan limit?</th>
-                                <th>Mother name</th>
+                                <th>Relation with bank</th>
+                                <th>Break the maximal loan limit</th>
+                                <th>Greather than maximal loan limit</th>
+                                <th>Go pulic or not?</th>
+                                <th>Debitur type</th>
+                                <th>Rating</th>
+                                <th>Rating agency</th>
+                                <th>Date of rating</th>
+                                <th>Debtor group</th>
                                 <th>Branch</th>
-                                <th>Operation status</th>
+                                <th>Operation data</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                            for ($i=1; $i < 20; $i++) { 
+                            ?>
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row"><?= $i; ?></th>
                                 <td>D</td>
                                 <td>1111</td>
                                 <td>1234</td>
@@ -106,157 +101,13 @@
                                 <td>1 (Available)</td>
                                 <td>1 (Available)</td>
                                 <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
                                 <td>
-                                    <a href="form_report_edit.html" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
+                                    <a href="#<?= base_url('slik/form_edit_d02'); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>D</td>
-                                <td>2222</td>
-                                <td>5617</td>
-                                <td>5847</td>
-                                <td>F02</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>D</td>
-                                <td>3333</td>
-                                <td>5678</td>
-                                <td>6543</td>
-                                <td>F03</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>D</td>
-                                <td>4444</td>
-                                <td>4567</td>
-                                <td>2458</td>
-                                <td>F04</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php }; ?>
+                            
 
                         </tbody>
                     </table>
