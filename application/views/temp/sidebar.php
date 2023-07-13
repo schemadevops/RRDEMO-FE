@@ -148,24 +148,24 @@
              </ul>
          </li>
 
-         <li class="menu-item">
+         <li class="menu-item <?php echo ($uri == 'sipina') ? 'active open' : '' ?>">
              <a href="javascript:void(0);" class="menu-link menu-toggle">
                  <i class="menu-icon tf-icons bx bx-layout"></i>
                  <div data-i18n="Layouts">SIPINA</div>
              </a>
 
              <ul class="menu-sub">
-                 <li class="menu-item">
-                     <a href="<?= base_url('sipina/backup_restore'); ?>" class="menu-link">
+                 <li class="menu-item <?php echo ($suburi == 'report_proces') ? 'active' : '' ?>">
+                     <a href="<?= base_url('sipina/report_proces'); ?>" class="menu-link">
                          <div data-i18n="Without menu">Report Process</div>
                      </a>
                  </li>
-                 <li class="menu-item">
+                 <li class="menu-item <?php echo ($suburi == 'form_report') ? 'active' : '' ?>">
                      <a href="<?= base_url('sipina/form_report'); ?>" class="menu-link">
-                         <div data-i18n="Without navbar">Report</div>
+                         <div data-i18n="Without navbar">Form Report</div>
                      </a>
                  </li>
-                 <li class="menu-item">
+                 <li class="menu-item <?php echo ($suburi == 'backup_restore') ? 'active' : '' ?>">
                      <a href="<?= base_url('sipina/backup_restore'); ?>" class="menu-link">
                          <div data-i18n="Blank">Backup/Restore</div>
                      </a>
