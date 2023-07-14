@@ -26,6 +26,6 @@ jobs:
       if: always()
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        title: "Deployment on Regulatory Reporting"
+        title: "Deployment on Frontend Regulatory Reporting"
         description: "Build and deploy ${{ github.repository }}"
         color: 0x0000ff
