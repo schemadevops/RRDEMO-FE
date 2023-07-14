@@ -3,7 +3,7 @@
  <!-- Menu -->
  <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
      <div class="app-brand demo">
-         <a href="index.html">
+         <a href="<?= base_url('dashboard'); ?>">
              <img src="<?= base_url('assets/logo/transparent-bpr1.png'); ?>" alt="logo" height="60">
          </a>
 
@@ -17,7 +17,7 @@
      <ul class="menu-inner py-1">
          <!-- Dashboard -->
          <li class="menu-item  <?php echo ($uri == '' || $uri == 'dashboard') ? 'active' : '' ?>">
-             <a href="<?= base_url(); ?>" class="menu-link">
+             <a href="<?= base_url('dashboard'); ?>" class="menu-link">
                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
                  <div data-i18n="Analytics">Dashboard</div>
              </a>
@@ -27,7 +27,7 @@
          <li class="menu-item <?php echo ($uri == 'common') ? 'active open' : '' ?>">
              <a href="javascript:void(0);" class="menu-link menu-toggle">
                  <i class="menu-icon tf-icons bx bx-layout"></i>
-                 <div data-i18n="Layouts">Common</div>
+                 <div data-i18n="Layouts">Settings</div>
              </a>
 
              <ul class="menu-sub">
