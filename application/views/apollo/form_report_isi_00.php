@@ -42,24 +42,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>PT. BPR Dummy </td>
-                                <td>Jalan XXX No. 99 </td>
-                                <td>6102 (Kab. Gowa) </td>
-                                <td>011 (Kantor Regional 1 DKI Jakarta dan Banten) </td>
-                                <td>(021) 123456789 </td>
-                                <td>email@email.com </td>
-                                <td>http://bprs.com </td>
-                                <td>123456789.0-1 </td>
-                                <td>
-                                    <a href="<?= base_url('apollo/form_report_edit_00'); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>
-                                    </a>
-                                    <button type="button" class="btn rounded-pill btn-info" data-bs-toggle="modal" data-bs-target="#modalLong">
-                                        <i class='bx bxs-detail'></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php
+                            $no = 0;
+                            foreach ($api_hasil->data as $key) {
+                                $no++;
+                            ?>
+                                <tr>
+                                    <th scope="row"><?= $no; ?></th>
+                                    <td><?= $key->databpr->name; ?></td>
+                                    <td><?= $key->databpr->alamat; ?></td>
+                                    <td><?= $key->databpr->kabupaten_kota; ?></td>
+                                    <td><?= $key->databpr->wilayah_kerja_ojk; ?></td>
+                                    <td><?= $key->databpr->telp; ?></td>
+                                    <td><?= $key->databpr->email; ?></td>
+                                    <td><?= $key->databpr->web; ?></td>
+                                    <td><?= $key->databpr->npwp; ?></td>
+                                    <td>
+                                        <a href="<?= base_url('apollo/form_report_edit_00/' . $key->id); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>
+                                        </a>
+                                        <button type="button" class="btn rounded-pill btn-info" onclick="detail('<?= $key->id; ?>')">
+                                            <i class='bx bxs-detail'></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php };
+                            ?>
+
 
 
                         </tbody>
@@ -91,7 +99,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalLong" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal_detail" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -104,7 +112,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-default-name">Nama
                             BPR</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-name" placeholder="John Doe" value="PT. BPR Dummy" />
+                            <input type="text" class="form-control-plaintext" readonly id="nama_bpr" placeholder="John Doe" value="PT. BPR Dummy" />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -112,15 +120,14 @@
                             BPR
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-company" value="Jalan XXX No. 99
-                                        " />
+                            <input type="text" class="form-control-plaintext" readonly id="alamat_bpr" value="Jalan XXX No. 99" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-default-name">Kabupaten/Kota BPR
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-name" placeholder="John Doe" value="6102 (Kab. Gowa)                                                    " />
+                            <input type="text" class="form-control-plaintext" readonly id="kabkota" placeholder="John Doe" value="6102 (Kab. Gowa)                                                    " />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -128,7 +135,7 @@
                             Kerja OJK
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-name" placeholder="John Doe" value="011 (Kantor Regional 1 DKI Jakarta dan Banten)
+                            <input type="text" class="form-control-plaintext" readonly id="wilayah_ojk" placeholder="John Doe" value="011 (Kantor Regional 1 DKI Jakarta dan Banten)
                                         " />
                         </div>
                     </div>
@@ -136,7 +143,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-default-name">No. Telepon
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-name" placeholder="John Doe" value="(021) 123456789
+                            <input type="text" class="form-control-plaintext" readonly id="no_telp" placeholder="John Doe" value="(021) 123456789
                                         " />
                         </div>
                     </div>
@@ -144,7 +151,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-default-name">E-mail
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-name" placeholder="John Doe" value="email@email.com
+                            <input type="text" class="form-control-plaintext" readonly id="email_bpr" placeholder="John Doe" value="email@email.com
                                         " />
                         </div>
                     </div>
@@ -153,7 +160,7 @@
                             BPR
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-name" placeholder="John Doe" value="http://bprs.com
+                            <input type="text" class="form-control-plaintext" readonly id="web_bpr" placeholder="John Doe" value="http://bprs.com
                                         " />
                         </div>
                     </div>
@@ -161,7 +168,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-default-name">NPWP
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext" readonly id="basic-default-name" placeholder="John Doe" value="123456789.0-1
+                            <input type="text" class="form-control-plaintext" readonly id="npwp_bpr" placeholder="John Doe" value="123456789.0-1
                                         " />
                         </div>
                     </div>
@@ -391,3 +398,36 @@
 <!-- Modal -->
 
 <?php $this->view('temp/footer'); ?>
+
+<script>
+    function detail(id) {
+        //Ajax Load data from ajax
+        $.ajax({
+            url: "<?php echo site_url('apollo/detail_form_00') ?>/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) {
+                    $.each(data.data.data.databpr, function(i, v) {
+                        console.log(v.name);
+                        $('#nama_bpr').val(v.name);
+                        $('#alamat_bpr').val(v.alamat);
+                        $('#kabkota').val(v.kabupaten_kota);
+                        $('#wilayah_ojk').val(v.wilayah_kerja_ojk);
+                        $('#no_telp').val(v.telp);
+                        $('#email_bpr').val(v.email);
+                        $('#web_bpr').val(v.web);
+                        $('#npwp_bpr').val(v.npwp);
+                    });
+                    $('#modal_detail').modal('show'); // show bootstrap modal when complete loaded
+                    $('.modal-title').text('Detail Pengajuan'); // Set title to Bootstrap modal title
+
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        });
+    }
+</script>
