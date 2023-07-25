@@ -69,203 +69,70 @@
                                 <th>Mother name</th>
                                 <th>Branch</th>
                                 <th>Operation status</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>D</td>
-                                <td>1111</td>
-                                <td>1234</td>
-                                <td>4321</td>
-                                <td>F01</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="form_report_edit.html" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>D</td>
-                                <td>2222</td>
-                                <td>5617</td>
-                                <td>5847</td>
-                                <td>F02</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>D</td>
-                                <td>3333</td>
-                                <td>5678</td>
-                                <td>6543</td>
-                                <td>F03</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>D</td>
-                                <td>4444</td>
-                                <td>4567</td>
-                                <td>2458</td>
-                                <td>F04</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-
+                            <?php
+                            $no = 0;
+                            foreach ($api_hasil as $key) {
+                                $no++;
+                            ?>
+                                <tr>
+                                    <th scope="row"><?= $no; ?></th>
+                                    <td><?= $key->flag_detail; ?></td>
+                                    <td><?= $key->cif; ?></td>
+                                    <td><?= $key->jenis_identitas; ?></td>
+                                    <td><?= $key->no_passport; ?></td>
+                                    <td><?= $key->nm_identitas; ?></td>
+                                    <td><?= $key->nm_lengkap; ?></td>
+                                    <td><?= $key->stts_debitur; ?></td>
+                                    <td><?= $key->kelamin; ?></td>
+                                    <td><?= $key->tempat_lahir; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_lahir)); ?></td>
+                                    <td><?= $key->no_npwp; ?></td>
+                                    <td><?= $key->alamat; ?></td>
+                                    <td><?= $key->kelurahan; ?></td>
+                                    <td><?= $key->kecamatan; ?></td>
+                                    <td><?= $key->dati; ?></td>
+                                    <td><?= $key->kode_pos; ?></td>
+                                    <td><?= $key->telp; ?></td>
+                                    <td><?= $key->no_hp; ?></td>
+                                    <td><?= $key->email; ?></td>
+                                    <td><?= $key->kd_negara; ?></td>
+                                    <td><?= $key->pekerjaan; ?></td>
+                                    <td><?= $key->tempat_kerja; ?></td>
+                                    <td><?= $key->bidang_usaha; ?></td>
+                                    <td><?= $key->alamat_kerja; ?></td>
+                                    <td><?= number_format($key->penghasilan, 0, ',', '.'); ?></td>
+                                    <td><?= $key->kd_sumber; ?></td>
+                                    <td><?= number_format($key->jml_tanggungan, 0, ',', '.'); ?></td>
+                                    <td><?= $key->hub_ljk; ?></td>
+                                    <td><?= $key->gol_debitur; ?></td>
+                                    <td><?= $key->stts_kawin; ?></td>
+                                    <td><?= $key->no_passport_pasangan; ?></td>
+                                    <td><?= $key->nm_pasangan; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_lahir_pasangan)); ?></td>
+                                    <td><?= $key->pisah_harta; ?></td>
+                                    <td><?= $key->langgar_bmpk; ?></td>
+                                    <td><?= $key->lampau_bmpk; ?></td>
+                                    <td><?= $key->ibu_kandung; ?></td>
+                                    <td><?= $key->cabang; ?></td>
+                                    <td><?= $key->operation; ?></td>
+                                    <td><?= $key->createdAt; ?></td>
+                                    <td>
+                                        <a href="<?= base_url('slik/form_report_edit_d01/' . $key->id); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php }; ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Excel
-                        </a>
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Txt
+                        <a href="<?= base_url('slik/exportDataToTxt_d01') ?>" class="btn rounded-pill btn-primary">Export to Txt
                         </a>
                     </div>
                 </div>
@@ -277,8 +144,32 @@
 </div>
 
 <?php $this->view('temp/footer'); ?>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#table-res').DataTable({});
+        $('#table-res').DataTable({
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copyHtml5',
+                    messageTop: 'SLIK - Form D01 Individual Customer Data',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    messageTop: 'SLIK - Form D01 Individual Customer Data',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+                    }
+                },
+                'colvis'
+            ]
+        });
     });
 </script>

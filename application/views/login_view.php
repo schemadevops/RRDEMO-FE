@@ -66,7 +66,7 @@
                         <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus />
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
@@ -178,10 +178,11 @@
                                 window.location.href = '<?= base_url('dashboard'); ?>';
                             }, 1500);
                         } else {
-                            Toast.fire({
-                                icon: 'error',
-                                title: "Email atau password salah!!"
-                            })
+                            Swal.fire(
+                                'Oops!',
+                                'Email atau password salah!!',
+                                'warning'
+                            );
 
                         }
                         $('#btnEdit').text('Edit'); //change button text
