@@ -112,7 +112,7 @@
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Txt
+                        <a href="<?= base_url('slik/exportDataToTxt') ?>" class="btn rounded-pill btn-primary">Export to Txt
                         </a>
                     </div>
                 </div>

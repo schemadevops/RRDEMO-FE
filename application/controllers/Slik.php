@@ -242,4 +242,49 @@ class Slik extends CI_Controller
 		$data['html'] = $html;
 		echo json_encode(array("status" => TRUE, "data" => $data));
 	}
+
+	public function exportDataToTxt()
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/forma01',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImppbXkiLCJ1c2VybmFtZSI6ImplbXMiLCJlbWFpbCI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjg5ODYyOTk3fQ.g2Fqa2U2RhaI2yJTSDVZFNtt33YBmNmaOux4G477lSU'
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$api_hasil = $hasil->data;
+
+			$y = date('Y');
+			$m = date('m');
+			// Create a custom header (modify as per your requirement)
+			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|A01|11112|11112\n";
+
+			// Convert data to a tab-separated text format
+			$txtData = '';
+			foreach ($api_hasil as $row) {
+				$txtData .= implode("|", (array)$row) . "\n";
+			}
+
+			// Set the headers for file download
+			header("Content-type: application/octet-stream");
+			header("Content-Disposition: attachment; filename=SLIK - Form A01 Collateral Data.txt");
+
+			// Output the data to the response
+			echo $customHeader . $txtData;
+		}
+	}
 }
