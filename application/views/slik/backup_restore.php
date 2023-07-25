@@ -23,40 +23,58 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="navs-pills-justified-home" role="tabpanel">
                         <div class="row">
-                            <div class="col-md-6">
-                                <select name="form_report" id="form_report" class="form-control">
-                                    <option value="1">Form 00.00 - BPR
-                                        Main
-                                        Information</option>
-                                    <option value="2">Form 00.00 - BPR
-                                        Ownership Data</option>
-                                    <option value="3">Form 00.00 - Data
-                                        Members of BoD and BoC of BPR</option>
-                                    <option value="4">Form 00.00 - BPR
-                                        Implementator Member</option>
-                                    <option value="5">Form 00.00 - BPR
-                                        Office Data</option>
-                                    <option value="6">Form 00.00 - Other
-                                        Related Data</option>
-                                    <option value="7">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="8">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="9">Form 00.00 - List
-                                        of Accepted Loans</option>
-                                    <option value="10">Form 00.00 - Data
-                                        BoD/BoC who have stopped serving</option>
-                                    <option value="11">Form 00.00 -
-                                        Implementing Organs (stop servis)</option>
-                                    <option value="12">Form 00.00 - Cash
-                                        Office Data</option>
-                                    <option value="13">Form 00.00 -
-                                        Balance Sheet</option>
-                                </select>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="start_date">Start Date</label>
+                                    <input type="date" class="form-control" id="start_date" placeholder="John Doe" />
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <button type="submit" class="btn rounded-pill btn-primary">Backup</button>
-                                <button type="submit" class="btn rounded-pill btn-secondary">Backup All</button>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="end_date">End Date</label>
+                                    <input type="date" class="form-control" id="end_date" placeholder="John Doe" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="end_date">Form</label>
+                                    <select name="form_report" id="form_report" class="form-control">
+                                        <option value="1">Form 00.00 - BPR
+                                            Main
+                                            Information</option>
+                                        <option value="2">Form 00.00 - BPR
+                                            Ownership Data</option>
+                                        <option value="3">Form 00.00 - Data
+                                            Members of BoD and BoC of BPR</option>
+                                        <option value="4">Form 00.00 - BPR
+                                            Implementator Member</option>
+                                        <option value="5">Form 00.00 - BPR
+                                            Office Data</option>
+                                        <option value="6">Form 00.00 - Other
+                                            Related Data</option>
+                                        <option value="7">Form 00.00 - Paid
+                                            Capital, Donated Capital, Equity</option>
+                                        <option value="8">Form 00.00 - Paid
+                                            Capital, Donated Capital, Equity</option>
+                                        <option value="9">Form 00.00 - List
+                                            of Accepted Loans</option>
+                                        <option value="10">Form 00.00 - Data
+                                            BoD/BoC who have stopped serving</option>
+                                        <option value="11">Form 00.00 -
+                                            Implementing Organs (stop servis)</option>
+                                        <option value="12">Form 00.00 - Cash
+                                            Office Data</option>
+                                        <option value="13">Form 00.00 -
+                                            Balance Sheet</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <br />
+                                    <button type="submit" class="btn rounded-pill btn-primary">Backup</button>
+                                    <button type="submit" class="btn rounded-pill btn-secondary">Backup All</button>
+                                </div>
                             </div>
                         </div>
                         <div class="table-responsive text-nowrap mt-4">
@@ -209,50 +227,71 @@
                     </div>
                     <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
                         <div class="row">
-                            <div class="col-md-4">
-                                <select name="form_report" id="form_report" class="form-control">
-                                    <option value="1">Form 00.00 - BPR
-                                        Main
-                                        Information</option>
-                                    <option value="2">Form 00.00 - BPR
-                                        Ownership Data</option>
-                                    <option value="3">Form 00.00 - Data
-                                        Members of BoD and BoC of BPR</option>
-                                    <option value="4">Form 00.00 - BPR
-                                        Implementator Member</option>
-                                    <option value="5">Form 00.00 - BPR
-                                        Office Data</option>
-                                    <option value="6">Form 00.00 - Other
-                                        Related Data</option>
-                                    <option value="7">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="8">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="9">Form 00.00 - List
-                                        of Accepted Loans</option>
-                                    <option value="10">Form 00.00 - Data
-                                        BoD/BoC who have stopped serving</option>
-                                    <option value="11">Form 00.00 -
-                                        Implementing Organs (stop servis)</option>
-                                    <option value="12">Form 00.00 - Cash
-                                        Office Data</option>
-                                    <option value="13">Form 00.00 -
-                                        Balance Sheet</option>
-                                </select>
-
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="start_date">Start Date</label>
+                                            <input type="date" class="form-control" id="start_date" placeholder="John Doe" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="end_date">End Date</label>
+                                            <input type="date" class="form-control" id="end_date" placeholder="John Doe" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="form_report">Form</label>
+                                            <select name="form_report" id="form_report" class="form-control">
+                                                <option value="1">Form 00.00 - BPR
+                                                    Main
+                                                    Information</option>
+                                                <option value="2">Form 00.00 - BPR
+                                                    Ownership Data</option>
+                                                <option value="3">Form 00.00 - Data
+                                                    Members of BoD and BoC of BPR</option>
+                                                <option value="4">Form 00.00 - BPR
+                                                    Implementator Member</option>
+                                                <option value="5">Form 00.00 - BPR
+                                                    Office Data</option>
+                                                <option value="6">Form 00.00 - Other
+                                                    Related Data</option>
+                                                <option value="7">Form 00.00 - Paid
+                                                    Capital, Donated Capital, Equity</option>
+                                                <option value="8">Form 00.00 - Paid
+                                                    Capital, Donated Capital, Equity</option>
+                                                <option value="9">Form 00.00 - List
+                                                    of Accepted Loans</option>
+                                                <option value="10">Form 00.00 - Data
+                                                    BoD/BoC who have stopped serving</option>
+                                                <option value="11">Form 00.00 -
+                                                    Implementing Organs (stop servis)</option>
+                                                <option value="12">Form 00.00 - Cash
+                                                    Office Data</option>
+                                                <option value="13">Form 00.00 -
+                                                    Balance Sheet</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="backup_ke">Backup ke?</label>
+                                            <select name="backup_ke" id="backup_ke" class="form-control">
+                                                <option value="1">Backup ke 1</option>
+                                                <option value="2">Backup ke 2</option>
+                                                <option value="3">Backup ke 3</option>
+                                                <option value="4">Backup ke 4</option>
+                                                <option value="5">Backup ke 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <select name="form_report" id="form_report" class="form-control">
-                                    <option value="1">Backup ke 1</option>
-                                    <option value="2">Backup ke 2</option>
-                                    <option value="3">Backup ke 3</option>
-                                    <option value="4">Backup ke 4</option>
-                                    <option value="5">Backup ke 5</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <button type="submit" class="btn rounded-pill btn-primary">Restore</button>
-                                <button type="submit" class="btn rounded-pill btn-secondary">Restore All</button>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn rounded-pill btn-small btn-primary">Restore</button>
+                                <button type="submit" class="btn rounded-pill btn-small btn-secondary">Restore All</button>
                             </div>
                         </div>
                         <div class="table-responsive text-nowrap mt-4">
