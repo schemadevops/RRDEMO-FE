@@ -139,30 +139,71 @@
         }
 
         function login() {
-            let timerInterval
-            Swal.fire({
-                title: 'Auto close alert!',
-                html: 'Please wait',
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading()
-                    const b = Swal.getHtmlContainer().querySelector('b')
-                    timerInterval = setInterval(() => {
-                        b.textContent = Swal.getTimerLeft()
-                    }, 100)
-                },
-                willClose: () => {
-                    clearInterval(timerInterval)
-                }
-            }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer) {
-                    window.setTimeout(function() {
-                        window.location.href = '<?= base_url('dashboard'); ?>';
-                    }, 1500);
-                }
-            })
+            var email = $('#email').val()
+            var password = $('#password').val()
+
+            if (email != "" && password != "") {
+                var url;
+
+                url = "<?php echo site_url('login/login_aksi') ?>";
+
+                var formData = new FormData($('#formAuthentication')[0]);
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    dataType: "JSON",
+                    success: function(data) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        if (data.status) //if success close modal and reload ajax table
+                        {
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Login Berhasil..Mohon tunggu'
+                            });
+                            window.setTimeout(function() {
+                                window.location.href = '<?= base_url('dashboard'); ?>';
+                            }, 1500);
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: "Email atau password salah!!"
+                            })
+
+                        }
+                        $('#btnEdit').text('Edit'); //change button text
+                        $('#btnEdit').attr('disabled', false); //set button enable 
+
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error adding / update data');
+                        $('#btnEdit').text('Edit'); //change button text
+                        $('#btnEdit').attr('disabled', false); //set button enable 
+
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Oops!',
+                    'Email dan Password Wajib diisi!',
+                    'warning'
+                );
+            }
+
         }
     </script>
     <!-- Page JS -->

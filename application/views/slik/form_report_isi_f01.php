@@ -78,242 +78,80 @@
                                 <th>Additional info</th>
                                 <th>Branch</th>
                                 <th>Operation status</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>D</td>
-                                <td>1111</td>
-                                <td>1234</td>
-                                <td>4321</td>
-                                <td>F01</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="form_report_edit.html" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>D</td>
-                                <td>2222</td>
-                                <td>5617</td>
-                                <td>5847</td>
-                                <td>F02</td>
-
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>D</td>
-                                <td>3333</td>
-                                <td>5678</td>
-                                <td>6543</td>
-                                <td>F03</td>
-
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>D</td>
-                                <td>4444</td>
-                                <td>4567</td>
-                                <td>2458</td>
-                                <td>F04</td>
-
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-
+                            <?php
+                            $no = 0;
+                            foreach ($api_hasil as $key) {
+                                $no++;
+                            ?>
+                                <tr>
+                                    <td><?= $key->id; ?></td>
+                                    <td><?= $key->flag_detail; ?></td>
+                                    <td><?= $key->no_rekening; ?></td>
+                                    <td><?= $key->cif; ?></td>
+                                    <td><?= $key->sifat; ?></td>
+                                    <td><?= $key->jenis_kredit; ?></td>
+                                    <td><?= $key->skim; ?></td>
+                                    <td><?= $key->no_pk_awal; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_pk_awal)); ?></td>
+                                    <td><?= $key->no_pk_akhir; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_pk_akhir)); ?></td>
+                                    <td><?= $key->baru_panjang; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_awal_kredit)); ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_mulai)); ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_jatuh_tempo)); ?></td>
+                                    <td><?= $key->kategory; ?></td>
+                                    <td><?= $key->jenis_pengguna; ?></td>
+                                    <td><?= $key->orientasi; ?></td>
+                                    <td><?= $key->sektor_ekonomi; ?></td>
+                                    <td><?= $key->dati; ?></td>
+                                    <td><?= number_format($key->nilai_proyek, 0, ',', '.'); ?></td>
+                                    <td><?= $key->mata_uang; ?></td>
+                                    <td><?= $key->suku_bunga; ?></td>
+                                    <td><?= $key->sifat_suku_bunga; ?></td>
+                                    <td><?= $key->kredit_pemerintah; ?></td>
+                                    <td><?= $key->takeover; ?></td>
+                                    <td><?= $key->sumber_dana; ?></td>
+                                    <td><?= $key->plafon_awal; ?></td>
+                                    <td><?= $key->plafon; ?></td>
+                                    <td><?= $key->realisasi; ?></td>
+                                    <td><?= $key->denda; ?></td>
+                                    <td><?= $key->baki_debet; ?></td>
+                                    <td><?= $key->orginal_amount; ?></td>
+                                    <td><?= $key->kolektibilitas; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_macet)); ?></td>
+                                    <td><?= $key->sebab_macet; ?></td>
+                                    <td><?= number_format($key->tunggak_pokok, 0, ',', '.'); ?></td>
+                                    <td><?= number_format($key->tunggak_bunga, 0, ',', '.'); ?></td>
+                                    <td><?= $key->frekuensi_tunggak; ?></td>
+                                    <td><?= $key->frekuensi_restruktur; ?></td>
+                                    <td><?= $key->jml_hari_tunggak; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_restruktur)); ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_restruktur_akhir)); ?></td>
+                                    <td><?= $key->kd_cara_restruktur; ?></td>
+                                    <td><?= $key->kondisi; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_kondisi)); ?></td>
+                                    <td><?= $key->keterangan; ?></td>
+                                    <td><?= $key->cabang; ?></td>
+                                    <td><?= $key->stts_operasi; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->createdAt)); ?></td>
+                                    <td>
+                                        <a href="<?= base_url('slik/form_report_edit_f01/' . $key->id); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php };
+                            ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Excel
-                        </a>
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Txt
+                        <a href="<?= base_url('slik/exportDataToTxt_f01') ?>" class="btn rounded-pill btn-primary">Export to Txt
                         </a>
                     </div>
                 </div>
@@ -325,8 +163,33 @@
 </div>
 
 <?php $this->view('temp/footer'); ?>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
 <script>
     $(document).ready(function() {
-        $('#table-res').DataTable({});
+        $('#table-res').DataTable({
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copyHtml5',
+                    messageTop: 'SLIK - Form A01 Collateral Data',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    messageTop: 'SLIK - Form A01 Collateral Data',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
+                    }
+                },
+                'colvis'
+            ]
+        });
     });
 </script>
