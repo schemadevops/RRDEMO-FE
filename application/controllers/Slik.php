@@ -223,10 +223,36 @@ class Slik extends CI_Controller
 	}
 	public function form_report_isi_m01()
 	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formm01',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+		}
+		$data['header'] = "SLIK - Form M01 Key Management Data (non Individual Customer)";
+
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('slik/form_report_isi_m01');
+		$this->load->view('slik/form_report_isi_m01', $data);
 	}
 
 	public function form_report_edit_a01($id)
@@ -388,12 +414,46 @@ class Slik extends CI_Controller
 			$data['api_log_data'] = $hasil->logData;
 		}
 		$data['judul'] = "SLIK - Form K01 Non Individual Customer's Financial Report Data";
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('slik/form_report_edit_k01', $data);
 	}
 
+	public function form_report_edit_m01($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formm01/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+		$data['judul'] = "SLIK - Form M01 Key Management Data (non Individual Customer)";
+
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('slik/form_report_edit_m01', $data);
+	}
 
 	public function ajax_edit_a01()
 	{
@@ -745,6 +805,54 @@ class Slik extends CI_Controller
 		}
 	}
 
+	public function ajax_edit_m01()
+	{
+		$id = $this->input->post('id_m01');
+		$flag_detail = $this->input->post('flag_detail');
+		$no_identitas = $this->input->post('no_identitas');
+		$cif = $this->input->post('cif');
+		$jenis_identitas = $this->input->post('jenis_identitas');
+		$nm_pengurus = $this->input->post('nm_pengurus');
+		$jenis_kelamin = $this->input->post('jenis_kelamin');
+		$alamat = $this->input->post('alamat');
+		$kelurahan = $this->input->post('kelurahan');
+		$kecamatan = $this->input->post('kecamatan');
+		$dati = $this->input->post('dati');
+		$kd_jabatan = $this->input->post('kd_jabatan');
+		$pangsa_pemilik = $this->input->post('pangsa_pemilik');
+		$stts_pengurus = $this->input->post('stts_pengurus');
+		$cabang = $this->input->post('cabang');
+		$operation = $this->input->post('operation');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formm01/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'flag_detail=' . $flag_detail . '&no_identitas=' . $no_identitas . '&cif=' . $cif . '&jenis_identitas=' . $jenis_identitas . '&nm_pengurus=' . $nm_pengurus . '&jenis_kelamin=' . $jenis_kelamin . '&alamat=' . $alamat . '&kelurahan=' . $kelurahan . '&kecamatan=' . $kecamatan . '&dati=' . $dati . '&kd_jabatan=' . $kd_jabatan . '&pangsa_pemilik=' . $pangsa_pemilik . '&stts_pengurus=' . $stts_pengurus . '&cabang=' . $cabang . '&operation=' . $operation . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
 
 	public function exportDataToTxt_a01()
 	{
@@ -981,6 +1089,53 @@ class Slik extends CI_Controller
 		}
 	}
 
+	public function exportDataToTxt_m01()
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formm01',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$api_hasil = $hasil->data;
+
+			$y = date('Y');
+			$m = date('m');
+			// Create a custom header (modify as per your requirement)
+			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|M01|11112|11112\n";
+
+			// Convert data to a tab-separated text format
+			$txtData = '';
+			foreach ($api_hasil as $row) {
+				unset($row->createdAt);
+				unset($row->updatedAt);
+				$txtData .= implode("|", (array)$row) . "\n";
+			}
+
+			// Set the headers for file download
+			header("Content-type: application/octet-stream");
+			header("Content-Disposition: attachment; filename=SLIK - Form M01 Key Management Data (non Individual Customer).txt");
+
+			// Output the data to the response
+			echo $customHeader . $txtData;
+		}
+	}
+
 	public function ajax_process()
 	{
 		$id = $this->input->post('formid');
@@ -1015,5 +1170,113 @@ class Slik extends CI_Controller
 		if ($hasil->message == "succes") {
 			echo json_encode(array("status" => TRUE));
 		}
+	}
+
+	public function table_m01()
+	{
+		if ($this->input->is_ajax_request()) {
+			$tgl_seacrh = $this->session->tgl_periode;
+
+			if ($tgl_seacrh != "") {
+				$curl = curl_init();
+
+				curl_setopt_array($curl, array(
+					CURLOPT_URL => 'http://141.136.47.149:3003/slik/formm01/getbydate',
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => '',
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 0,
+					CURLOPT_FOLLOWLOCATION => true,
+					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					CURLOPT_CUSTOMREQUEST => 'POST',
+					CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+					CURLOPT_HTTPHEADER => array(
+						'Content-Type: application/x-www-form-urlencoded',
+						'Authorization: Bearer ' . $this->session->access_token
+					),
+				));
+
+				$response = curl_exec($curl);
+
+				curl_close($curl);
+				$hasil = json_decode($response);
+
+				$api_hasil = $hasil->data;
+				$this->session->unset_userdata('tgl_periode');
+			} else {
+				$curl = curl_init();
+
+				curl_setopt_array($curl, array(
+					CURLOPT_URL => 'http://141.136.47.149:3003/slik/formm01',
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => '',
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 0,
+					CURLOPT_FOLLOWLOCATION => true,
+					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					CURLOPT_CUSTOMREQUEST => 'GET',
+					CURLOPT_HTTPHEADER => array(
+						'Authorization: Bearer ' . $this->session->access_token
+					),
+				));
+
+				$response = curl_exec($curl);
+
+				curl_close($curl);
+				$hasil = json_decode($response);
+
+				$api_hasil = $hasil->data;
+			}
+
+			$list = $api_hasil;
+			$data = array();
+			$no   = 0;
+			foreach ($list as $rowx) {
+				$no++;
+				$row    = array();
+				$row[]  = $no;
+				$row[]  = $rowx->flag_detail;
+				$row[]  = $rowx->no_identitas;
+				$row[]  = $rowx->cif;
+				$row[]  = $rowx->jenis_identitas;
+				$row[]  = $rowx->nm_pengurus;
+				$row[]  = $rowx->jenis_kelamin;
+				$row[]  = $rowx->alamat;
+				$row[]  = $rowx->kelurahan;
+				$row[]  = $rowx->kecamatan;
+				$row[]  = $rowx->dati;
+				$row[]  = $rowx->kd_jabatan;
+				$row[]  = $rowx->pangsa_pemilik;
+				$row[]  = $rowx->stts_pengurus;
+				$row[]  = $rowx->cabang;
+				$row[]  = $rowx->operation;
+				$row[]  = date('d-m-Y', strtotime($rowx->createdAt));
+
+				$row[]  = '<a href="' . base_url("slik/form_report_edit_m01/" . $rowx->id) . '" class="btn rounded-pill btn-primary"><i class="bx bx-edit-alt"></i> Edit
+					</a>';
+				$data[] = $row;
+			}
+			$output = array(
+				"recordsTotal"    => count($api_hasil),
+				"recordsFiltered" => count($api_hasil),
+				"data"            => $data,
+			);
+			echo json_encode($output);
+		} else {
+			redirect("_404", "refresh");
+		}
+	}
+
+	public function ajax_periode_k01()
+	{
+		$tgl = $this->input->post('periode_date');
+
+		$newdata = array(
+			'tgl_periode'  => $tgl,
+		);
+
+		$this->session->set_userdata($newdata);
+
+		echo json_encode(array("status" => TRUE));
 	}
 }

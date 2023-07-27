@@ -11,15 +11,16 @@
             <!-- Responsive Table -->
             <div class="card">
                 <div class="container my-2">
-                    <form>
+                    <form id="form_periode">
                         <div class="row mb-3 mt-3">
-                            <label class="col-sm-3 col-form-label" for="basic-default-name">Periode
+                            <label class="col-sm-3 col-form-label" for="periode_date">Periode
                                 Data</label>
                             <div class="col-sm-6">
-                                <input type="date" class="form-control" id="basic-default-name" placeholder="John Doe" />
+                                <input type="date" class="form-control" id="periode_date" name="periode_date" placeholder="John Doe" />
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="button" onclick="save_periode()" id="btnSeacrh" class="btn btn-primary">Search</button>
+                                <button type="button" onclick="reload_table()" id="btnReload" class="btn btn-warning">Reset</button>
                             </div>
                         </div>
                     </form>
@@ -45,107 +46,17 @@
                                 <th>Status</th>
                                 <th>Branch</th>
                                 <th>Operation data</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>D</td>
-                                <td>1111</td>
-                                <td>1234</td>
-                                <td>4321</td>
-                                <td>F01</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="form_report_edit.html" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>D</td>
-                                <td>2222</td>
-                                <td>5617</td>
-                                <td>5847</td>
-                                <td>F02</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>D</td>
-                                <td>3333</td>
-                                <td>5678</td>
-                                <td>6543</td>
-                                <td>F03</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>D</td>
-                                <td>4444</td>
-                                <td>4567</td>
-                                <td>2458</td>
-                                <td>F04</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>1 (Available)</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Excel
-                        </a>
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Txt
+                        <a href="<?= base_url('slik/exportDataToTxt_m01') ?>" class="btn rounded-pill btn-primary">Export to Txt
                         </a>
                     </div>
                 </div>
@@ -157,8 +68,92 @@
 </div>
 
 <?php $this->view('temp/footer'); ?>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#table-res').DataTable({});
+        table = $('#table-res').DataTable({
+            processing: true,
+            serverSide: true,
+            order: [], //init datatable not ordering
+            ajax: "<?php echo site_url('slik/table_m01') ?>",
+            columnDefs: [{
+                    targets: -1,
+                    orderable: false
+                }, //target -1 means last column
+            ],
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copyHtml5',
+                    messageTop: 'SLIK - Form K01 Non Individual Customers Financial Report Data',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    messageTop: 'SLIK - Form K01 Non Individual Customers Financial Report Data',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                    }
+                },
+                'colvis'
+            ]
+        });
     });
+
+    function reload_table() {
+        table.ajax.reload(null, false); //reload datatable ajax 
+        $('#periode_date').val(null);
+    }
+
+    function save_periode() {
+        $('#btnSeacrh').text('searching...'); //change button text
+        $('#btnSeacrh').attr('disabled', true); //set button disable 
+        var url;
+
+        url = "<?php echo site_url('slik/ajax_periode_k01') ?>";
+
+
+        // ajax adding data to database
+
+        var formData = new FormData($('#form_periode')[0]);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) //if success close modal and reload ajax table
+                {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Data Berhasil dicari'
+                    });
+                    reload_table();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Opss ada yang error'
+                    })
+                }
+                $('#btnSeacrh').text('Search'); //change button text
+                $('#btnSeacrh').attr('disabled', false); //set button enable 
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error adding / update data');
+                $('#btnSeacrh').text('Search'); //change button text
+                $('#btnSeacrh').attr('disabled', false); //set button enable 
+
+            }
+        });
+    }
 </script>
