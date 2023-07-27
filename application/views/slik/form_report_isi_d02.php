@@ -80,7 +80,7 @@
                                     <td><?= $key->jenis_bdn_usaha; ?></td>
                                     <td><?= $key->tempat_pendirian; ?></td>
                                     <td><?= $key->no_akte_awal; ?></td>
-                                    <td><?= $key->tgl_akte_awal; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->tgl_akte_awal)); ?></td>
                                     <td><?= $key->no_akte_akhir; ?></td>
                                     <td><?= date('d-m-Y', strtotime($key->tgl_akte_akhir)); ?></td>
                                     <td><?= $key->telp; ?></td>
@@ -96,6 +96,8 @@
                                     <td><?= $key->hub_ljk; ?></td>
                                     <td><?= $key->langgar_bmpk; ?></td>
                                     <td><?= $key->lampu_bmpk; ?></td>
+                                    <td><?= $key->go_public; ?></td>
+                                    <td><?= $key->gol_debitur; ?></td>
                                     <td><?= $key->peringkat; ?></td>
                                     <td><?= $key->pemeringkat; ?></td>
                                     <td><?= date('d-m-Y', strtotime($key->tgl_pemeringkat)); ?></td>
@@ -103,10 +105,8 @@
                                     <td><?= $key->cabang; ?></td>
                                     <td><?= $key->operation; ?></td>
                                     <td><?= $key->createdAt; ?></td>
-                                    <td><?= $key->createdAt; ?></td>
-                                    <td><?= $key->createdAt; ?></td>
                                     <td>
-                                        <a href="<?= base_url('slik/form_report_edit_d01/' . $key->id); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
+                                        <a href="<?= base_url('slik/form_report_edit_d02/' . $key->id); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
                                         </a>
                                     </td>
                                 </tr>
