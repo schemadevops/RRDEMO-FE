@@ -32,169 +32,175 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Tax Number (NPWP)</label>
+                            <label class="col-sm-2 col-form-label">Report Periods</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="id_bdn_usaha" name="id_bdn_usaha" value="<?= $api_hasil->id_bdn_usaha; ?>" />
+                                <input type="text" class="form-control" id="periode_laporan" name="periode_laporan" value="<?= $api_hasil->periode_laporan; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Debtor name</label>
+                            <label class="col-sm-2 col-form-label">Asset</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nm_bdn_usaha" name="nm_bdn_usaha" value="<?= $api_hasil->nm_bdn_usaha; ?>" />
+                                <input type="text" class="form-control" id="aset" name="aset" value="<?= $api_hasil->aset; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Type of corporate</label>
+                            <label class="col-sm-2 col-form-label">Current Assets</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="jenis_bdn_usaha" name="jenis_bdn_usaha" value="<?= $api_hasil->jenis_bdn_usaha; ?>" />
+                                <input type="text" class="form-control" id="aset_lancar" name="aset_lancar" value="<?= $api_hasil->aset_lancar; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Place of established</label>
+                            <label class="col-sm-2 col-form-label">Cash and Cash Equivalents (Current Assets)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="tempat_pendirian" name="tempat_pendirian" value="<?= $api_hasil->tempat_pendirian; ?>" />
+                                <input type="text" class="form-control" id="aset_kas" name="aset_kas" value="<?= $api_hasil->aset_kas; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">First deed number</label>
+                            <label class="col-sm-2 col-form-label">Account Receivable or Financing (Current Assets)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="no_akte_awal" name="no_akte_awal" value="<?= $api_hasil->no_akte_awal; ?>" />
+                                <input type="text" class="form-control" id="aset_biaya" name="aset_biaya" value="<?= $api_hasil->aset_biaya; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">First deed date</label>
+                            <label class="col-sm-2 col-form-label">Investment or Other Financial Assets (CA)</label>
                             <div class="col-sm-10">
-                                <input type="date" class="form-control" id="tgl_akte_awal" name="tgl_akte_awal" value="<?= date('Y-m-d', strtotime($api_hasil->tgl_akte_awal)); ?>" />
+                                <input type="text" class="form-control" id="aset_investasi" name="aset_investasi" value="<?= $api_hasil->aset_investasi; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Last deed number</label>
+                            <label class="col-sm-2 col-form-label">Other Current Assets (Current Assets)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="no_akte_akhir" name="no_akte_akhir" value="<?= $api_hasil->no_akte_akhir; ?>" />
+                                <input type="text" class="form-control" id="aset_lain" name="aset_lain" value="<?= $api_hasil->aset_lain; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Last deed date</label>
+                            <label class="col-sm-2 col-form-label">Non-Current Assets</label>
                             <div class="col-sm-10">
-                                <input type="date" class="form-control" id="tgl_akte_akhir" name="tgl_akte_akhir" value="<?= date('Y-m-d', strtotime($api_hasil->tgl_akte_akhir)); ?>" />
+                                <input type="date" class="form-control" id="aset_tidak_lancar" name="aset_tidak_lancar" value="<?= $api_hasil->aset_tidak_lancar; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Phone number</label>
+                            <label class="col-sm-2 col-form-label">Account Receivable or Financing (Non-CA)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="telp" name="telp" value="<?= $api_hasil->telp; ?>" />
+                                <input type="text" class="form-control" id="aset_biaya_tidak_lancar" name="aset_biaya_tidak_lancar" value="<?= $api_hasil->aset_biaya_tidak_lancar; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Mobile phone number</label>
+                            <label class="col-sm-2 col-form-label">Investment or Other Financial Assets (Non-CA)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="no_hp" name="no_hp" value="<?= $api_hasil->no_hp; ?>" />
+                                <input type="text" class="form-control" id="aset_inves_tidak_lancar" name="aset_inves_tidak_lancar" value="<?= $api_hasil->aset_inves_tidak_lancar; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Email address</label>
+                            <label class="col-sm-2 col-form-label">Other Non-Current Assets (Non-CA)</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" name="email" value="<?= $api_hasil->email; ?>" />
+                                <input type="text" class="form-control" id="aset_lain_tidak_lancar" name="aset_lain_tidak_lancar" value="<?= $api_hasil->aset_lain_tidak_lancar; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Address</label>
+                            <label class="col-sm-2 col-form-label">Liability</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $api_hasil->alamat; ?>" />
+                                <input type="text" class="form-control" id="liabilitas" name="liabilitas" value="<?= $api_hasil->liabilitas; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Village</label>
+                            <label class="col-sm-2 col-form-label">Short-Term Liability</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kelurahan" name="kelurahan" value="<?= $api_hasil->kelurahan; ?>" />
+                                <input type="text" class="form-control" id="liabilitas_jk_pendek" name="liabilitas_jk_pendek" value="<?= $api_hasil->liabilitas_jk_pendek; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Districts</label>
+                            <label class="col-sm-2 col-form-label">Short-Term Loan (Short-Term Liability)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="<?= $api_hasil->kecamatan; ?>" />
+                                <input type="text" class="form-control" id="pinjaman_jk_pendek" name="pinjaman_jk_pendek" value="<?= $api_hasil->pinjaman_jk_pendek; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Regency code</label>
+                            <label class="col-sm-2 col-form-label">Short-Term Account Payable (Short-Term Liability)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="dati" name="dati" value="<?= $api_hasil->dati; ?>" />
+                                <input type="text" class="form-control" id="utang_usaha_jk_pendek" name="utang_usaha_jk_pendek" value="<?= $api_hasil->utang_usaha_jk_pendek; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Postal code</label>
+                            <label class="col-sm-2 col-form-label">Other Short-Term Liability (Short-Term Liability)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kode_pos" name="kode_pos" value="<?= $api_hasil->kd_pos; ?>" />
+                                <input type="text" class="form-control" id="liabilitas_lain_jk_pendek" name="liabilitas_lain_jk_pendek" value="<?= $api_hasil->liabilitas_lain_jk_pendek; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Country</label>
+                            <label class="col-sm-2 col-form-label">Long-Term Liability</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kd_negara" name="kd_negara" value="<?= $api_hasil->kd_negara; ?>" />
+                                <input type="text" class="form-control" id="liabilitas_jk_panjang" name="liabilitas_jk_panjang" value="<?= $api_hasil->liabilitas_jk_panjang; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Economic sector</label>
+                            <label class="col-sm-2 col-form-label">Long-Term Loan (Long-Term Liability)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kd_bidang_usaha" name="kd_bidang_usaha" value="<?= $api_hasil->kd_bidang_usaha; ?>" />
+                                <input type="text" class="form-control" id="pinjaman_jk_panjang" name="pinjaman_jk_panjang" value="<?= $api_hasil->pinjaman_jk_panjang; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Relation with bank</label>
+                            <label class="col-sm-2 col-form-label">Long-Term Account Payable (Long-Term Liability)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="hub_ljk" name="hub_ljk" value="<?= $api_hasil->hub_ljk; ?>" />
+                                <input type="text" class="form-control" id="utang_usaha_jk_panjang" name="utang_usaha_jk_panjang" value="<?= $api_hasil->utang_usaha_jk_panjang; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Break the maximal loan limit</label>
+                            <label class="col-sm-2 col-form-label">Other Long Term-Liability (Long-Term Liability)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="langgar_bmpk" name="langgar_bmpk" value="<?= $api_hasil->langgar_bmpk; ?>" />
+                                <input type="text" class="form-control" id="liabilitas_lain_jk_panjang" name="liabilitas_lain_jk_panjang" value="<?= $api_hasil->liabilitas_lain_jk_panjang; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Greather than maximal loan limit</label>
+                            <label class="col-sm-2 col-form-label">Equity</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="lampu_bmpk" name="lampu_bmpk" value="<?= $api_hasil->lampu_bmpk; ?>" />
+                                <input type="text" class="form-control" id="ekuitas" name="ekuitas" value="<?= $api_hasil->ekuitas; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Go pulic or not?</label>
+                            <label class="col-sm-2 col-form-label">Operating or Operating Income</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="go_public" name="go_public" value="<?= $api_hasil->go_public; ?>" />
+                                <input type="text" class="form-control" id="pendapatan_ops" name="pendapatan_ops" value="<?= $api_hasil->pendapatan_ops; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Debitur type</label>
+                            <label class="col-sm-2 col-form-label">Cost of Revenue or Operating Expenses</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="gol_debitur" name="gol_debitur" value="<?= $api_hasil->gol_debitur; ?>" />
+                                <input type="text" class="form-control" id="pendapatan_pk_ops" name="pendapatan_pk_ops" value="<?= $api_hasil->pendapatan_pk_ops; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Rating</label>
+                            <label class="col-sm-2 col-form-label">Gross Profit or Loss</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="peringkat" name="peringkat" value="<?= $api_hasil->peringkat; ?>" />
+                                <input type="text" class="form-control" id="biaya_ops" name="biaya_ops" value="<?= $api_hasil->biaya_ops; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Rating agency</label>
+                            <label class="col-sm-2 col-form-label">Other or Non-Operational Income</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="pemeringkat" name="pemeringkat" value="<?= $api_hasil->pemeringkat; ?>" />
+                                <input type="text" class="form-control" id="pendapatan_nonops" name="pendapatan_nonops" value="<?= $api_hasil->pendapatan_nonops; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Date of rating</label>
+                            <label class="col-sm-2 col-form-label">Other or Non-Operational Expenses</label>
                             <div class="col-sm-10">
-                                <input type="date" class="form-control" id="tgl_pemeringkat" name="tgl_pemeringkat" value="<?= date('Y-m-d', strtotime($api_hasil->tgl_pemeringkat)); ?>" />
+                                <input type="text" class="form-control" id="biaya_nonops" name="biaya_nonops" value="<?= $api_hasil->biaya_nonops; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Debtor group</label>
+                            <label class="col-sm-2 col-form-label">Profit or Loss Before Tax</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="group_debitur" name="group_debitur" value="<?= $api_hasil->group_debitur; ?>" />
+                                <input type="text" class="form-control" id="laba_rugi_sbl_pajak" name="laba_rugi_sbl_pajak" value="<?= $api_hasil->laba_rugi_sbl_pajak; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Branch</label>
+                            <label class="col-sm-2 col-form-label">Profit or Loss for the Year</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="laba_rugi_jalan" name="laba_rugi_jalan" value="<?= $api_hasil->laba_rugi_jalan; ?>" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Branch Code</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="cabang" name="cabang" value="<?= $api_hasil->cabang; ?>" />
                             </div>
@@ -210,14 +216,14 @@
                             <label class="col-sm-2 col-form-label">Alasan Edit</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="alasan_edit" name="alasan_edit" placeholder="Masukan alasan mengedit" />
-                                <input type="hidden" class="form-control" id="id_d02" name="id_d02" value="<?= $api_hasil->id; ?>" />
+                                <input type="hidden" class="form-control" id="id_k01" name="id_d02" value="<?= $api_hasil->id; ?>" />
                             </div>
                         </div>
 
                         <div class="row justify-content-end py-3">
                             <div class="col-sm-10">
                                 <button type="button" id="btnEdit" onclick="edit()" class="btn btn-primary">Edit</button>
-                                <a href="<?= base_url('slik/form_report_isi_d02') ?>" class="btn btn-warning">Kembali</a>
+                                <a href="<?= base_url('slik/form_report_isi_k01') ?>" class="btn btn-warning">Kembali</a>
                             </div>
                         </div>
                     </form>

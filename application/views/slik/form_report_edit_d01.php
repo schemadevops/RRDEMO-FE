@@ -265,7 +265,7 @@
                         <div class="row justify-content-end py-3">
                             <div class="col-sm-10">
                                 <button type="button" id="btnEdit" onclick="edit()" class="btn btn-primary">Edit</button>
-                                <a href="<?= base_url('slik/form_report_isi_f01') ?>" class="btn btn-warning">Kembali</a>
+                                <a href="<?= base_url('slik/form_report_isi_d01') ?>" class="btn btn-warning">Kembali</a>
                             </div>
                         </div>
                     </form>

@@ -191,10 +191,35 @@ class Slik extends CI_Controller
 	}
 	public function form_report_isi_k01()
 	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+		}
+		$data['header'] = "SLIK - Form K01 Non Individual Customer's Financial Report Data";
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('slik/form_report_isi_k01');
+		$this->load->view('slik/form_report_isi_k01', $data);
 	}
 	public function form_report_isi_m01()
 	{
@@ -334,6 +359,39 @@ class Slik extends CI_Controller
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('slik/form_report_edit_d02', $data);
+	}
+
+	public function form_report_edit_k01($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+		$data['judul'] = "SLIK - Form K01 Non Individual Customer's Financial Report Data";
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('slik/form_report_edit_k01', $data);
 	}
 
 
@@ -562,7 +620,6 @@ class Slik extends CI_Controller
 		$cif = $this->input->post('cif');
 		$id_bdn_usaha = $this->input->post('id_bdn_usaha');
 		$nm_bdn_usaha = $this->input->post('nm_bdn_usaha');
-		$nm_identitas = $this->input->post('nm_identitas');
 		$jenis_bdn_usaha = $this->input->post('jenis_bdn_usaha');
 		$tempat_pendirian = $this->input->post('tempat_pendirian');
 		$no_akte_awal = $this->input->post('no_akte_awal');
@@ -605,6 +662,73 @@ class Slik extends CI_Controller
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'PUT',
 			CURLOPT_POSTFIELDS => 'flag_detail=' . $flag_detail . '&cif=' . $cif . '&id_bdn_usaha=' . $id_bdn_usaha . '&nm_bdn_usaha=' . $nm_bdn_usaha . '&jenis_bdn_usaha=' . $jenis_bdn_usaha . '&tempat_pendirian=' . $tempat_pendirian . '&no_akte_awal=' . $no_akte_awal . '&tgl_akte_awal=' . $tgl_akte_awal . '&no_akte_akhir=' . $no_akte_akhir . '&tgl_akte_akhir=' . $tgl_akte_akhir . '&telp=' . $telp . '&no_hp=' . $no_hp . '&email=' . $email . '&alamat=' . $alamat . '&kelurahan=' . $kelurahan . '&kecamatan=' . $kecamatan . '&dati=' . $dati . '&kd_pos=' . $kode_pos . '&kd_negara=' . $kd_negara . '&kd_bidang_usaha=' . $kd_bidang_usaha . '&hub_ljk=' . $hub_ljk . '&langgar_bmpk=' . $langgar_bmpk . '&lampu_bmpk=' . $lampau_bmpk . '&go_public=' . $go_public . '&gol_debitur=' . $gol_debitur . '&peringkat=' . $peringkat . '&pemeringkat=' . $pemeringkat . '&tgl_pemeringkat=' . $tgl_pemeringkat . '&group_debitur=' . $group_debitur . '&cabang=' . $cabang . '&operation=' . $operation . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
+	public function ajax_edit_k01()
+	{
+		$id = $this->input->post('id_k01');
+		$flag_detail = $this->input->post('flag_detail');
+		$cif = $this->input->post('cif');
+		$periode_laporan = $this->input->post('periode_laporan');
+		$aset = $this->input->post('aset');
+		$aset_lancar = $this->input->post('aset_lancar');
+		$aset_kas = $this->input->post('aset_kas');
+		$aset_biaya = $this->input->post('aset_biaya');
+		$aset_investasi = $this->input->post('aset_investasi');
+		$aset_lain = $this->input->post('aset_lain');
+		$aset_tidak_lancar = $this->input->post('aset_tidak_lancar');
+		$aset_biaya_tidak_lancar = $this->input->post('aset_biaya_tidak_lancar');
+		$aset_inves_tidak_lancar = $this->input->post('aset_inves_tidak_lancar');
+		$aset_lain_tidak_lancar = $this->input->post('aset_lain_tidak_lancar');
+		$liabilitas = $this->input->post('liabilitas');
+		$liabilitas_jk_pendek = $this->input->post('liabilitas_jk_pendek');
+		$pinjaman_jk_pendek = $this->input->post('pinjaman_jk_pendek');
+		$utang_usaha_jk_pendek = $this->input->post('utang_usaha_jk_pendek');
+		$liabilitas_lain_jk_pendek = $this->input->post('liabilitas_lain_jk_pendek');
+		$liabilitas_jk_panjang = $this->input->post('liabilitas_jk_panjang');
+		$pinjaman_jk_panjang = $this->input->post('pinjaman_jk_panjang');
+		$utang_usaha_jk_panjang = $this->input->post('utang_usaha_jk_panjang');
+		$liabilitas_lain_jk_panjang = $this->input->post('liabilitas_lain_jk_panjang');
+		$ekuitas = $this->input->post('ekuitas');
+		$pendapatan_ops = $this->input->post('pendapatan_ops');
+		$pendapatan_pk_ops = $this->input->post('pendapatan_pk_ops');
+		$biaya_ops = $this->input->post('biaya_ops');
+		$pendapatan_nonops = $this->input->post('pendapatan_nonops');
+		$biaya_nonops = $this->input->post('biaya_nonops');
+		$laba_rugi_sbl_pajak = $this->input->post('laba_rugi_sbl_pajak');
+		$laba_rugi_jalan = $this->input->post('laba_rugi_jalan');
+		$cabang = $this->input->post('cabang');
+		$operation = $this->input->post('operation');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'flag_detail=' . $flag_detail . '&cif=' . $cif . '&periode_laporan=' . $periode_laporan . '&aset=' . $aset . '&aset_lancar=' . $aset_lancar . '&aset_kas=' . $aset_kas . '&aset_biaya=' . $aset_biaya . '&aset_investasi=' . $aset_investasi . '&aset_lain=' . $aset_lain . '&aset_tidak_lancar=' . $aset_tidak_lancar . '&aset_biaya_tidak_lancar=' . $aset_biaya_tidak_lancar . '&aset_inves_tidak_lancar=' . $aset_inves_tidak_lancar . '&aset_lain_tidak_lancar=' . $aset_lain_tidak_lancar . '&liabilitas=' . $liabilitas . '&liabilitas_jk_pendek=' . $liabilitas_jk_pendek . '&pinjaman_jk_pendek=' . $pinjaman_jk_pendek . '&utang_usaha_jk_pendek=' . $utang_usaha_jk_pendek . '&liabilitas_lain_jk_pendek=' . $liabilitas_lain_jk_pendek . '&liabilitas_jk_panjang=' . $liabilitas_jk_panjang . '&pinjaman_jk_panjang=' . $pinjaman_jk_panjang . '&utang_usaha_jk_panjang=' . $utang_usaha_jk_panjang . '&liabilitias_lain_jk_panjang=' . $liabilitas_lain_jk_panjang . '&ekuitas=' . $ekuitas . '&pendapatan_ops=' . $pendapatan_ops . '&pendapatan_pk_ops=' . $pendapatan_pk_ops . '&biaya_ops=' . $biaya_ops . '&pendapatan_nonops=' . $pendapatan_nonops . '&laba_rugi_sbl_pajak=' . $laba_rugi_sbl_pajak . '&laba_rugi_jalan=' . $laba_rugi_jalan . '&cabang=' . $cabang . '&operation=' . $operation . '&alasan=' . $alasan_edit . '&biaya_nonops=' . $biaya_nonops,
 			CURLOPT_HTTPHEADER => array(
 				'Content-Type: application/x-www-form-urlencoded',
 				'Authorization: Bearer ' . $this->session->access_token
@@ -811,6 +935,52 @@ class Slik extends CI_Controller
 		}
 	}
 
+	public function exportDataToTxt_k01()
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$api_hasil = $hasil->data;
+
+			$y = date('Y');
+			$m = date('m');
+			// Create a custom header (modify as per your requirement)
+			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|K01|11112|11112\n";
+
+			// Convert data to a tab-separated text format
+			$txtData = '';
+			foreach ($api_hasil as $row) {
+				unset($row->createdAt);
+				unset($row->updatedAt);
+				$txtData .= implode("|", (array)$row) . "\n";
+			}
+
+			// Set the headers for file download
+			header("Content-type: application/octet-stream");
+			header("Content-Disposition: attachment; filename=SLIK - Form K01 Non Individual Customer's Financial Report Data.txt");
+
+			// Output the data to the response
+			echo $customHeader . $txtData;
+		}
+	}
 
 	public function ajax_process()
 	{
