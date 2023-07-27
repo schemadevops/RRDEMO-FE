@@ -716,7 +716,6 @@ class Slik extends CI_Controller
 		$operation = $this->input->post('operation');
 		$alasan_edit = $this->input->post('alasan_edit');
 
-
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(

@@ -9852,12 +9852,12 @@
 									"urlencoded": [
 										{
 											"key": "formId",
-											"value": "31",
+											"value": "34",
 											"type": "text"
 										},
 										{
 											"key": "date",
-											"value": "2023-09-21 10:10:50",
+											"value": "2023-09-01 10:10:50",
 											"type": "text"
 										}
 									]
@@ -9871,6 +9871,60 @@
 										"slik",
 										"forma01",
 										"process"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "35",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20 00:00:00",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27 23:59:59",
+											"type": "text"
+										},
+										{
+											"key": "value_form",
+											"value": "form0001",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/forma01/backup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"forma01",
+										"backup"
 									]
 								}
 							},
@@ -11732,7 +11786,7 @@
 											"type": "text"
 										},
 										{
-											"key": "liabilitias_jk_panjang",
+											"key": "liabilitas_lain_jk_panjang",
 											"value": "1000",
 											"type": "text"
 										},
@@ -11780,6 +11834,11 @@
 											"key": "operation",
 											"value": "update",
 											"type": "text"
+										},
+										{
+											"key": "biaya_nonops",
+											"value": "1000000",
+											"type": "text"
 										}
 									]
 								},
@@ -11804,7 +11863,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImppbXkiLCJ1c2VybmFtZSI6ImplbXMiLCJlbWFpbCI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjg5ODYyOTk3fQ.g2Fqa2U2RhaI2yJTSDVZFNtt33YBmNmaOux4G477lSU",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSByb2JlcnRvIiwidXNlcm5hbWVVc2VyIjoiamlteSIsImVtYWlsVXNlciI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjkwNDUxNjQ5fQ.fr8GQw2Hqknz1Z7l0tsJbw4qv3zJc9_x6gnMixRUA3w",
 											"type": "string"
 										}
 									]
@@ -11920,7 +11979,7 @@
 											"type": "text"
 										},
 										{
-											"key": "liabilitias_jk_panjang",
+											"key": "liabilitas_lain_jk_panjang",
 											"value": "1000",
 											"type": "text"
 										},
@@ -11950,6 +12009,11 @@
 											"type": "text"
 										},
 										{
+											"key": "biaya_nonops",
+											"value": "1000",
+											"type": "text"
+										},
+										{
 											"key": "laba_rugi_sbl_pajak",
 											"value": "40000",
 											"type": "text"
@@ -11966,7 +12030,7 @@
 										},
 										{
 											"key": "operation",
-											"value": "change",
+											"value": "change EDIT",
 											"type": "text"
 										},
 										{

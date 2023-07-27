@@ -76,7 +76,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Non-Current Assets</label>
                             <div class="col-sm-10">
-                                <input type="date" class="form-control" id="aset_tidak_lancar" name="aset_tidak_lancar" value="<?= $api_hasil->aset_tidak_lancar; ?>" />
+                                <input type="text" class="form-control" id="aset_tidak_lancar" name="aset_tidak_lancar" value="<?= $api_hasil->aset_tidak_lancar; ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -216,7 +216,7 @@
                             <label class="col-sm-2 col-form-label">Alasan Edit</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="alasan_edit" name="alasan_edit" placeholder="Masukan alasan mengedit" />
-                                <input type="hidden" class="form-control" id="id_k01" name="id_d02" value="<?= $api_hasil->id; ?>" />
+                                <input type="hidden" class="form-control" id="id_k01" name="id_k01" value="<?= $api_hasil->id; ?>" />
                             </div>
                         </div>
 
@@ -370,7 +370,7 @@
         $('#btnEdit').attr('disabled', true); //set button disable 
         var url;
 
-        url = "<?php echo site_url('slik/ajax_edit_d02') ?>";
+        url = "<?php echo site_url('slik/ajax_edit_k01') ?>";
 
 
         // ajax adding data to database
