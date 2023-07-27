@@ -224,13 +224,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/form/sipesat",
+							"raw": "{{url}}/form/slik",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"form",
-								"sipesat"
+								"slik"
 							]
 						}
 					},
@@ -9593,7 +9593,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImppbXkiLCJ1c2VybmFtZSI6ImplbXMiLCJlbWFpbCI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjg5ODYyOTk3fQ.g2Fqa2U2RhaI2yJTSDVZFNtt33YBmNmaOux4G477lSU",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDE5MjE3NX0.Hic1DiLc6ll7m7iu2yzZXgpDs4NrTiEXe4MKQ3_-gs4",
 											"type": "string"
 										}
 									]
@@ -9605,7 +9605,7 @@
 									"urlencoded": [
 										{
 											"key": "flag_detail",
-											"value": "test",
+											"value": "test edit",
 											"type": "text"
 										},
 										{
@@ -9735,7 +9735,7 @@
 										},
 										{
 											"key": "cabang",
-											"value": "jakarta",
+											"value": "jakarta 3",
 											"type": "text"
 										},
 										{
@@ -9751,14 +9751,14 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/slik/forma01/1",
+									"raw": "{{url}}/slik/forma01/24",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"slik",
 										"forma01",
-										"1"
+										"24"
 									]
 								}
 							},
@@ -9780,14 +9780,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/slik/forma01/1",
+									"raw": "{{url}}/slik/forma01/24",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"slik",
 										"forma01",
-										"1"
+										"24"
 									]
 								}
 							},
@@ -9831,6 +9831,50 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Process",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "31",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2023-09-21 10:10:50",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/forma01/process",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"forma01",
+										"process"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -9845,7 +9889,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImppbXkiLCJ1c2VybmFtZSI6ImplbXMiLCJlbWFpbCI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjg5ODYyOTk3fQ.g2Fqa2U2RhaI2yJTSDVZFNtt33YBmNmaOux4G477lSU",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI2Nzc4OX0.BL4aCG5rb1agH_JqiHFfsVB5vtu76dhsM7N3QojpRro",
 											"type": "string"
 										}
 									]
@@ -10069,6 +10113,11 @@
 											"type": "text"
 										},
 										{
+											"key": "jml_hari_tunggak",
+											"value": "10",
+											"type": "text"
+										},
+										{
 											"key": "frekuensi_tunggak",
 											"value": "20000",
 											"type": "text"
@@ -10141,7 +10190,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImppbXkiLCJ1c2VybmFtZSI6ImplbXMiLCJlbWFpbCI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjg5ODYyOTk3fQ.g2Fqa2U2RhaI2yJTSDVZFNtt33YBmNmaOux4G477lSU",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI2Nzc4OX0.BL4aCG5rb1agH_JqiHFfsVB5vtu76dhsM7N3QojpRro",
 											"type": "string"
 										}
 									]
@@ -10337,6 +10386,11 @@
 											"type": "text"
 										},
 										{
+											"key": "jml_hari_tunggak",
+											"value": "15",
+											"type": "text"
+										},
+										{
 											"key": "frekuensi_tunggak",
 											"value": "20000",
 											"type": "text"
@@ -10368,7 +10422,7 @@
 										},
 										{
 											"key": "tgl_kondisi",
-											"value": "2018-01-21",
+											"value": "2018-01-24",
 											"type": "text"
 										},
 										{
@@ -10383,7 +10437,7 @@
 										},
 										{
 											"key": "stts_operasi",
-											"value": "test edit",
+											"value": "test edit 1",
 											"type": "text"
 										},
 										{
@@ -11205,6 +11259,16 @@
 											"type": "text"
 										},
 										{
+											"key": "go_public",
+											"value": "Y",
+											"type": "text"
+										},
+										{
+											"key": "gol_debitur",
+											"value": "gol debitur",
+											"type": "text"
+										},
+										{
 											"key": "peringkat",
 											"value": "3",
 											"type": "text"
@@ -11257,7 +11321,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImppbXkiLCJ1c2VybmFtZSI6ImplbXMiLCJlbWFpbCI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjg5ODYyOTk3fQ.g2Fqa2U2RhaI2yJTSDVZFNtt33YBmNmaOux4G477lSU",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDE5MjE3NX0.Hic1DiLc6ll7m7iu2yzZXgpDs4NrTiEXe4MKQ3_-gs4",
 											"type": "string"
 										}
 									]
@@ -11383,6 +11447,16 @@
 											"type": "text"
 										},
 										{
+											"key": "go_public",
+											"value": "Y",
+											"type": "text"
+										},
+										{
+											"key": "gol_debitur",
+											"value": "d",
+											"type": "text"
+										},
+										{
 											"key": "peringkat",
 											"value": "3",
 											"type": "text"
@@ -11404,7 +11478,7 @@
 										},
 										{
 											"key": "cabang",
-											"value": "jakarta",
+											"value": "jakarta 3",
 											"type": "text"
 										},
 										{
@@ -16585,6 +16659,71 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "proccess",
+			"item": [
+				{
+					"name": "form-A01",
+					"item": [
+						{
+							"name": "get dummy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI2Nzc4OX0.BL4aCG5rb1agH_JqiHFfsVB5vtu76dhsM7N3QojpRro",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/proccess",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"proccess"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "click proccess",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI2Nzc4OX0.BL4aCG5rb1agH_JqiHFfsVB5vtu76dhsM7N3QojpRro",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/proccess/hitapidummy",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"proccess",
+										"hitapidummy"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	],
 	"event": [
@@ -16610,14 +16749,14 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "http://localhost:3001",
-			"type": "string",
-			"disabled": true
+			"value": "http://localhost:3003",
+			"type": "string"
 		},
 		{
 			"key": "url",
 			"value": "http://141.136.47.149:3003",
-			"type": "string"
+			"type": "string",
+			"disabled": true
 		}
 	]
 }

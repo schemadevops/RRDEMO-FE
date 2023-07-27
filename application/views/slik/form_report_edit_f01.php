@@ -467,8 +467,6 @@
         var url;
 
         url = "<?php echo site_url('slik/ajax_edit_f01') ?>";
-
-
         // ajax adding data to database
 
         var formData = new FormData($('#form')[0]);
