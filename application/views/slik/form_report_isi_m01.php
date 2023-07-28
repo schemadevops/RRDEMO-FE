@@ -116,7 +116,7 @@
         $('#btnSeacrh').attr('disabled', true); //set button disable 
         var url;
 
-        url = "<?php echo site_url('slik/ajax_periode_k01') ?>";
+        url = "<?php echo site_url('slik/ajax_periode') ?>";
 
 
         // ajax adding data to database

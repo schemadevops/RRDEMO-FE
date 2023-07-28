@@ -62,29 +62,68 @@ class Slik extends CI_Controller
 
 	public function form_report_isi_a01()
 	{
-		$curl = curl_init();
+		$tgl_seacrh = $this->session->tgl_periode;
 
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/forma01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
 
-		$response = curl_exec($curl);
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/forma01/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
 
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$data['api_hasil'] = $hasil->data;
-		}
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/forma01',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> 'A01',
+			'nama_form'		=> 'Form A01 Collateral Data'
+		);
+		$this->session->set_userdata($newdata);
+
 		$data['header'] = "SLIK - Form A01 Collateral Data";
 
 		$this->load->view('temp/head');
@@ -94,29 +133,68 @@ class Slik extends CI_Controller
 	}
 	public function form_report_isi_f01()
 	{
-		$curl = curl_init();
+		$tgl_seacrh = $this->session->tgl_periode;
 
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formf01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
 
-		$response = curl_exec($curl);
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formf01/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
 
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$data['api_hasil'] = $hasil->data;
-		}
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formf01',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> 'F01',
+			'nama_form'		=> 'Form F01 Loan Data'
+		);
+		$this->session->set_userdata($newdata);
+
 		$data['header'] = "SLIK - Form F01 Loan Data";
 
 		$this->load->view('temp/head');
@@ -127,29 +205,67 @@ class Slik extends CI_Controller
 
 	public function form_report_isi_d01()
 	{
-		$curl = curl_init();
+		$tgl_seacrh = $this->session->tgl_periode;
 
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
 
-		$response = curl_exec($curl);
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd01/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
 
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$data['api_hasil'] = $hasil->data;
-		}
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd01',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> 'D01',
+			'nama_form'		=> 'Form D01 Individual Customer Data'
+		);
+		$this->session->set_userdata($newdata);
 		$data['header'] = "SLIK - Form D01 Individual Customer Data";
 
 		$this->load->view('temp/head');
@@ -159,29 +275,67 @@ class Slik extends CI_Controller
 	}
 	public function form_report_isi_d02()
 	{
-		$curl = curl_init();
+		$tgl_seacrh = $this->session->tgl_periode;
 
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd02',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
 
-		$response = curl_exec($curl);
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd02/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
 
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$data['api_hasil'] = $hasil->data;
-		}
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd02',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> 'D02',
+			'nama_form'		=> 'Form D02 Non Individual Customer Data'
+		);
+		$this->session->set_userdata($newdata);
 		$data['header'] = "SLIK - Form D02 Non Individual Customer Data";
 
 		$this->load->view('temp/head');
@@ -191,29 +345,67 @@ class Slik extends CI_Controller
 	}
 	public function form_report_isi_k01()
 	{
-		$curl = curl_init();
+		$tgl_seacrh = $this->session->tgl_periode;
 
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
 
-		$response = curl_exec($curl);
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
 
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$data['api_hasil'] = $hasil->data;
-		}
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> 'K01',
+			'nama_form'		=> 'Form K01 Non Individual Customers Financial Report Data'
+		);
+		$this->session->set_userdata($newdata);
 		$data['header'] = "SLIK - Form K01 Non Individual Customer's Financial Report Data";
 
 		$this->load->view('temp/head');
@@ -854,39 +1046,21 @@ class Slik extends CI_Controller
 		}
 	}
 
-	public function exportDataToTxt_a01()
+	public function exportDataToTxt()
 	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/forma01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$api_hasil = $hasil->data;
+		$hasil = $this->session->data_export_txt;
+		if ($hasil) {
 
 			$y = date('Y');
 			$m = date('m');
+			$kode_form = $this->session->kode_form;
+			$nama_form = $this->session->nama_form;
 			// Create a custom header (modify as per your requirement)
-			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|A01|11112|11112\n";
+			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|" . $kode_form . "|11112|11112\n";
 
 			// Convert data to a tab-separated text format
 			$txtData = '';
-			foreach ($api_hasil as $row) {
+			foreach ($hasil as $row) {
 				unset($row->createdAt);
 				unset($row->updatedAt);
 				$txtData .= implode("|", (array)$row) . "\n";
@@ -894,247 +1068,13 @@ class Slik extends CI_Controller
 
 			// Set the headers for file download
 			header("Content-type: application/octet-stream");
-			header("Content-Disposition: attachment; filename=SLIK - Form A01 Collateral Data.txt");
+			header("Content-Disposition: attachment; filename=SLIK - " . $nama_form . ".txt");
 
 			// Output the data to the response
 			echo $customHeader . $txtData;
 		}
 	}
 
-	public function exportDataToTxt_f01()
-	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formf01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$api_hasil = $hasil->data;
-
-			$y = date('Y');
-			$m = date('m');
-			// Create a custom header (modify as per your requirement)
-			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|F01|11112|11112\n";
-
-			// Convert data to a tab-separated text format
-			$txtData = '';
-			foreach ($api_hasil as $row) {
-				unset($row->createdAt);
-				unset($row->updatedAt);
-				$txtData .= implode("|", (array)$row) . "\n";
-			}
-
-			// Set the headers for file download
-			header("Content-type: application/octet-stream");
-			header("Content-Disposition: attachment; filename=SLIK - Form F01 Loan Data.txt");
-
-			// Output the data to the response
-			echo $customHeader . $txtData;
-		}
-	}
-
-	public function exportDataToTxt_d01()
-	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$api_hasil = $hasil->data;
-
-			$y = date('Y');
-			$m = date('m');
-			// Create a custom header (modify as per your requirement)
-			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|D01|11112|11112\n";
-
-			// Convert data to a tab-separated text format
-			$txtData = '';
-			foreach ($api_hasil as $row) {
-				unset($row->createdAt);
-				unset($row->updatedAt);
-				$txtData .= implode("|", (array)$row) . "\n";
-			}
-
-			// Set the headers for file download
-			header("Content-type: application/octet-stream");
-			header("Content-Disposition: attachment; filename=SLIK - Form D01 Individual Customer Data.txt");
-
-			// Output the data to the response
-			echo $customHeader . $txtData;
-		}
-	}
-
-	public function exportDataToTxt_d02()
-	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formd02',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$api_hasil = $hasil->data;
-
-			$y = date('Y');
-			$m = date('m');
-			// Create a custom header (modify as per your requirement)
-			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|D02|11112|11112\n";
-
-			// Convert data to a tab-separated text format
-			$txtData = '';
-			foreach ($api_hasil as $row) {
-				unset($row->createdAt);
-				unset($row->updatedAt);
-				$txtData .= implode("|", (array)$row) . "\n";
-			}
-
-			// Set the headers for file download
-			header("Content-type: application/octet-stream");
-			header("Content-Disposition: attachment; filename=SLIK - Form D02 Non Individual Customer Data.txt");
-
-			// Output the data to the response
-			echo $customHeader . $txtData;
-		}
-	}
-
-	public function exportDataToTxt_k01()
-	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formk01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$api_hasil = $hasil->data;
-
-			$y = date('Y');
-			$m = date('m');
-			// Create a custom header (modify as per your requirement)
-			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|K01|11112|11112\n";
-
-			// Convert data to a tab-separated text format
-			$txtData = '';
-			foreach ($api_hasil as $row) {
-				unset($row->createdAt);
-				unset($row->updatedAt);
-				$txtData .= implode("|", (array)$row) . "\n";
-			}
-
-			// Set the headers for file download
-			header("Content-type: application/octet-stream");
-			header("Content-Disposition: attachment; filename=SLIK - Form K01 Non Individual Customer's Financial Report Data.txt");
-
-			// Output the data to the response
-			echo $customHeader . $txtData;
-		}
-	}
-
-	public function exportDataToTxt_m01()
-	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://141.136.47.149:3003/slik/formm01',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $this->session->access_token
-			),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$hasil = json_decode($response);
-		if ($hasil->message == "success") {
-			$api_hasil = $hasil->data;
-
-			$y = date('Y');
-			$m = date('m');
-			// Create a custom header (modify as per your requirement)
-			$customHeader = "H|0103|601044|" . $y . "|" . $m . "|M01|11112|11112\n";
-
-			// Convert data to a tab-separated text format
-			$txtData = '';
-			foreach ($api_hasil as $row) {
-				unset($row->createdAt);
-				unset($row->updatedAt);
-				$txtData .= implode("|", (array)$row) . "\n";
-			}
-
-			// Set the headers for file download
-			header("Content-type: application/octet-stream");
-			header("Content-Disposition: attachment; filename=SLIK - Form M01 Key Management Data (non Individual Customer).txt");
-
-			// Output the data to the response
-			echo $customHeader . $txtData;
-		}
-	}
 
 	public function ajax_process()
 	{
@@ -1267,7 +1207,7 @@ class Slik extends CI_Controller
 		}
 	}
 
-	public function ajax_periode_k01()
+	public function ajax_periode()
 	{
 		$tgl = $this->input->post('periode_date');
 

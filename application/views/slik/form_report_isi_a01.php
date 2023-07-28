@@ -11,19 +11,19 @@
             <!-- Responsive Table -->
             <div class="card">
                 <div class="container mt-3 mb-3">
-                    <form>
+                    <form id="form_periode">
                         <div class="row mb-3 mt-3">
-                            <label class="col-sm-3 col-form-label" for="basic-default-name">Periode
+                            <label class="col-sm-3 col-form-label" for="periode_date">Periode
                                 Data</label>
                             <div class="col-sm-6">
-                                <input type="date" class="form-control" id="basic-default-name" placeholder="John Doe" />
+                                <input type="date" class="form-control" id="periode_date" name="periode_date" placeholder="John Doe" />
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="button" onclick="save_periode()" id="btnSeacrh" class="btn btn-primary">Search</button>
+                                <button type="button" onclick="reload_table()" id="btnReload" class="btn btn-warning">Reset</button>
                             </div>
                         </div>
                     </form>
-
                 </div>
                 <div class="table-responsive text-nowrap">
                     <table id="table-res" class="table dt-responsive">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="<?= base_url('slik/exportDataToTxt_a01') ?>" class="btn rounded-pill btn-primary">Export to Txt
+                        <a href="<?= base_url('slik/exportDataToTxt') ?>" class="btn rounded-pill btn-primary">Export to Txt
                         </a>
                     </div>
                 </div>
@@ -153,4 +153,58 @@
             ]
         });
     });
+
+    function save_periode() {
+        $('#btnSeacrh').text('searching...'); //change button text
+        $('#btnSeacrh').attr('disabled', true); //set button disable 
+        var url;
+
+        url = "<?php echo site_url('slik/ajax_periode') ?>";
+
+
+        // ajax adding data to database
+
+        var formData = new FormData($('#form_periode')[0]);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) //if success close modal and reload ajax table
+                {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Data Berhasil dicari'
+                    });
+                    window.setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Opss ada yang error'
+                    })
+                }
+                $('#btnSeacrh').text('Search'); //change button text
+                $('#btnSeacrh').attr('disabled', false); //set button enable 
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error adding / update data');
+                $('#btnSeacrh').text('Search'); //change button text
+                $('#btnSeacrh').attr('disabled', false); //set button enable 
+
+            }
+        });
+    }
+
+    function reload_table() {
+        window.setTimeout(function() {
+            location.reload();
+        }, 1000);
+    }
 </script>
