@@ -77,10 +77,34 @@ class Slik extends CI_Controller
 
 	public function backup_restore()
 	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/form/slik',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+		}
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('slik/backup_restore');
+		$this->load->view('slik/backup_restore', $data);
 	}
 
 
@@ -1242,5 +1266,147 @@ class Slik extends CI_Controller
 		$this->session->set_userdata($newdata);
 
 		echo json_encode(array("status" => TRUE));
+	}
+
+	public function ajax_backup()
+	{
+		$start_date =  $this->input->post('start_date');
+		$end_date =  $this->input->post('end_date');
+		$form_report =  $this->input->post('form_report');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/form/slik',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$api_hasil = $hasil->data;
+
+			$isi = array();
+			$error = array();
+			foreach ($api_hasil as $key) {
+
+				if ($key->id == $form_report) {
+					if (count($key->log_backups) == 0) {
+						$error['pesan'] = "Data ini belum dapat di backup!";
+					} else {
+						$error['pesan'] = "-";
+						$isi['value'] = $key->value;
+						$isi['link_backup'] = $key->other->path_backup;
+					}
+				};
+			}
+
+			if ($error['pesan'] == "Data ini belum dapat di backup!") {
+				echo json_encode(array("status" => false, "isi" => $error['pesan']));
+			} else {
+				$curl = curl_init();
+
+				curl_setopt_array($curl, array(
+					CURLOPT_URL => $isi['link_backup'],
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => '',
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 0,
+					CURLOPT_FOLLOWLOCATION => true,
+					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					CURLOPT_CUSTOMREQUEST => 'POST',
+					CURLOPT_POSTFIELDS => 'formId=' . $form_report . '&start=' . $start_date . '&end=' . $end_date . '&value_form=' . $isi['value'],
+					CURLOPT_HTTPHEADER => array(
+						'Content-Type: application/x-www-form-urlencoded',
+						'Authorization: Bearer ' . $this->session->access_token
+					),
+				));
+
+				$responsex = curl_exec($curl);
+
+				curl_close($curl);
+				$hasil_backup = json_decode($responsex);
+				if ($hasil_backup->message == "success") {
+					echo json_encode(array("status" => TRUE, "isi" => $isi));
+				}
+			}
+		}
+	}
+
+	public function view_history_backup($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/historybackup/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$api_hasil = $hasil->data;
+			if (count($api_hasil) == 0) {
+				echo json_encode(array("status" => FALSE, "isi" => $api_hasil));
+			} else {
+				echo json_encode(array("status" => TRUE, "isi" => $api_hasil));
+			}
+		}
+	}
+
+	public function detail_history_backup($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/historybackup/detail/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$api_hasil = $hasil->data;
+
+			$xloop = array();
+			foreach ($api_hasil as $key) {
+				array_push($xloop, $key->data->data);
+			};
+
+			echo json_encode(array("status" => TRUE, "isi" => $xloop));
+		}
 	}
 }
