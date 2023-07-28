@@ -21,10 +21,34 @@ class Apollo extends CI_Controller
 
 	public function form_report()
 	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/form/apolo',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+		}
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report');
+		$this->load->view('apollo/form_report', $data);
 	}
 	public function mapping_gl()
 	{
@@ -49,7 +73,7 @@ class Apollo extends CI_Controller
 		$this->load->view('apollo/backup_restore');
 	}
 
-	public function form_report_isi_00()
+	public function form_report_isi_0000()
 	{
 
 		$curl = curl_init();
@@ -64,7 +88,7 @@ class Apollo extends CI_Controller
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImppbXkiLCJ1c2VybmFtZSI6ImplbXMiLCJlbWFpbCI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjg5ODYyOTk3fQ.g2Fqa2U2RhaI2yJTSDVZFNtt33YBmNmaOux4G477lSU'
+				'Authorization: Bearer ' . $this->session->access_token
 			),
 		));
 
@@ -81,28 +105,28 @@ class Apollo extends CI_Controller
 		$this->load->view('apollo/form_report_isi_00', $data);
 	}
 
-	public function form_report_isi_01()
+	public function form_report_isi_0001()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_01');
 	}
-	public function form_report_isi_02()
+	public function form_report_isi_0002()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_02');
 	}
-	public function form_report_isi_03()
+	public function form_report_isi_0003()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_03');
 	}
-	public function form_report_isi_04()
+	public function form_report_isi_0004()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
@@ -110,147 +134,147 @@ class Apollo extends CI_Controller
 		$this->load->view('apollo/form_report_isi_04');
 	}
 
-	public function form_report_isi_05()
+	public function form_report_isi_0005()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_05');
 	}
-	public function form_report_isi_06()
+	public function form_report_isi_0006()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_06');
 	}
-	public function form_report_isi_07()
+	public function form_report_isi_0007()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_07');
 	}
-	public function form_report_isi_08()
+	public function form_report_isi_0008()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_08');
 	}
-	public function form_report_isi_09()
+	public function form_report_isi_0009()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_09');
 	}
-	public function form_report_isi_10()
+	public function form_report_isi_0010()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_10');
 	}
-	public function form_report_isi_11()
+	public function form_report_isi_0011()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_11');
 	}
-	public function form_report_isi_12()
+	public function form_report_isi_0012()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_12');
 	}
-	public function form_report_isi_14()
+	public function form_report_isi_0014()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_14');
 	}
-	public function form_report_isi_15()
+	public function form_report_isi_0015()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_15');
 	}
-	public function form_report_isi_100()
+	public function form_report_isi_0100()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_100');
 	}
-	public function form_report_isi_101()
+	public function form_report_isi_0101()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_101');
 	}
-	public function form_report_isi_300()
+	public function form_report_isi_0300()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_300');
 	}
-	public function form_report_isi_400()
+	public function form_report_isi_0400()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_400');
 	}
-	public function form_report_isi_500()
+	public function form_report_isi_0500()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_500');
 	}
-	public function form_report_isi_600()
+	public function form_report_isi_0600()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_600');
 	}
-	public function form_report_isi_601()
+	public function form_report_isi_0601()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_601');
 	}
-	public function form_report_isi_700()
+	public function form_report_isi_0700()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_700');
 	}
-	public function form_report_isi_800()
+	public function form_report_isi_0800()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_800');
 	}
-	public function form_report_isi_900()
+	public function form_report_isi_0900()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_isi_900');
 	}
-	public function form_report_isi_901()
+	public function form_report_isi_0901()
 	{
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');

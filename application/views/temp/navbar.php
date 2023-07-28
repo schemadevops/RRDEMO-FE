@@ -11,11 +11,11 @@
 
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <!-- Search -->
-            <div class="navbar-nav align-items-center">
+            <!-- <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                     <input type="text" class="nosubmit" placeholder="Search..." aria-label="Search..." size="100%" />
                 </div>
-            </div>
+            </div> -->
             <!-- /Search -->
 
             <ul class="navbar-nav flex-row align-items-center ms-auto">
