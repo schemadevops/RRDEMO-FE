@@ -40,6 +40,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="end_date">Form</label>
                                         <select name="form_report" id="form_report" class="form-control">
+                                            <option value="-">Pilih Form</option>
                                             <?php
                                             $no = 0;
                                             foreach ($api_hasil as $key) {
@@ -55,7 +56,7 @@
                                     <div class="mb-3">
                                         <br />
                                         <button type="button" id="btnBackup" onclick="save_backup()" class="btn rounded-pill btn-primary">Backup</button>
-                                        <button type="submit" class="btn rounded-pill btn-secondary">Backup All</button>
+                                        <button type="button" id="btnBackupAll" onclick="save_backupAll()" class="btn rounded-pill btn-secondary">Backup All</button>
                                     </div>
                                 </div>
                             </div>
@@ -101,69 +102,48 @@
                     <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
                         <div class="row">
                             <div class="col-md-10">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="start_date">Start Date</label>
-                                            <input type="date" class="form-control" id="start_date" placeholder="John Doe" />
+                                <form id="form_restore">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="start_date">Start Date</label>
+                                                <input type="date" class="form-control" id="start_date_res" placeholder="John Doe" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="end_date">End Date</label>
+                                                <input type="date" class="form-control" id="end_date_res" placeholder="John Doe" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="form_report">Form</label>
+                                                <select name="form_report" id="form_report_res" class="form-control">
+                                                    <option value="-">Pilih Form</option>
+                                                    <?php
+                                                    $no = 0;
+                                                    foreach ($api_hasil as $key) {
+                                                    ?>
+                                                        <option value="<?= $key->id; ?>"><?= $key->name; ?></option>
+                                                    <?php };
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="backup_ke">Backup ke?</label>
+                                                <select name="backup_ke" id="backup_ke" class="form-control">
+                                                    <option value="-">Silahkan Pilih form dulu</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="end_date">End Date</label>
-                                            <input type="date" class="form-control" id="end_date" placeholder="John Doe" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="form_report">Form</label>
-                                            <select name="form_report" id="form_report" class="form-control">
-                                                <option value="1">Form 00.00 - BPR
-                                                    Main
-                                                    Information</option>
-                                                <option value="2">Form 00.00 - BPR
-                                                    Ownership Data</option>
-                                                <option value="3">Form 00.00 - Data
-                                                    Members of BoD and BoC of BPR</option>
-                                                <option value="4">Form 00.00 - BPR
-                                                    Implementator Member</option>
-                                                <option value="5">Form 00.00 - BPR
-                                                    Office Data</option>
-                                                <option value="6">Form 00.00 - Other
-                                                    Related Data</option>
-                                                <option value="7">Form 00.00 - Paid
-                                                    Capital, Donated Capital, Equity</option>
-                                                <option value="8">Form 00.00 - Paid
-                                                    Capital, Donated Capital, Equity</option>
-                                                <option value="9">Form 00.00 - List
-                                                    of Accepted Loans</option>
-                                                <option value="10">Form 00.00 - Data
-                                                    BoD/BoC who have stopped serving</option>
-                                                <option value="11">Form 00.00 -
-                                                    Implementing Organs (stop servis)</option>
-                                                <option value="12">Form 00.00 - Cash
-                                                    Office Data</option>
-                                                <option value="13">Form 00.00 -
-                                                    Balance Sheet</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="backup_ke">Backup ke?</label>
-                                            <select name="backup_ke" id="backup_ke" class="form-control">
-                                                <option value="1">Backup ke 1</option>
-                                                <option value="2">Backup ke 2</option>
-                                                <option value="3">Backup ke 3</option>
-                                                <option value="4">Backup ke 4</option>
-                                                <option value="5">Backup ke 5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" class="btn rounded-pill btn-small btn-primary">Restore</button>
+                                <button type="button" id="btnRestore" onclick="save_restore()" class="btn rounded-pill btn-small btn-primary">Restore</button>
                                 <button type="submit" class="btn rounded-pill btn-small btn-secondary">Restore All</button>
                             </div>
                         </div>
@@ -179,138 +159,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td> Form 00.00 - BPR
-                                            Main
-                                            Information
-                                        </td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Form 00.00 - BPR
-                                            Ownership Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Form 00.00 - Data
-                                            Members of BoD and BoC of BPR</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Form 00.00 - BPR
-                                            Implementator Member</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Form 00.00 - BPR
-                                            Office Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Form 00.00 - Other
-                                            Related Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Form 00.00 - Paid
-                                            Capital, Donated Capital, Equity</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Form 00.00 - List
-                                            of Accepted Loans</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>Form 00.00 -
-                                            Quarterly Financial Rations</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>Form 00.00 - Data
-                                            BoD/BoC who have stopped serving</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>Form 00.00 -
-                                            Implementing Organs (stop servis)</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>Form 00.00 - Cash
-                                            Office Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">13</th>
-                                        <td>Form 00.00 -
-                                            Balance Sheet</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $xno = 0;
+                                    foreach ($api_hasil as $key) {
+                                        $xno++;
+                                        if (count($key->log_restores) == 0) {
+                                            $last_restore = "-";
+                                            $nm_restore = "-";
+                                        } else {
+                                            $last_restore = date('d-m-Y', strtotime($key->log_restores[0]->createdAt));;
+                                            $nm_restore = $key->log_restores[0]->nm_res;
+                                        }
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?= $xno; ?></th>
+                                            <td><?= $key->name; ?> </td>
+                                            <td><?= $last_restore; ?> </td>
+                                            <td><?= $nm_restore; ?></td>
+                                            <td><button type="button" id="btn_view_backup" onclick="view_history_res('<?= $key->id; ?>')" class="btn rounded-pill btn-primary">View
+                                                    History</button>
+                                            </td>
+                                        </tr>
+                                    <?php }; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -481,6 +351,196 @@
         });
 
     }
+
+    $("#form_report_res").change(function() {
+        var value = $(this).val();
+        if (value !== "") {
+            $.ajax({
+                type: "POST",
+                url: '<?php echo base_url(); ?>slik/ambil_data_backup',
+                cache: false,
+                data: {
+                    id: value
+                },
+                success: function(respond) {
+                    $("#backup_ke").html(respond);
+                }
+            })
+        } else {
+            $("#backup_ke").empty();
+        }
+    });
+
+    function save_restore() {
+        var start_date = $('#start_date_res').val()
+        var end_date = $('#end_date_res').val()
+        var form_report = $('#form_report_res').val()
+        var backup_ke = $('#backup_ke').val()
+
+        if (start_date != "" && end_date != "") {
+            if (start_date > end_date) {
+                Swal.fire(
+                    'Sorryy!',
+                    'Start date harus lebih dulu dari end date!',
+                    'warning'
+                )
+            } else {
+                var url = "<?= base_url('slik/ajax_restore'); ?>";
+                // ajax adding data to database
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        start_date: start_date,
+                        end_date: end_date,
+                        form_report: form_report,
+                        backup_ke: backup_ke
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+
+                        if (data.status) //if success close modal and reload ajax table
+                        {
+                            Swal.fire(
+                                'Success!',
+                                'Your form as Restore',
+                                'success'
+                            )
+                            window.setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        } else {
+                            Swal.fire(
+                                'Sorryy!',
+                                data.isi,
+                                'error'
+                            )
+
+                        }
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error adding / update data');
+                    }
+                });
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan start date dan end date terlebih dahulu!!!',
+                'warning'
+            )
+        }
+    }
+
+    function view_history_res(id) {
+        $.ajax({
+            url: "<?php echo site_url('slik/view_history_restore/') ?>" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) {
+                    $('#list_restore').empty()
+                    $.each(data.isi, function(i, v) {
+                        $('#list_restore').append(`
+                        <a href="<?= base_url('slik/detail_history_restore/'); ?>` + v.id + `" class="list-group-item list-group-item-action" target="_blank">Nama : ` + v.nm_res + ` Range : ` + v.range + `</a>
+                        `)
+
+                    });
+                    $('#modal_detail_restore').modal('show'); // show bootstrap modal when complete loaded
+                    $('.modal-title').text('Detail Restore'); // Set title to Bootstrap modal title
+                } else {
+                    Swal.fire(
+                        'Sorryy!',
+                        'Belum ada data yang bisa ditampilkan',
+                        'warning'
+                    )
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        });
+    }
+
+    function save_backupAll() {
+        var start_date = $('#start_date').val()
+        var end_date = $('#end_date').val()
+
+        if (start_date != "" && end_date != "") {
+            if (start_date > end_date) {
+                Swal.fire(
+                    'Sorryy!',
+                    'Start date harus lebih dulu dari end date!',
+                    'warning'
+                )
+            } else {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Backup semua data memerlukan waktu yang lumayan lama!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "<?= base_url('slik/ajax_restore_all'); ?>";
+                        // ajax adding data to database
+
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                start_date: start_date,
+                                end_date: end_date,
+                                modul: "slik",
+                            },
+                            dataType: "JSON",
+                            success: function(data) {
+
+                                if (data.status) //if success close modal and reload ajax table
+                                {
+                                    Swal.fire(
+                                        'Success!',
+                                        'All form success backup',
+                                        'success'
+                                    )
+                                    window.setTimeout(function() {
+                                        location.reload();
+                                    }, 1500);
+                                } else {
+                                    Swal.fire(
+                                        'Sorryy!',
+                                        data.isi,
+                                        'error'
+                                    )
+
+                                }
+
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                alert('Error adding / update data');
+                            }
+                        });
+
+                    }
+                })
+
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan start date dan end date terlebih dahulu!!!',
+                'warning'
+            )
+        }
+
+    }
 </script>
 <!-- Modal -->
 <div class="modal fade" id="modal_detail_backup" tabindex="-1" aria-hidden="true">
@@ -542,6 +602,36 @@
                         </tbody>
                     </table>
 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Tutup
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal_detail_restore" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLongTitle">Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="demo-inline-spacing mt-3">
+                    <div class="list-group" id="list_restore">
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action active">Bear claw cake biscuit</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Soufflé pastry pie ice</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action disabled">Tart tiramisu cake</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Bonbon toffee muffin</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Dragée tootsie roll</a>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

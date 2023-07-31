@@ -79,6 +79,8 @@
         table = $('#table-res').DataTable({
             processing: true,
             serverSide: true,
+            lengthChange: false,
+            pageLength: 0,
             order: [], //init datatable not ordering
             ajax: "<?php echo site_url('slik/table_m01') ?>",
             columnDefs: [{

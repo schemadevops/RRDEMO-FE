@@ -10680,6 +10680,114 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "36",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20 00:00:00",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27 23:59:59",
+											"type": "text"
+										},
+										{
+											"key": "value_form",
+											"value": "formf01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formf01/backup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formf01",
+										"backup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "restore",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "36",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27",
+											"type": "text"
+										},
+										{
+											"key": "id_bu",
+											"value": "23",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formf01/restore",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formf01",
+										"restore"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -11287,6 +11395,114 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "37",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20 00:00:00",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27 23:59:59",
+											"type": "text"
+										},
+										{
+											"key": "value_form",
+											"value": "formd01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formd01/backup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formd01",
+										"backup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "restore",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "37",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27",
+											"type": "text"
+										},
+										{
+											"key": "id_bu",
+											"value": "25",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formd01/restore",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formd01",
+										"restore"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -11810,6 +12026,114 @@
 										"slik",
 										"formd02",
 										"process"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSByb2JlcnRvIiwidXNlcm5hbWVVc2VyIjoiamlteSIsImVtYWlsVXNlciI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjkwNDUxNjQ5fQ.fr8GQw2Hqknz1Z7l0tsJbw4qv3zJc9_x6gnMixRUA3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "53",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20 00:00:00",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27 23:59:59",
+											"type": "text"
+										},
+										{
+											"key": "value_form",
+											"value": "formd02",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formd02/backup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formd02",
+										"backup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "restore",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "53",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27",
+											"type": "text"
+										},
+										{
+											"key": "id_bu",
+											"value": "22",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formd02/restore",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formd02",
+										"restore"
 									]
 								}
 							},
@@ -12351,6 +12675,114 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSByb2JlcnRvIiwidXNlcm5hbWVVc2VyIjoiamlteSIsImVtYWlsVXNlciI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjkwNDUxNjQ5fQ.fr8GQw2Hqknz1Z7l0tsJbw4qv3zJc9_x6gnMixRUA3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "38",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20 00:00:00",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27 23:59:59",
+											"type": "text"
+										},
+										{
+											"key": "value_form",
+											"value": "formk01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formk01/backup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formk01",
+										"backup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "restore",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "38",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27",
+											"type": "text"
+										},
+										{
+											"key": "id_bu",
+											"value": "26",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formk01/restore",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formk01",
+										"restore"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -12714,6 +13146,114 @@
 										"slik",
 										"formm01",
 										"process"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSByb2JlcnRvIiwidXNlcm5hbWVVc2VyIjoiamlteSIsImVtYWlsVXNlciI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjkwNDUxNjQ5fQ.fr8GQw2Hqknz1Z7l0tsJbw4qv3zJc9_x6gnMixRUA3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "39",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20 00:00:00",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27 23:59:59",
+											"type": "text"
+										},
+										{
+											"key": "value_form",
+											"value": "formm01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formm01/backup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formm01",
+										"backup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "restore",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI5NzA2NX0.U4UEIo1sC516u-Uk9wEgW2qxyHbm0WbhBif5nDubMAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formId",
+											"value": "39",
+											"type": "text"
+										},
+										{
+											"key": "start",
+											"value": "2023-07-20",
+											"type": "text"
+										},
+										{
+											"key": "end",
+											"value": "2023-07-27",
+											"type": "text"
+										},
+										{
+											"key": "id_bu",
+											"value": "27",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/slik/formm01/restore",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"slik",
+										"formm01",
+										"restore"
 									]
 								}
 							},
@@ -17002,69 +17542,52 @@
 			"name": "proccess",
 			"item": [
 				{
-					"name": "form-A01",
-					"item": [
-						{
-							"name": "get dummy",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI2Nzc4OX0.BL4aCG5rb1agH_JqiHFfsVB5vtu76dhsM7N3QojpRro",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/proccess",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"proccess"
-									]
+					"name": "process all form",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSByb2JlcnRvIiwidXNlcm5hbWVVc2VyIjoiamlteSIsImVtYWlsVXNlciI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjkwNDUxNjQ5fQ.fr8GQw2Hqknz1Z7l0tsJbw4qv3zJc9_x6gnMixRUA3w",
+									"type": "string"
 								}
-							},
-							"response": []
+							]
 						},
-						{
-							"name": "click proccess",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSIsInVzZXJuYW1lVXNlciI6ImppbXkiLCJlbWFpbFVzZXIiOiJqaW15QGdtYWlsLmNvbSIsImlhdCI6MTY5MDI2Nzc4OX0.BL4aCG5rb1agH_JqiHFfsVB5vtu76dhsM7N3QojpRro",
-											"type": "string"
-										}
-									]
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type_form",
+									"value": "slik",
+									"type": "text"
 								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/proccess/hitapidummy",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"proccess",
-										"hitapidummy"
-									]
+								{
+									"key": "date",
+									"value": "2023-07-27 10:10:50",
+									"type": "text"
 								}
-							},
-							"response": []
+							]
+						},
+						"url": {
+							"raw": "{{url}}/proccess/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"proccess",
+								"all"
+							]
 						}
-					]
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "history backup",
+			"name": "backup",
 			"item": [
 				{
 					"name": "get by formId",
@@ -17118,6 +17641,54 @@
 								"historybackup",
 								"detail",
 								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "backup all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWVVc2VyIjoiamlteSByb2JlcnRvIiwidXNlcm5hbWVVc2VyIjoiamlteSIsImVtYWlsVXNlciI6ImppbXlAZ21haWwuY29tIiwiaWF0IjoxNjkwNDUxNjQ5fQ.fr8GQw2Hqknz1Z7l0tsJbw4qv3zJc9_x6gnMixRUA3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type_form",
+									"value": "slik",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2023-07-20 00:00:00",
+									"type": "text"
+								},
+								{
+									"key": "end_date",
+									"value": "2023-07-27 23:59:59",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/backup/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"backup",
+								"all"
 							]
 						}
 					},
@@ -17212,13 +17783,13 @@
 		{
 			"key": "url",
 			"value": "http://localhost:3003",
-			"type": "string",
-			"disabled": true
+			"type": "string"
 		},
 		{
 			"key": "url",
 			"value": "http://141.136.47.149:3003",
-			"type": "string"
+			"type": "string",
+			"disabled": true
 		}
 	]
 }
