@@ -120,7 +120,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="form_report">Form</label>
                                                 <select name="form_report" id="form_report_res" class="form-control">
-                                                    <option value="-">Pilih Form</option>
+                                                    <!-- <option value="-">Pilih Form</option> -->
                                                     <?php
                                                     $no = 0;
                                                     foreach ($api_hasil as $key) {
