@@ -349,14 +349,14 @@
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
-                    messageTop: '[LOG Edit]APOLO - Form 00.01 BPR Ownership Data',
+                    messageTop: '[LOG Edit]APOLO - Form 00.02 Data Member of BoD and BoC of BPR',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
                 {
                     extend: 'excelHtml5',
-                    messageTop: '[LOG Edit]APOLO - Form 00.01 BPR Ownership Data',
+                    messageTop: '[LOG Edit]APOLO - Form 00.02 Data Member of BoD and BoC of BPR',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
