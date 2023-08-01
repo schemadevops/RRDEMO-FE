@@ -1606,7 +1606,7 @@ class Slik extends CI_Controller
 		}
 	}
 
-	public function ajax_restore_all()
+	public function ajax_backup_all()
 	{
 		$start_date =  $this->input->post('start_date');
 		$end_date =  $this->input->post('end_date');
@@ -1616,6 +1616,41 @@ class Slik extends CI_Controller
 
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'http://141.136.47.149:3003/backup/all',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => 'type_form=' . $modul . '&start_date=' . $start_date . '&end_date=' . $end_date,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			echo json_encode(array("status" => TRUE, "isi" => $hasil));
+		} else {
+			echo json_encode(array("status" => FALSE, "isi" => "Sepertinya ada yang error!!!"));
+		}
+	}
+
+	public function ajax_restore_all()
+	{
+		$start_date =  $this->input->post('start_date');
+		$end_date =  $this->input->post('end_date');
+		$modul =  $this->input->post('modul');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/restore/all',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,

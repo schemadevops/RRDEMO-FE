@@ -144,7 +144,7 @@
                             </div>
                             <div class="col-md-2">
                                 <button type="button" id="btnRestore" onclick="save_restore()" class="btn rounded-pill btn-small btn-primary">Restore</button>
-                                <button type="submit" class="btn rounded-pill btn-small btn-secondary">Restore All</button>
+                                <button type="button" id="btnRestoreAll" onclick="save_restoreAll()" class="btn rounded-pill btn-small btn-secondary">Restore All</button>
                             </div>
                         </div>
                         <div class="table-responsive text-nowrap mt-4">
@@ -469,6 +469,82 @@
     function save_backupAll() {
         var start_date = $('#start_date').val()
         var end_date = $('#end_date').val()
+
+        if (start_date != "" && end_date != "") {
+            if (start_date > end_date) {
+                Swal.fire(
+                    'Sorryy!',
+                    'Start date harus lebih dulu dari end date!',
+                    'warning'
+                )
+            } else {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Backup semua data memerlukan waktu yang lumayan lama!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "<?= base_url('slik/ajax_backup_all'); ?>";
+                        // ajax adding data to database
+
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                start_date: start_date,
+                                end_date: end_date,
+                                modul: "slik",
+                            },
+                            dataType: "JSON",
+                            success: function(data) {
+
+                                if (data.status) //if success close modal and reload ajax table
+                                {
+                                    Swal.fire(
+                                        'Success!',
+                                        'All form success backup',
+                                        'success'
+                                    )
+                                    window.setTimeout(function() {
+                                        location.reload();
+                                    }, 1500);
+                                } else {
+                                    Swal.fire(
+                                        'Sorryy!',
+                                        data.isi,
+                                        'error'
+                                    )
+
+                                }
+
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                alert('Error adding / update data');
+                            }
+                        });
+
+                    }
+                })
+
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan start date dan end date terlebih dahulu!!!',
+                'warning'
+            )
+        }
+
+    }
+
+    function save_restoreAll() {
+        var start_date = $('#start_date_res').val()
+        var end_date = $('#end_date_res').val()
 
         if (start_date != "" && end_date != "") {
             if (start_date > end_date) {
