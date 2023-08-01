@@ -28,9 +28,9 @@
                             <label class="col-sm-2 col-form-label">Jenis</label>
                             <div class="col-sm-10">
                                 <select name="jenis" id="jenis" class="form-select">
-                                    <option value="1">01 (Perorangan)</option>
-                                    <option value="2">02 (Badan Hukum)</option>
-                                    <option value="3">03 (Pemerintah Dearah / Pemerintah Pusat)</option>
+                                    <option value="01">01 (Perorangan)</option>
+                                    <option value="02">02 (Badan Hukum)</option>
+                                    <option value="03">03 (Pemerintah Dearah / Pemerintah Pusat)</option>
                                 </select>
                             </div>
                         </div>
@@ -44,8 +44,8 @@
                             <label class="col-sm-2 col-form-label">PSP</label>
                             <div class="col-sm-10">
                                 <select name="psp" id="psp" class="form-select">
-                                    <option value="1">01 (PSP)</option>
-                                    <option value="2" selected>02 (Non PSP)</option>
+                                    <option value="01">01 (PSP)</option>
+                                    <option value="02" selected>02 (Non PSP)</option>
                                 </select>
                             </div>
                         </div>

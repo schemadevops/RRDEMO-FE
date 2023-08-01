@@ -1111,7 +1111,7 @@ class Slik extends CI_Controller
 			foreach ($hasil as $row) {
 				unset($row->createdAt);
 				unset($row->updatedAt);
-				$txtData .= implode("|", (array)$row) . "\n";
+				$txtData .= "D01|" . implode("|", (array)$row) . "\n";
 			}
 
 			// Set the headers for file download

@@ -391,11 +391,170 @@ class Apollo extends CI_Controller
 
 	public function form_report_isi_0002()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0002/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0002',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '00.02',
+			'nama_form'		=> 'Form 00.02 Data Member of BoD and BoC of BPR'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 00.02 Data Member of BoD and BoC of BPR';
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_02');
+		$this->load->view('apollo/form_report_isi_02', $data);
 	}
+
+	public function form_report_edit_02($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0002/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 00.02 Data Member of BoD and BoC of BPR";
+
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_02', $data);
+	}
+
+	public function ajax_edit_0002()
+	{
+		$id_0002 = $this->input->post('id_0002');
+		$nama = $this->input->post('nama');
+		$alamat = $this->input->post('alamat');
+		$nik = $this->input->post('nik');
+		$jabatan = $this->input->post('jabatan');
+		$tgl_mulai = $this->input->post('tgl_mulai');
+		$tgl_selesai = $this->input->post('tgl_selesai');
+		$no_sk = $this->input->post('no_sk');
+		$tgl_sk = $this->input->post('tgl_sk');
+		$memiliki_sertifikat = $this->input->post('memiliki_sertifikat');
+		$tgl_sertifikat = $this->input->post('tgl_serfikat');
+		$pdk_akhir = $this->input->post('pdk_akhir');
+		$tgl_kelulusan = $this->input->post('tgl_kelulusan');
+		$nama_lembaga = $this->input->post('nama_lembaga');
+		$jns_pelatihan = $this->input->post('jns_pelatihan');
+		$tgl_pelatihan = $this->input->post('tgl_pelatihan');
+		$nama_penyelenggara = $this->input->post('nama_penyelenggara');
+		$komite_audit = $this->input->post('komite_audit');
+		$komite_pemantauan = $this->input->post('komite_pemantauan');
+		$komite_remunerasi_dan_nominasi = $this->input->post('komite_remunerasi_dan_nominasi');
+		$fungsi_kepatuhan = $this->input->post('fungsi_kepatuhan');
+		$komisaris_ind = $this->input->post('komisaris_ind');
+		$ket_kepengurusan = $this->input->post('ket_kepengurusan');
+		$alasan_per_jabatan = $this->input->post('alasan_per_jabatan');
+		$ket_jabatan = $this->input->post('ket_jabatan');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0002/' . $id_0002,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'nama=' . $nama . '&alamat=' . $alamat . '&nik=' . $nik . '&jabatan=' . $jabatan . '&tanggal_mulai_menjabat=' . $tgl_mulai . '&tanggal_selesai_menjabat=' . $tgl_selesai . '&no_sk=' . $no_sk . '&tanggal_sk=' . $tgl_sk . '&memiliki_sertifikat_kompetensi_kerja_yang_berlaku=' . $memiliki_sertifikat . '&tanggal_berakhir_masa_berlakunya_sertifikat_kompetensi_kerja=' . $tgl_sertifikat . '&pendidikan_terakhir=' . $pdk_akhir . '&tanggal_kelulusan=' . $tgl_kelulusan . '&nama_lembaga=' . $nama_lembaga . '&jenis_pelatihan_terakhir=' . $jns_pelatihan . '&tanggal_pelatihan=' . $tgl_pelatihan . '&lembaga_penyelenggara=' . $nama_penyelenggara . '&komite_audit=' . $komite_audit . '&komite_pemantauan=' . $komite_pemantauan . '&komite_remunerasi_dan_nominasi=' . $komite_remunerasi_dan_nominasi . '&membawahkan_fungsi_kepatuhan=' . $fungsi_kepatuhan . '&komisaris_independen=' . $komisaris_ind . '&keterangan_terkait_kepengurusan=' . $ket_kepengurusan . '&alasan_perubahan_jabatan=' . $alasan_per_jabatan . '&keterangan_jabatan=' . $ket_jabatan . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
 	public function form_report_isi_0003()
 	{
 		$this->load->view('temp/head');
@@ -610,13 +769,7 @@ class Apollo extends CI_Controller
 
 
 
-	public function form_report_edit_02()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_02');
-	}
+
 	public function form_report_edit_03()
 	{
 		$this->load->view('temp/head');
@@ -885,10 +1038,11 @@ class Apollo extends CI_Controller
 
 			// Convert data to a tab-separated text format
 			$txtData = '';
+
 			foreach ($hasil as $row) {
 				unset($row->createdAt);
 				unset($row->updatedAt);
-				$txtData .= implode("|", (array)$row) . "\n";
+				$txtData .= "D01|" . implode("|", (array)$row) . "\n";
 			}
 
 			// Set the headers for file download
