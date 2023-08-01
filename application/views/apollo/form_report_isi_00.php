@@ -97,15 +97,12 @@
                                 </tr>
                             <?php };
                             ?>
-
-
-
                         </tbody>
                     </table>
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="<?= base_url('apollo/exportDataToTxt'); ?>" class="btn rounded-pill btn-primary my-2">Export to Txt
+                        <a href="<?= base_url('apollo/exportDataToTxt_0000'); ?>" class="btn rounded-pill btn-primary my-2">Export to Txt
                         </a>
                     </div>
                     <div class="col-md-6">
