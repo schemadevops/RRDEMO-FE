@@ -1643,24 +1643,304 @@ class Apollo extends CI_Controller
 
 	public function form_report_isi_0010()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0010/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0010',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '00.10',
+			'nama_form'		=> 'Form 00.10 Implementing Organs (stop servis)'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 00.10 Implementing Organs (stop servis)';
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_10');
+		$this->load->view('apollo/form_report_isi_10', $data);
 	}
+
+
 	public function form_report_isi_0011()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0011/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0011',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '00.11',
+			'nama_form'		=> 'Form 00.11 Cash Office Data'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 00.11 Cash Office Data';
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_11');
+		$this->load->view('apollo/form_report_isi_11', $data);
 	}
+
+	public function form_report_edit_11($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0011/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 00.11 Cash Office Data";
+
+
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_11', $data);
+	}
+
+	public function ajax_edit_0011()
+	{
+		$id_0011 = $this->input->post('id_0011');
+		$jenis = $this->input->post('jenis');
+		$kode_kantor = $this->input->post('kode_kantor');
+		$sandi_kantor_induk = $this->input->post('sandi_kantor_induk');
+		$sandi_kantor_cabang_sebelumnya = $this->input->post('sandi_kantor_cabang_sebelumnya');
+		$nama_kantor_kas = $this->input->post('nama_kantor_kas');
+		$Latitude = $this->input->post('Latitude');
+		$Longitude = $this->input->post('Longitude');
+		$alamat = $this->input->post('alamat');
+		$nama_pemimpin = $this->input->post('nama_pemimpin');
+		$no_telp = $this->input->post('no_telp');
+		$ket_data_kantor = $this->input->post('ket_data_kantor');
+		$tanggal_pelaksanan = $this->input->post('tanggal_pelaksanan');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0011/' . $id_0011,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'jenis=' . $jenis . '&kode_kantor_kas=' . $kode_kantor . '&sandi_kantor_induk=' . $sandi_kantor_induk . '&sandi_kantor_cabang_sebelumnya=' . $sandi_kantor_cabang_sebelumnya . '&nama_kantor_kas=' . $nama_kantor_kas . '&Latitude=' . $Latitude . '&Longitude=' . $Longitude . '&alamat=' . $alamat . '&nama_pemimpin=' . $nama_pemimpin . '&no_telp=' . $no_telp . '&keterangan_data_kantor_kas_dan_kegiatan_pelayanan_kas=' . $ket_data_kantor . '&tanggal_pelaksanan=' . $tanggal_pelaksanan . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
 	public function form_report_isi_0012()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0011/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0011',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '00.12',
+			'nama_form'		=> 'Form 00.12 - Data on Office Closures and BPR Cash Service Activities'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 00.12 - Data on Office Closures and BPR Cash Service Activities';
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_12');
+		$this->load->view('apollo/form_report_isi_12', $data);
 	}
 	public function form_report_isi_0014()
 	{
@@ -1814,13 +2094,7 @@ class Apollo extends CI_Controller
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_edit_10');
 	}
-	public function form_report_edit_11()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_11');
-	}
+
 	public function form_report_edit_12()
 	{
 		$this->load->view('temp/head');
