@@ -1490,11 +1490,157 @@ class Apollo extends CI_Controller
 
 	public function form_report_isi_0009()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0009/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0009',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '00.09',
+			'nama_form'		=> 'Form 00.09 Data BoD/BoC Who Have Stopped Serving'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 00.09 Data BoD/BoC Who Have Stopped Serving';
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_09');
+		$this->load->view('apollo/form_report_isi_09', $data);
 	}
+
+	public function form_report_edit_09($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0009/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 00.09 Data BoD/BoC Who Have Stopped Serving";
+
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_09', $data);
+	}
+
+	public function ajax_edit_0009()
+	{
+		$id_0009 = $this->input->post('id_0009');
+		$nama = $this->input->post('nama');
+		$nik = $this->input->post('nik');
+		$jabatan = $this->input->post('jabatan');
+		$tanggal_mulai_menjabat = $this->input->post('tanggal_mulai_menjabat');
+		$komite_audit = $this->input->post('komite_audit');
+		$komite_resiko = $this->input->post('komite_resiko');
+		$komite_remu = $this->input->post('komite_remu');
+		$membawahkan_fungsi = $this->input->post('membawahkan_fungsi');
+		$komisaris = $this->input->post('komisaris');
+		$ket_penyebab_berhenti = $this->input->post('ket_penyebab_berhenti');
+		$tanggal_berhenti_menjabat = $this->input->post('tanggal_berhenti_menjabat');
+		$alasan_mengundurkan_diri = $this->input->post('alasan_mengundurkan_diri');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0009/' . $id_0009,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'nama=' . $nama . '&nik=' . $nik . '&jabatan=' . $jabatan . '&tanggal_mulai_menjabat=' . $tanggal_mulai_menjabat . '&komite_audit=' . $komite_audit . '&komite_pemantau_risiko=' . $komite_resiko . '&komite_remunerasi_dan_nominasi=' . $komite_remu . '&membawahkan_fungsi_kepatuhan=' . $membawahkan_fungsi . '&komisaris_independen=' . $komisaris . '&keterangan_penyebab_berhenti_menjabat=' . $ket_penyebab_berhenti . '&tanggal_berhenti_menjabat=' . $tanggal_berhenti_menjabat . '&alasan_mengundurkan_diri=' . $alasan_mengundurkan_diri . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
 	public function form_report_isi_0010()
 	{
 		$this->load->view('temp/head');
@@ -1660,13 +1806,7 @@ class Apollo extends CI_Controller
 
 
 
-	public function form_report_edit_09()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_09');
-	}
+
 	public function form_report_edit_10()
 	{
 		$this->load->view('temp/head');
