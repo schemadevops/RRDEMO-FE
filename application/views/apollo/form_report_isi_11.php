@@ -111,14 +111,14 @@
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
-                    messageTop: 'APOLO - Form 11 Cash Office Data',
+                    messageTop: 'APOLO - Form 00.11 Cash Office Data',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                     }
                 },
                 {
                     extend: 'excelHtml5',
-                    messageTop: 'APOLO - Form 11 Cash Office Data',
+                    messageTop: 'APOLO - Form 00.11 Cash Office Data',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                     }
