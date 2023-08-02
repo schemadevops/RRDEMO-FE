@@ -217,8 +217,8 @@
             ]
         });
 
-        $("#hubungan_pihak option[value='<?= $api_hasil->hubungan_pihak; ?>']").prop('selected', true);
-        $("#jenis_pihak option[value='<?= $api_hasil->jenis_pihak; ?>']").prop('selected', true);
+        $("#hubungan_pihak option[value='<?= $api_hasil->hubungan_pihak_terkait; ?>']").prop('selected', true);
+        $("#jenis_pihak option[value='<?= $api_hasil->jenis_pihak_terkait; ?>']").prop('selected', true);
     });
 
     function edit() {
