@@ -412,14 +412,14 @@
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
-                    messageTop: '[LOG Edit]APOLO - Form 00.03 BPR Implementator Member',
+                    messageTop: '[LOG Edit]APOLO - Form 00.04 BPR Office Data',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
                 {
                     extend: 'excelHtml5',
-                    messageTop: '[LOG Edit]APOLO - Form 00.03 BPR Implementator Member',
+                    messageTop: '[LOG Edit]APOLO - Form 00.04 BPR Office Data',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
