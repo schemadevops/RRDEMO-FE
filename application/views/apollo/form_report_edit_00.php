@@ -210,7 +210,7 @@
                                 C. Jumlah PVA
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="jumlah_pva" name="jumlah_pva" value="<?= $api_hasil->data_pedangan_valuta_asing->tanggal; ?>" />
+                                <input type="text" class="form-control" id="jumlah_pva" name="jumlah_pva" value="<?= $api_hasil->data_pedangan_valuta_asing->pva_jumlah; ?>" />
                             </div>
                         </div>
 

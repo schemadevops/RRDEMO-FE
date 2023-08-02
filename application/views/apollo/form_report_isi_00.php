@@ -85,10 +85,10 @@
                                     <td><?= $key->data_audit_laporan->nama_user; ?></td>
                                     <td><?= $key->data_audit_laporan->pemeriksaan_ke; ?></td>
                                     <td><?= $key->data_audit_laporan->nominal_perlembar_sahan; ?></td>
+                                    <td><?= $key->data_pedangan_valuta_asing->pva_jumlah; ?></td>
                                     <td><?= $key->data_pedangan_valuta_asing->izin; ?></td>
                                     <td><?= $key->data_pedangan_valuta_asing->tanggal; ?></td>
                                     <td><?= $key->data_pedangan_valuta_asing->layanan_perbankan; ?></td>
-                                    <td><?= $key->data_pedangan_valuta_asing->pemilik_saham; ?></td>
                                     <td><?= $key->data_pedangan_valuta_asing->pemilik_saham; ?></td>
                                     <td>
                                         <a href="<?= base_url('apollo/form_report_edit_00/' . $key->id); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i>

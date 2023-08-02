@@ -222,7 +222,7 @@ class Apollo extends CI_Controller
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'PUT',
-			CURLOPT_POSTFIELDS => 'include_text=Y&bpr_name=' . $nama_bpr . '&bpr_alamat=' . $alamat_bpr . '&bpr_kabupaten_kota=' . $kabupaten_kota . '&wilayah_kerja_ojk=' . $wilayah_kerja_ojk . '&bpr_tlp=' . $telp_bpr . '&bpr_email=' . $email_bpr . '&bpr_web=' . $web_bpr . '&bpr_npwp=' . $npwp_bpr . '&penanggung_jawab_name=' . $nama_pj . '&penanggung_jawab_devisi=' . $devisi_pj . '&penanggung_jawab_telp=' . $telp_pj . '&penanggung_jawab_email=' . $email_pj . '&deviden_nominal=' . $nominal_dev . '&deviden_tahun_rups_rat=' . $tahun_dev . '&deviden_bonus_tahunan=' . $bonus_th_dev . '&audit_laporan_nama_kantor=' . $nama_kantor_aud . '&audit_laporan_nama_user=' . $nama_user_aud . '&audit_laporan_pemeriksaan_ke=' . $pemeriksaan_ke_aud . '&audit_laporan_lembar_saham=' . $nominal_perlembar_sahan . '&pva_izin=' . $izin_pva . '&pva_tanggal_izin=' . $tgl_pva . '&pva_layanan_perbankan=' . $ebank_pva . '&pva_pemelik_saham=' . $pemilik_saham1 . '&alasan=' . $alasan_edit,
+			CURLOPT_POSTFIELDS => 'include_text=Y&bpr_name=' . $nama_bpr . '&bpr_alamat=' . $alamat_bpr . '&bpr_kabupaten_kota=' . $kabupaten_kota . '&wilayah_kerja_ojk=' . $wilayah_kerja_ojk . '&bpr_tlp=' . $telp_bpr . '&bpr_email=' . $email_bpr . '&bpr_web=' . $web_bpr . '&bpr_npwp=' . $npwp_bpr . '&penanggung_jawab_name=' . $nama_pj . '&penanggung_jawab_devisi=' . $devisi_pj . '&penanggung_jawab_telp=' . $telp_pj . '&penanggung_jawab_email=' . $email_pj . '&deviden_nominal=' . $nominal_dev . '&deviden_tahun_rups_rat=' . $tahun_dev . '&deviden_bonus_tahunan=' . $bonus_th_dev . '&audit_laporan_nama_kantor=' . $nama_kantor_aud . '&audit_laporan_nama_user=' . $nama_user_aud . '&audit_laporan_pemeriksaan_ke=' . $pemeriksaan_ke_aud . '&audit_laporan_lembar_saham=' . $nominal_perlembar_sahan . '&pva_izin=' . $izin_pva . '&pva_tanggal_izin=' . $tgl_pva . '&pva_layanan_perbankan=' . $ebank_pva . '&pva_pemelik_saham=' . $pemilik_saham1 . '&alasan=' . $alasan_edit . '&pva_jumlah=' . $jumlah_pva,
 			CURLOPT_HTTPHEADER => array(
 				'Content-Type: application/x-www-form-urlencoded',
 				'Authorization: Bearer ' . $this->session->access_token
@@ -1029,8 +1029,7 @@ class Apollo extends CI_Controller
 
 		curl_close($curl);
 		$hasil = json_decode($response);
-		var_dump($hasil);
-		die;
+
 		if ($hasil->message == "success") {
 			$data['api_hasil'] = $hasil->data;
 			echo json_encode(array("status" => TRUE, "data" => $data));
@@ -1185,11 +1184,165 @@ class Apollo extends CI_Controller
 
 	public function form_report_isi_0007()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0007/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0007',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '00.07',
+			'nama_form'		=> 'Form 00.07 List of Accepted Loans'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 00.07 List of Accepted Loans';
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_07');
+		$this->load->view('apollo/form_report_isi_07', $data);
 	}
+
+	public function form_report_edit_07($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0007/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 00.07 List of Accepted Loans";
+
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_07', $data);
+	}
+
+	public function ajax_edit_0007()
+	{
+		$id_0007 = $this->input->post('id_0007');
+		$no_cif = $this->input->post('no_cif');
+		$gol_kreditur = $this->input->post('gol_kreditur');
+		$sandi_bank = $this->input->post('sandi_bank');
+		$lok_kreditur = $this->input->post('lok_kreditur');
+		$jenis = $this->input->post('jenis');
+		$hub_dengan_bank = $this->input->post('hub_dengan_bank');
+		$tgl_mulai = $this->input->post('tgl_mulai');
+		$tanggal_jatuh_tempo = $this->input->post('tanggal_jatuh_tempo');
+		$persen = $this->input->post('persen');
+		$cara_perhitungan = $this->input->post('cara_perhitungan');
+		$plafon = $this->input->post('plafon');
+		$jenis_agunan = $this->input->post('jenis_agunan');
+		$nominal_agunan_yang_dijaminkan = $this->input->post('nominal_agunan_yang_dijaminkan');
+		$baki_debet = $this->input->post('baki_debet');
+		$biaya_transaksi_belum_diamortisasi = $this->input->post('biaya_transaksi_belum_diamortisasi');
+		$diskonto_belum_diamortisasi = $this->input->post('diskonto_belum_diamortisasi');
+		$baki_debet_neto = $this->input->post('baki_debet_neto');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0007/' . $id_0007,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'no_cif=' . $no_cif . '&gol_kreditur=' . $gol_kreditur . '&sandi_bank=' . $sandi_bank . '&lokasi_kreditur=' . $lok_kreditur . '&jenis=' . $jenis . '&hubungan_dengan_bank=' . $hub_dengan_bank . '&tanggal_Mulai=' . $tgl_mulai . '&tanggal_jatuh_tempo=' . $tanggal_jatuh_tempo . '&persentase=' . $persen . '&cara_perhitungan=' . $cara_perhitungan . '&plafon=' . $plafon . '&jenis_agunan_yang_dijaminkan=' . $jenis_agunan . '&nominal_agunan_yang_dijaminkan=' . $nominal_agunan_yang_dijaminkan . '&baki_debet=' . $baki_debet . '&biaya_transaksi_belum_diamortisasi=' . $biaya_transaksi_belum_diamortisasi . '&diskonto_belum_diamortisasi=' . $diskonto_belum_diamortisasi . '&baki_debet_neto=' . $baki_debet_neto . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
+
 	public function form_report_isi_0008()
 	{
 		$this->load->view('temp/head');
@@ -1368,13 +1521,6 @@ class Apollo extends CI_Controller
 
 
 
-	public function form_report_edit_07()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_07');
-	}
 	public function form_report_edit_08()
 	{
 		$this->load->view('temp/head');
