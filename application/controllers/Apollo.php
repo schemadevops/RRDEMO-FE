@@ -2022,11 +2022,150 @@ class Apollo extends CI_Controller
 
 	public function form_report_isi_0014()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0014/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0014',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '00.14',
+			'nama_form'		=> 'Form 00.14 - Data Jenis Nasabah Dan Produk Simpanan di BPR'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 00.14 - Data Jenis Nasabah Dan Produk Simpanan di BPR';
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_14');
+		$this->load->view('apollo/form_report_isi_14', $data);
 	}
+
+	public function form_report_edit_14($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0014/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 00.14 - Data Jenis Nasabah Dan Produk Simpanan di BPR";
+
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_14', $data);
+	}
+
+	public function ajax_edit_0014()
+	{
+		$id_0014 = $this->input->post('id_0014');
+		$include = $this->input->post('include');
+		$jenis_nasabah = $this->input->post('jenis_nasabah');
+		$sandi = $this->input->post('sandi');
+		$nominal = $this->input->post('nominal');
+		$jumlah_nasabah_rekening = $this->input->post('jumlah_nasabah_rekening');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0014/' . $id_0014,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'nominal=' . $nominal . '&jumlah_nasabah_rekening=' . $jumlah_nasabah_rekening . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
 	public function form_report_isi_0015()
 	{
 		$this->load->view('temp/head');
@@ -2174,20 +2313,8 @@ class Apollo extends CI_Controller
 	}
 
 
-	public function form_report_edit_13()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_13');
-	}
-	public function form_report_edit_14()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_14');
-	}
+
+
 	public function form_report_edit_15()
 	{
 		$this->load->view('temp/head');
