@@ -15,31 +15,16 @@
                         <div class="row mb-3 mt-3">
                             <label class="col-sm-2 col-form-label">Include Text</label>
                             <div class="col-sm-10">
-                                <select name="include" id="include" class="form-select" disabled>
-                                    <option value="00">Y</option>
-                                    <option value="01">T</option>
+                                <select name="include_text" id="include_text" class="form-select" disabled>
+                                    <option value="Y">Y</option>
+                                    <option value="T">T</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Jenis Nasabah</label>
                             <div class="col-sm-10">
-                                <select name="jenis_nasabah" id="jenis_nasabah" class="form-select" disabled>
-                                    <option value="1">1. Transaksi melalui Jaringan Distribusi Tatap
-                                        Muka</option>
-                                    <option value="1.1">1.1 Melibatkan Perpindahan Dana</option>
-                                    <option value="">a. Dana Masuk</option>
-                                    <option value="01">b. Dana Keluar</option>
-                                    <option value="01">1.2 Tidak melibatkan Perpindahan Dana</option>
-                                    <option value="01">2. Transaksi melalui Jaringan Distribusi Nontatap
-                                        Muka
-                                    </option>
-                                    <option value="">2.1 Melibatkan Perpindahan Dana</option>
-                                    <option value="">a. Dana Masuk</option>
-                                    <option value="">b. Dana Keluar</option>
-                                    <option value="">2.2 Tidak melibatkan Perpindahan Dana</option>
-                                    <option value="">Total Transaksi </option>
-                                </select>
+                                <input type="text" class="form-control" id="jenis_nasabah" name="jenis_nasabah" value="<?= $api_hasil->jenis_nasabah; ?>" readonly />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -204,7 +189,7 @@
             ]
         });
 
-        $("#jenis_nasabah option[value='<?= $api_hasil->jenis_nasabah; ?>']").prop('selected', true);
+        $("#include_text option[value='<?= $api_hasil->include_text; ?>']").prop('selected', true);
     });
 
     function edit() {
