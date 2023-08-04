@@ -9,15 +9,15 @@
                 Report Process</h4>
             <!-- Responsive Table -->
             <div class="card">
-                <form action="#" method="post">
+                <form id="form_process_all">
                     <div class="row mt-3">
                         <label class="col-sm-3 col-form-label" for="basic-default-name">Periode
                             Data</label>
                         <div class="col-sm-6">
-                            <input type="date" class="form-control" id="basic-default-name" placeholder="John Doe" />
+                            <input type="date" class="form-control" id="date_all" name="date_all" />
                         </div>
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btn-primary">Process All</button>
+                            <button type="button" id="btnProcesAll" onclick="save_proces_all()" class="btn btn-primary">Process All</button>
                         </div>
                     </div>
                 </form>
@@ -136,6 +136,57 @@
                 'warning'
             )
         }
+
+    }
+
+    function save_proces_all() {
+        var date_all = $('#date_all').val();
+
+        if (date_all != "") {
+            var url = "<?= base_url('slik/ajax_process_all'); ?>";
+            // ajax adding data to database
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    date_all: date_all,
+                },
+                dataType: "JSON",
+                success: function(data) {
+
+                    if (data.status) //if success close modal and reload ajax table
+                    {
+                        Swal.fire(
+                            'Success!',
+                            'All data has been process',
+                            'success'
+                        )
+                        window.setTimeout(function() {
+                            window.location.href = '<?= base_url('slik/form_report'); ?>';
+                        }, 1500);
+                    } else {
+                        Swal.fire(
+                            'Sorryy!',
+                            'Something wrong!!!',
+                            'error'
+                        )
+
+                    }
+
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Error adding / update data');
+                }
+            });
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan tanggal proses!',
+                'warning'
+            )
+        }
+
 
     }
 </script>
