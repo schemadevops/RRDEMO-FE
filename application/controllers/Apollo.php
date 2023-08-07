@@ -2533,11 +2533,161 @@ class Apollo extends CI_Controller
 	}
 	public function form_report_isi_1100()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1100/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1100',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '11.00',
+			'nama_form'		=> 'Form 11.00 - Saving List'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 11.00 - Saving List';
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_1100');
+		$this->load->view('apollo/form_report_isi_1100', $data);
 	}
+
+	public function form_report_edit_1100($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1100/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 11.00 - Saving List";
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_1100', $data);
+	}
+
+	public function ajax_edit_1100()
+	{
+		$id_1100 = $this->input->post('id_1100');
+		$sandi_kantor = $this->input->post('sandi_kantor');
+		$no_cif = $this->input->post('no_cif');
+		$no_rekening = $this->input->post('no_rekening');
+		$jenis = $this->input->post('jenis');
+		$hubungan_bank = $this->input->post('hubungan_bank');
+		$gol_nasabah = $this->input->post('gol_nasabah');
+		$lokasi_nasabah = $this->input->post('lokasi_nasabah');
+		$tgl_mulai = $this->input->post('tgl_mulai');
+		$tgl_jatuh_tempo = $this->input->post('tgl_jatuh_tempo');
+		$suku_bunga = $this->input->post('suku_bunga');
+		$nominal = $this->input->post('nominal');
+		$nominal_blokir = $this->input->post('nominal_blokir');
+		$alasan_blokir = $this->input->post('alasan_blokir');
+		$transaksi_diamortisasi = $this->input->post('transaksi_diamortisasi');
+		$jumlah = $this->input->post('jumlah');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1100/' . $id_1100,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'jenis=' . $jenis . '&hubungan_bank=' . $hubungan_bank . '&gol_nasabah=' . $gol_nasabah . '&lokasi_nasabah=' . $lokasi_nasabah . '&tgl_mulai=' . $tgl_mulai . '&tgl_jatuh_tempo=' . $tgl_jatuh_tempo . '&suku_bunga=' . $suku_bunga . '&nominal=' . $nominal . '&nominal_blokir=' . $nominal_blokir . '&alasan_blokir=' . $alasan_blokir . '&transaksi_diamortisasi=' . $transaksi_diamortisasi . '&jumlah=' . $jumlah . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
+
+
 	public function form_report_isi_1200()
 	{
 		$tgl_seacrh = $this->session->tgl_periode;
@@ -3372,13 +3522,7 @@ class Apollo extends CI_Controller
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_edit_1000');
 	}
-	public function form_report_edit_1100()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_1100');
-	}
+
 
 
 	public function ajax_periode()
