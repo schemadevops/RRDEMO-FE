@@ -108,14 +108,14 @@ border-top-right-radius: 10px;" id="inputGroupFile04" aria-describedby="inputGro
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
-                    messageTop: 'APOLO - Form 08.00 - Other Asset Details',
+                    messageTop: 'APOLO - Form 08.00 - List of Fixed Assets, Inventory and Intanible Assets',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
                     }
                 },
                 {
                     extend: 'excelHtml5',
-                    messageTop: 'APOLO - Form 08.00 - Other Asset Details',
+                    messageTop: 'APOLO - Form 08.00 - List of Fixed Assets, Inventory and Intanible Assets',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
                     }

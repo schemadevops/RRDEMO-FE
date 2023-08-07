@@ -92,7 +92,6 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="alasan_edit" name="alasan_edit" placeholder="Masukan alasan mengedit" />
                                 <input type="hidden" class="form-control" id="id_0800" name="id_0800" value="<?= $api_hasil->id; ?>" />
-
                             </div>
                         </div>
                         <div class="row justify-content-end py-3">
@@ -213,14 +212,14 @@
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
-                    messageTop: '[LOG Edit]APOLO - Form 08.00 - Other Asset Details',
+                    messageTop: '[LOG Edit]APOLO - Form 08.00 - List of Fixed Assets, Inventory and Intanible Assets',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
                 {
                     extend: 'excelHtml5',
-                    messageTop: '[LOG Edit]APOLO - Form 08.00 - Other Asset Details',
+                    messageTop: '[LOG Edit]APOLO - Form 08.00 - List of Fixed Assets, Inventory and Intanible Assets',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
@@ -229,6 +228,9 @@
             ]
         });
 
+        $("#stts_asset option[value='<?= $api_hasil->stts_asset; ?>']").prop('selected', true);
+        $("#sumber_perolehan option[value='<?= $api_hasil->sumber_perolehan; ?>']").prop('selected', true);
+        $("#jenis_aset option[value='<?= $api_hasil->jenis_aset; ?>']").prop('selected', true);
     });
 
     function edit() {
