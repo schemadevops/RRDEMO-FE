@@ -64,7 +64,7 @@
                                     <th scope="row"><?= $no; ?></th>
                                     <td><?= $key->sandi_kantor; ?></td>
                                     <td><?= $key->no_cif; ?></td>
-                                    <td><?= $key->jenis_bank; ?></td>
+                                    <td><?= $key->no_rek; ?></td>
                                     <td><?= $key->jenis_bank; ?></td>
                                     <td><?= $key->sandi_bank; ?></td>
                                     <td><?= $key->lokasi_bank; ?></td>

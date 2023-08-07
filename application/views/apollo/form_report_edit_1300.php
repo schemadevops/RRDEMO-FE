@@ -27,7 +27,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Nomor Rekening</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="no_rekening" name="no_rekening" value="<?= $api_hasil->no_cif; ?>" readonly />
+                                <input type="text" class="form-control" id="no_rekening" name="no_rekening" value="<?= $api_hasil->no_rek; ?>" readonly />
                             </div>
                         </div>
                         <div class="row mb-3">
