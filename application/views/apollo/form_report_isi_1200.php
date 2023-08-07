@@ -96,7 +96,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
+                            <input type="file" class="form-control" style="border-bottom-right-radius: 10px;
+border-top-right-radius: 10px;" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
                             <button class="btn rounded-pill btn-primary" style="margin-left: 10px;" type="button" id="inputGroupFileAddon04">Import</button>
                         </div>
                     </div>

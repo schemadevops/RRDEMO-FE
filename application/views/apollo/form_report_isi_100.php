@@ -69,13 +69,14 @@
                         <a href="<?= base_url('apollo/exportDataToTxt'); ?>" class="btn rounded-pill btn-primary my-2">Export to Txt
                         </a>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         ;&nbsp
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
-                            <button class="btn rounded-pill btn-primary" type="button" id="inputGroupFileAddon04">Import</button>
+                            <input type="file" class="form-control" style="border-bottom-right-radius: 10px;
+border-top-right-radius: 10px;" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
+                            <button class="btn rounded-pill btn-primary" style="margin-left: 10px;" type="button" id="inputGroupFileAddon04">Import</button>
                         </div>
                     </div>
                 </div>
