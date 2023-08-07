@@ -3139,15 +3139,165 @@ class Apollo extends CI_Controller
 	}
 
 
-
 	public function form_report_isi_1500()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1500/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1500',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '15.00',
+			'nama_form'		=> 'Form 15.00 - List of Earning Assets Erased by Books'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 15.00 - List of Earning Assets Erased by Books';
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_1500');
+		$this->load->view('apollo/form_report_isi_1500', $data);
 	}
 
+	public function form_report_edit_1500($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1500/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 15.00 - List of Earning Assets Erased by Books";
+
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_1500', $data);
+	}
+
+	public function ajax_edit_1500()
+	{
+		$id_1500 = $this->input->post('id_1500');
+		$sandi_kantor = $this->input->post('sandi_kantor');
+		$no_cif = $this->input->post('no_cif');
+		$no_rekening = $this->input->post('no_rekening');
+		$jenis = $this->input->post('jenis');
+		$gol_debitor = $this->input->post('gol_debitor');
+		$hubungan_bank = $this->input->post('hubungan_bank');
+		$tgl_hapus_buku = $this->input->post('tgl_hapus_buku');
+		$sp_hapus_buku = $this->input->post('sp_hapus_buku');
+		$sp_akumlasi_tertagih = $this->input->post('sp_akumlasi_tertagih');
+		$sp_posisi_laporan = $this->input->post('sp_posisi_laporan');
+		$tb_hapus_buku = $this->input->post('tb_hapus_buku');
+		$tb_akumalasi_tertagih = $this->input->post('tb_akumalasi_tertagih');
+		$tb_akumulasi_tambahan = $this->input->post('tb_akumulasi_tambahan');
+		$tb_posisi_laporan = $this->input->post('tb_posisi_laporan');
+		$agunan_jenis = $this->input->post('agunan_jenis');
+		$agunan_alamat = $this->input->post('agunan_alamat');
+		$agunan_nilai = $this->input->post('agunan_nilai');
+
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form1500/' . $id_1500,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'sandi_kantor=' . $sandi_kantor . '&no_cif=' . $no_cif . '&no_rekening=' . $no_rekening . '&jenis=' . $jenis . '&gol_debitor=' . $gol_debitor . '&hubungan_bank=' . $hubungan_bank . '&tgl_hapus_buku=' . $tgl_hapus_buku . '&sp_hapus_buku=' . $sp_hapus_buku . '&sp_akumlasi_tertagih=' . $sp_akumlasi_tertagih . '&sp_posisi_laporan=' . $sp_posisi_laporan . '&tb_hapus_buku=' . $tb_hapus_buku . '&tb_akumalasi_tertagih=' . $tb_akumalasi_tertagih . '&tb_akumulasi_tambahan=' . $tb_akumulasi_tambahan . '&tb_posisi_laporan=' . $tb_posisi_laporan . '&agunan_jenis=' . $agunan_jenis . '&agunan_alamat=' . $agunan_alamat . '&agunan_nilai=' . $agunan_nilai . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
 
 
 
@@ -3230,16 +3380,6 @@ class Apollo extends CI_Controller
 		$this->load->view('apollo/form_report_edit_1100');
 	}
 
-
-
-
-	public function form_report_edit_1500()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_1500');
-	}
 
 	public function ajax_periode()
 	{
