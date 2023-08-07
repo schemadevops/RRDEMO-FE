@@ -2484,11 +2484,190 @@ class Apollo extends CI_Controller
 	}
 	public function form_report_isi_0600()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0600/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0600',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '06.00',
+			'nama_form'		=> 'Form 06.00 - List of Credits Granted'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 06.00 - List of Credits Granted';
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_600');
+		$this->load->view('apollo/form_report_isi_600', $data);
 	}
+
+	public function form_report_edit_600($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0600/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 06.00 - List of Credits Granted";
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_600', $data);
+	}
+
+	public function ajax_edit_0600()
+	{
+		$id_0600 = $this->input->post('id_0600');
+		$sandi_kantor = $this->input->post('sandi_kantor');
+		$no_cif = $this->input->post('no_cif');
+		$no_idenstitas = $this->input->post('no_idenstitas');
+		$kd_kelompok_kredit = $this->input->post('kd_kelompok_kredit');
+		$no_rekening = $this->input->post('no_rekening');
+		$jenis = $this->input->post('jenis');
+		$stts_restrukturisasi = $this->input->post('stts_restrukturisasi');
+		$jenis_penggunaan = $this->input->post('jenis_penggunaan');
+		$hubungan_bank = $this->input->post('hubungan_bank');
+		$sumber_dana_pelunasan = $this->input->post('sumber_dana_pelunasan');
+		$periode_pembayaran_pokok = $this->input->post('periode_pembayaran_pokok');
+		$periode_pembayaran_bunga = $this->input->post('periode_pembayaran_bunga');
+		$tgl_mulai = $this->input->post('tgl_mulai');
+		$tgl_jatuh_tempo = $this->input->post('tgl_jatuh_tempo');
+		$angsuran_pertama = $this->input->post('angsuran_pertama');
+		$kualitas = $this->input->post('kualitas');
+		$tgl_macet = $this->input->post('tgl_macet');
+		$jml_hari_tunggakan_pokok = $this->input->post('jml_hari_tunggakan_pokok');
+		$jml_hari_tunggakan_bunga = $this->input->post('jml_hari_tunggakan_bunga');
+		$nominal_tunggakan = $this->input->post('nominal_tunggakan');
+		$gol_debitur = $this->input->post('gol_debitur');
+		$sandi_bank = $this->input->post('sandi_bank');
+		$sektor_ekonomi = $this->input->post('sektor_ekonomi');
+		$ketegori_usaha = $this->input->post('ketegori_usaha');
+		$lokasi_penggunakan = $this->input->post('lokasi_penggunakan');
+		$suki_bunga = $this->input->post('suki_bunga');
+		$type_suku_bunga = $this->input->post('type_suku_bunga');
+		$gol_penjamin = $this->input->post('gol_penjamin');
+		$bagian_dijamin = $this->input->post('bagian_dijamin');
+		$agunan_liquid = $this->input->post('agunan_liquid');
+		$agunan_nonliquid = $this->input->post('agunan_nonliquid');
+		$kelonggara_tarik = $this->input->post('kelonggara_tarik');
+		$palfon_awal = $this->input->post('palfon_awal');
+		$palfon_efektif = $this->input->post('palfon_efektif');
+		$baki_debet = $this->input->post('baki_debet');
+		$provisi_diamortisasi = $this->input->post('provisi_diamortisasi');
+		$biaya_transaksi_diamortisasi = $this->input->post('biaya_transaksi_diamortisasi');
+		$pendapatan_bunga_ditangguhkan = $this->input->post('pendapatan_bunga_ditangguhkan');
+		$cadangan_kerugian = $this->input->post('cadangan_kerugian');
+		$baki_debet_neto = $this->input->post('baki_debet_neto');
+		$ppap_dibentuk = $this->input->post('ppap_dibentuk');
+		$ppap_restrukturasi = $this->input->post('ppap_restrukturasi');
+		$pemdapatan_bunga_diterima = $this->input->post('pemdapatan_bunga_diterima');
+		$pendapatan_bunga_penyelesaian = $this->input->post('pendapatan_bunga_penyelesaian');
+		$status_bmpk = $this->input->post('status_bmpk');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0600/' . $id_0600,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'sandi_kantor=' . $sandi_kantor . '&no_cif=' . $no_cif . '&no_idenstitas=' . $no_idenstitas . '&kd_kelompok_kredit=' . $kd_kelompok_kredit . '&no_rekening=' . $no_rekening . '&jenis=' . $jenis . '&stts_restrukturisasi=' . $stts_restrukturisasi . '&jenis_penggunaan=' . $jenis_penggunaan . '&hubungan_bank=' . $hubungan_bank . '&sumber_dana_pelunasan=' . $sumber_dana_pelunasan . '&periode_pembayaran_pokok=' . $periode_pembayaran_pokok . '&periode_pembayaran_bunga=' . $periode_pembayaran_bunga . '&tgl_mulai=' . $tgl_mulai . '&tgl_jatuh_tempo=' . $tgl_jatuh_tempo . '&angsuran_pertama=' . $angsuran_pertama . '&kualitas=' . $kualitas . '&tgl_macet=' . $tgl_macet . '&jml_hari_tunggakan_pokok=' . $jml_hari_tunggakan_pokok . '&jml_hari_tunggakan_bunga=' . $jml_hari_tunggakan_bunga . '&nominal_tunggakan=' . $nominal_tunggakan . '&gol_debitur=' . $gol_debitur . '&sandi_bank=' . $sandi_bank . '&sektor_ekonomi=' . $sektor_ekonomi . '&ketegori_usaha=' . $ketegori_usaha . '&lokasi_penggunakan=' . $lokasi_penggunakan . '&suki_bunga=' . $suki_bunga . '&type_suku_bunga=' . $type_suku_bunga . '&gol_penjamin=' . $gol_penjamin . '&bagian_dijamin=' . $bagian_dijamin . '&agunan_liquid=' . $agunan_liquid . '&agunan_nonliquid=' . $agunan_nonliquid . '&kelonggara_tarik=' . $kelonggara_tarik . '&palfon_awal=' . $palfon_awal . '&palfon_efektif=' . $palfon_efektif . '&baki_debet=' . $baki_debet . '&provisi_diamortisasi=' . $provisi_diamortisasi . '&biaya_transaksi_diamortisasi=' . $biaya_transaksi_diamortisasi . '&pendapatan_bunga_ditangguhkan=' . $pendapatan_bunga_ditangguhkan . '&cadangan_kerugian=' . $cadangan_kerugian . '&baki_debet_neto=' . $baki_debet_neto . '&ppap_dibentuk=' . $ppap_dibentuk . '&ppap_restrukturasi=' . $ppap_restrukturasi . '&pemdapatan_bunga_diterima=' . $pemdapatan_bunga_diterima . '&pendapatan_bunga_penyelesaian=' . $pendapatan_bunga_penyelesaian . '&status_bmpk=' . $status_bmpk . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
+
 	public function form_report_isi_0601()
 	{
 		$tgl_seacrh = $this->session->tgl_periode;
@@ -2639,8 +2818,6 @@ class Apollo extends CI_Controller
 			echo json_encode(array("status" => TRUE, "data" => $data));
 		}
 	}
-
-
 
 
 	public function form_report_isi_0700()
