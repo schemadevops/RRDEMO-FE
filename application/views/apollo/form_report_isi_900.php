@@ -105,14 +105,14 @@ border-top-right-radius: 10px;" id="inputGroupFile04" aria-describedby="inputGro
                     extend: 'copyHtml5',
                     messageTop: 'APOLO - Form 09.00 - Other Asset Details',
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4, 5]
                     }
                 },
                 {
                     extend: 'excelHtml5',
                     messageTop: 'APOLO - Form 09.00 - Other Asset Details',
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4, 5]
                     }
                 },
                 'colvis'
