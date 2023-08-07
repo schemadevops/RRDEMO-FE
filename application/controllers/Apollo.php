@@ -2561,6 +2561,87 @@ class Apollo extends CI_Controller
 		$this->load->view('apollo/form_report_isi_601', $data);
 	}
 
+	public function form_report_edit_601($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0601/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 06.01 - Collateral List";
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_601', $data);
+	}
+
+	public function ajax_edit_0601()
+	{
+		$id_0601 = $this->input->post('id_0601');
+		$sandi_kantor = $this->input->post('sandi_kantor');
+		$kd_register = $this->input->post('kd_register');
+		$no_rekening = $this->input->post('no_rekening');
+		$jenis_agunan = $this->input->post('jenis_agunan');
+		$alamat_agunan = $this->input->post('alamat_agunan');
+		$nilai_diagunkan = $this->input->post('nilai_diagunkan');
+		$nominal = $this->input->post('nominal');
+		$penilai = $this->input->post('penilai');
+		$tgl_penilaian_terakhir = $this->input->post('tgl_penilaian_terakhir');
+		$ppap_liquid = $this->input->post('ppap_liquid');
+		$ppap_nonliquid = $this->input->post('ppap_nonliquid');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0601/' . $id_0601,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'sandi_kantor=' . $sandi_kantor . '&kd_register=' . $kd_register . '&no_rekening=' . $no_rekening . '&jenis_agunan=' . $jenis_agunan . '&alamat_agunan=' . $alamat_agunan . '&nilai_diagunkan=' . $nilai_diagunkan . '&nominal=' . $nominal . '&penilai=' . $penilai . '&tgl_penilaian_terakhir=' . $tgl_penilaian_terakhir . '&ppap_liquid=' . $ppap_liquid . '&ppap_nonliquid=' . $ppap_nonliquid . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
+
+
 
 	public function form_report_isi_0700()
 	{
@@ -4238,13 +4319,6 @@ class Apollo extends CI_Controller
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_edit_500');
-	}
-	public function form_report_edit_601()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_601');
 	}
 
 
