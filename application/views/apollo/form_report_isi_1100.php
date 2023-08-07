@@ -129,14 +129,14 @@ border-top-right-radius: 10px;" id="inputGroupFile04" aria-describedby="inputGro
                     extend: 'copyHtml5',
                     messageTop: 'APOLO - Form 15.00 - List of Earning Assets Erased by Books',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
                     }
                 },
                 {
                     extend: 'excelHtml5',
                     messageTop: 'APOLO - Form 15.00 - List of Earning Assets Erased by Books',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
                     }
                 },
                 'colvis'
