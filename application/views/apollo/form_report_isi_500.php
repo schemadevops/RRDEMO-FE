@@ -83,9 +83,9 @@
                                         </a>
                                     </td>
                                 </tr>
+                            <?php };
+                            ?>
                         </tbody>
-                    <?php };
-                    ?>
                     </table>
                 </div>
                 <div class="row mt-3 mb-3">
