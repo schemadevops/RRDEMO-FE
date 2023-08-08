@@ -6,23 +6,24 @@
         <div class="row">
             <!-- Basic Layout & Basic with Icons -->
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sipina /</span>
-                Form Report / Form - SIPINA</h4>
+                Form Report / <?= $header; ?></h4>
             <!-- Responsive Table -->
             <div class="card">
+                <h5 class="card-header"><?= $header; ?></h5>
                 <div class="container mt-3 mb-3">
-                    <form>
+                    <form id="form_periode">
                         <div class="row mb-3 mt-3">
-                            <label class="col-sm-3 col-form-label" for="basic-default-name">Periode
+                            <label class="col-sm-3 col-form-label" for="periode_date">Periode
                                 Data</label>
                             <div class="col-sm-6">
-                                <input type="date" class="form-control" id="basic-default-name" placeholder="John Doe" />
+                                <input type="date" class="form-control" id="periode_date" name="periode_date" placeholder="John Doe" />
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="button" onclick="save_periode()" id="btnSeacrh" class="btn btn-primary">Search</button>
+                                <button type="button" onclick="reload_table()" id="btnReload" class="btn btn-warning">Reset</button>
                             </div>
                         </div>
                     </form>
-
                 </div>
                 <div class="table-responsive text-nowrap">
                     <table id="table-res" class="table dt-responsive">
@@ -51,54 +52,66 @@
                                 <th>Source of Income</th>
                                 <th>Currency Code according to the source income</th>
                                 <th>Total Income</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            for ($i = 1; $i < 21; $i++) {
+                            $no = 0;
+                            foreach ($api_hasil->data as $key) {
+                                $no++;
                             ?>
                                 <tr>
-                                    <th scope="row"><?= $i; ?></th>
-                                    <td>11452</td>
-                                    <td>1115</td>
-                                    <td>6584785215</td>
-                                    <td>On</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
-                                    <td>Exemple</td>
+                                    <th scope="row"><?= $no; ?></th>
+                                    <td><?= $key->kd_identitas; ?></td>
+                                    <td><?= $key->no_cif; ?></td>
+                                    <td><?= $key->no_rekening; ?></td>
+                                    <td><?= $key->stts_rekening; ?></td>
+                                    <td><?= $key->kategori_usaha; ?></td>
+                                    <td><?= $key->kd_negara; ?></td>
+                                    <td><?= $key->kebangsaan; ?></td>
+                                    <td><?= $key->kd_currency_rekening; ?></td>
+                                    <td><?= $key->saldo_rekening; ?></td>
+                                    <td><?= 'tgl Lahir'; ?></td>
+                                    <td><?= $key->npwp; ?></td>
+                                    <td><?= $key->tin_country; ?></td>
+                                    <td><?= $key->jenis_no_identitas_pajak; ?></td>
+                                    <td><?= $key->nama_depan_pemegang_rek; ?></td>
+                                    <td><?= $key->nama_tengah_pemegang_rek; ?></td>
+                                    <td><?= $key->nama_belakang_pemegang_rek; ?></td>
+                                    <td><?= $key->kd_alamat; ?></td>
+                                    <td><?= $key->kd_negara_pemegang_rek; ?></td>
+                                    <td><?= $key->alamat_asal; ?></td>
+                                    <td><?= 'sumber pemasukan'; ?></td>
+                                    <td><?= $key->kd_mata_uang_rek_pemegang; ?></td>
+                                    <td><?= $key->jml_penghasilan; ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key->createdAt)); ?></td>
                                     <td>
-                                        <a href="<?= base_url('sipina/form_report_edit'); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
+                                        <a href="<?= base_url('sipina/form_report_edit/' . $key->id); ?>" class="btn rounded-pill btn-primary"><i class='bx bx-edit-alt'></i> Edit
                                         </a>
                                     </td>
                                 </tr>
                             <?php
                             };
                             ?>
-
-
                         </tbody>
                     </table>
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <a href="#" class="btn rounded-pill btn-primary">Export to Txt
+                        <a href="<?= base_url('sipina/exportDataToTxt'); ?>" class="btn rounded-pill btn-primary my-2">Export to Txt
                         </a>
+                    </div>
+                    <div class="col-md-5">
+                        ;&nbsp
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="file" class="form-control" style="border-bottom-right-radius: 10px;
+border-top-right-radius: 10px;" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
+                            <button class="btn rounded-pill btn-primary" style="margin-left: 10px;" type="button" id="inputGroupFileAddon04">Import</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,4 +151,58 @@
             ]
         });
     });
+
+    function save_periode() {
+        $('#btnSeacrh').text('searching...'); //change button text
+        $('#btnSeacrh').attr('disabled', true); //set button disable 
+        var url;
+
+        url = "<?php echo site_url('sipina/ajax_periode') ?>";
+
+
+        // ajax adding data to database
+
+        var formData = new FormData($('#form_periode')[0]);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) //if success close modal and reload ajax table
+                {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Data Berhasil dicari'
+                    });
+                    window.setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Opss ada yang error'
+                    })
+                }
+                $('#btnSeacrh').text('Search'); //change button text
+                $('#btnSeacrh').attr('disabled', false); //set button enable 
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error adding / update data');
+                $('#btnSeacrh').text('Search'); //change button text
+                $('#btnSeacrh').attr('disabled', false); //set button enable 
+
+            }
+        });
+    }
+
+    function reload_table() {
+        window.setTimeout(function() {
+            location.reload();
+        }, 1000);
+    }
 </script>
