@@ -5,11 +5,9 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <!-- Basic Layout & Basic with Icons -->
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sipina /</span>
-                Form Report / <?= $header; ?></h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><?= $header; ?></h4>
             <!-- Responsive Table -->
             <div class="card">
-                <h5 class="card-header"><?= $header; ?></h5>
                 <div class="container mt-3 mb-3">
                     <form id="form_periode">
                         <div class="row mb-3 mt-3">

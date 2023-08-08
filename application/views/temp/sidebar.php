@@ -160,7 +160,7 @@
                          <div data-i18n="Without menu">Report Process</div>
                      </a>
                  </li>
-                 <li class="menu-item <?php echo ($suburi == 'form_report') ? 'active' : '' ?>">
+                 <li class="menu-item <?php echo ($suburi == 'form_report_isi') ? 'active' : '' ?>">
                      <a href="<?= base_url('sipina/form_report_isi'); ?>" class="menu-link">
                          <div data-i18n="Without navbar">Form Report</div>
                      </a>
@@ -185,8 +185,8 @@
                          <div data-i18n="Without menu">Report Process</div>
                      </a>
                  </li>
-                 <li class="menu-item <?php echo ($suburi == 'form_report') ? 'active' : '' ?>">
-                     <a href="<?= base_url('sipesat/form_report'); ?>" class="menu-link">
+                 <li class="menu-item <?php echo ($suburi == 'form_report_isi') ? 'active' : '' ?>">
+                     <a href="<?= base_url('sipesat/form_report_isi'); ?>" class="menu-link">
                          <div data-i18n="Without navbar">Form Report</div>
                      </a>
                  </li>
