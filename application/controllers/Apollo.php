@@ -2477,11 +2477,162 @@ class Apollo extends CI_Controller
 	}
 	public function form_report_isi_0500()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0500/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0500',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> '05.00',
+			'nama_form'		=> 'Form 05.00 - List of Placement in Other Banks'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['api_hasil'] = $hasil;
+		$data['header'] = 'Form 05.00 - List of Placement in Other Banks';
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_isi_500');
+		$this->load->view('apollo/form_report_isi_500', $data);
 	}
+
+	public function form_report_edit_500($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0500/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+
+		$data['header'] = "Apolo Form 05.00 - List of Placement in Other Banks";
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('apollo/form_report_edit_500', $data);
+	}
+
+	public function ajax_edit_0500()
+	{
+		$id_0500 = $this->input->post('id_0500');
+		$sandi_kantor = $this->input->post('sandi_kantor');
+		$sandi_bank = $this->input->post('sandi_bank');
+		$lokasi_bank = $this->input->post('lokasi_bank');
+		$jenis = $this->input->post('jenis');
+		$hubungan_bank = $this->input->post('hubungan_bank');
+		$tgl_mulai = $this->input->post('tgl_mulai');
+		$tgl_jatuh_tempo = $this->input->post('tgl_jatuh_tempo');
+		$kualitas = $this->input->post('kualitas');
+		$suku_bunga = $this->input->post('suku_bunga');
+		$jumlah = $this->input->post('jumlah');
+		$nominal_dijaminkan = $this->input->post('nominal_dijaminkan');
+		$alasan_diblokir = $this->input->post('alasan_diblokir');
+		$ppap_yang_terbentuk = $this->input->post('ppap_yang_terbentuk');
+		$pendapatan_bunga_diteima = $this->input->post('pendapatan_bunga_diteima');
+		$pendapatan_bunga_penyelesaian = $this->input->post('pendapatan_bunga_penyelesaian');
+		$status_bmpk = $this->input->post('status_bmpk');
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/apolo/form0500/' . $id_0500,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'sandi_kantor=' . $sandi_kantor . '&sandi_bank=' . $sandi_bank . '&lokasi_bank=' . $lokasi_bank . '&jenis=' . $jenis . '&hubungan_bank=' . $hubungan_bank . '&tgl_mulai=' . $tgl_mulai . '&tgl_jatuh_tempo=' . $tgl_jatuh_tempo . '&kualitas=' . $kualitas . '&suku_bunga=' . $suku_bunga . '&jumlah=' . $jumlah . '&nominal_dijaminkan=' . $nominal_dijaminkan . '&alasan_diblokir=' . $alasan_diblokir . '&ppap_yang_terbentuk=' . $ppap_yang_terbentuk . '&pendapatan_bunga_diteima=' . $pendapatan_bunga_diteima . '&pendapatan_bunga_penyelesaian=' . $pendapatan_bunga_penyelesaian . '&status_bmpk=' . $status_bmpk . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
+
+
 	public function form_report_isi_0600()
 	{
 		$tgl_seacrh = $this->session->tgl_periode;
@@ -4489,13 +4640,6 @@ class Apollo extends CI_Controller
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('apollo/form_report_edit_400');
-	}
-	public function form_report_edit_500()
-	{
-		$this->load->view('temp/head');
-		$this->load->view('temp/sidebar');
-		$this->load->view('temp/navbar');
-		$this->load->view('apollo/form_report_edit_500');
 	}
 
 
