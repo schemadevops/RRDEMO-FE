@@ -27,9 +27,9 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Koordinat Kantor</label>
                             <div class="col-sm-10">
-                                <small>Latitutde</small>
+                                <small>Latitude</small>
                                 <input type="text" class="form-control" id="lat" name="lat" value="<?= $api_hasil->Latitude; ?>" />
-                                <small>Longtitude</small>
+                                <small>Longitude</small>
                                 <input type="text" class="form-control" id="long" name="long" value="<?= $api_hasil->Longitude; ?>" />
                             </div>
                         </div>
