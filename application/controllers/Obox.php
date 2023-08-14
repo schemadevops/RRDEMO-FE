@@ -193,17 +193,164 @@ class Obox extends CI_Controller
 		}
 	}
 
-
-
-
-
 	public function form_report_isi_cr007()
 	{
+		$tgl_seacrh = $this->session->tgl_periode;
+
+		if ($tgl_seacrh != "") {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/obox/formcr007/getbydate',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => 'tanggal=' . $tgl_seacrh,
+				CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/x-www-form-urlencoded',
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+			$this->session->unset_userdata('tgl_periode');
+		} else {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://141.136.47.149:3003/obox/formcr007',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $this->session->access_token
+				),
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$hasil = json_decode($response);
+			if ($hasil->message == "success") {
+				$data['api_hasil'] = $hasil->data;
+			}
+		};
+
+		$newdata = array(
+			'data_export_txt'  => $data['api_hasil'],
+			'kode_form'		=> 'A01',
+			'nama_form'		=> 'Form CR007 - Debitur Top-Up Plafon Terbesar'
+		);
+		$this->session->set_userdata($newdata);
+
+		$data['header'] = "Form CR007 - Debitur Top-Up Plafon Terbesar";
+
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('obox/form_report_isi_cr007');
+		$this->load->view('obox/form_report_isi_cr007', $data);
 	}
+
+	public function form_report_edit_cr007($id)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/obox/formcr007/' . $id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			$data['api_log_data'] = $hasil->logData;
+		}
+		$data['header'] = "Form CR007 - Debitur Top-Up Plafon Terbesar";
+		$this->load->view('temp/head');
+		$this->load->view('temp/sidebar');
+		$this->load->view('temp/navbar');
+		$this->load->view('obox/form_report_edit_cr007', $data);
+	}
+
+	public function ajax_edit_cr007()
+	{
+		$id_cr007 = $this->input->post('id_cr007');
+		$flag_detail = $this->input->post('flag_detail');
+		$kd_cabang = $this->input->post('kd_cabang');
+		$nm_debitur = $this->input->post('nm_debitur');
+		$no_cif = $this->input->post('no_cif');
+		$no_ktp = $this->input->post('no_ktp');
+		$tipe_pinjaman = $this->input->post('tipe_pinjaman');
+		$no_rek_pinjaman = $this->input->post('no_rek_pinjaman');
+		$tipe_nasabah = $this->input->post('tipe_nasabah');
+		$tgl_top_up = $this->input->post('tgl_top_up');
+		$nilai_sebelum_topup = $this->input->post('nilai_sebelum_topup');
+		$nilai_setelah_topup = $this->input->post('nilai_setelah_topup');
+		$selisih_antara_plafon = $this->input->post('selisih_antara_plafon');
+		$outstanding_sebelum_topup = $this->input->post('outstanding_sebelum_topup');
+		$outstanding_setelah_topup = $this->input->post('outstanding_setelah_topup');
+		$selisih_outstanding = $this->input->post('selisih_outstanding');
+		$jumlah_rek_sebelum_topup = $this->input->post('jumlah_rek_sebelum_topup');
+		$jumlah_rek_setelah_topup = $this->input->post('jumlah_rek_setelah_topup');
+
+		$alasan_edit = $this->input->post('alasan_edit');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/obox/formcr007/' . $id_cr007,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'flag_detail=' . $flag_detail . '&kd_cabang=' . $kd_cabang . '&nm_debitur=' . $nm_debitur . '&no_cif=' . $no_cif . '&no_ktp=' . $no_ktp . '&tipe_pinjaman=' . $tipe_pinjaman . '&no_rek_pinjaman=' . $no_rek_pinjaman . '&tipe_nasabah=' . $tipe_nasabah . '&tgl_top_up=' . $tgl_top_up . '&nilai_sebelum_topup=' . $nilai_sebelum_topup . '&nilai_setelah_topup=' . $nilai_setelah_topup . '&selisih_antara_plafon=' . $selisih_antara_plafon . '&outstanding_sebelum_topup=' . $outstanding_sebelum_topup . '&outstanding_setelah_topup=' . $outstanding_setelah_topup . '&selisih_outstanding=' . $selisih_outstanding . '&jumlah_rek_sebelum_topup=' . $jumlah_rek_sebelum_topup . '&jumlah_rek_setelah_topup=' . $jumlah_rek_setelah_topup . '&alasan=' . $alasan_edit,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+			echo json_encode(array("status" => TRUE, "data" => $data));
+		}
+	}
+
+
 	public function form_report_isi_cr008()
 	{
 		$this->load->view('temp/head');
