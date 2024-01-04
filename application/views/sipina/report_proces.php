@@ -36,7 +36,8 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Form A01 - Collateral Data</td>
+                                <td>Form
+                                    - Sistem Penyampaian Informasi Nasabah Asing (SIPINA)</td>
                                 <td><input type="date" class="form-control" /></td>
                                 <td>15/02/2023</td>
                                 <td>15/02/2023</td>
@@ -45,61 +46,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Form F01 - Loan Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Form D01 - Individual Customer Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Form D02 - Non Individual Customer Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Form K01 - Non Individual Customer's Financial Report Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Form M01 - Key Management Data (non Individual Customer)</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>

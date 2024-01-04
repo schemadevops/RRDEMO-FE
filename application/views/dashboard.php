@@ -8,7 +8,7 @@
                <div class="d-flex align-items-end row">
                  <div class="col-sm-7">
                    <div class="card-body">
-                     <h5 class="card-title text-primary">Welcome, Putri</h5>
+                     <h5 class="card-title text-primary">Welcome, <?= $this->session->name; ?></h5>
                      <p class="mb-4" onload="showTime()" id="MyClockDisplay">
                        Wednesday, 1 Maret 2023
                      </p>

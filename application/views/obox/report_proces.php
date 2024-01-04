@@ -36,7 +36,8 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Form A01 - Collateral Data</td>
+                                <td>Form CR006
+                                    - Debitur Baru Plafon Terbesar</td>
                                 <td><input type="date" class="form-control" /></td>
                                 <td>15/02/2023</td>
                                 <td>15/02/2023</td>
@@ -47,7 +48,8 @@
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>Form F01 - Loan Data</td>
+                                <td>Form CR007
+                                    - Debitur Top-Up Plafon Terbesar</td>
                                 <td><input type="date" class="form-control" /></td>
                                 <td>15/02/2023</td>
                                 <td>15/02/2023</td>
@@ -58,7 +60,8 @@
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>Form D01 - Individual Customer Data</td>
+                                <td>Form CR008
+                                    - Debitur Penurunan Baki Debet Terbesar</td>
                                 <td><input type="date" class="form-control" /></td>
                                 <td>15/02/2023</td>
                                 <td>15/02/2023</td>
@@ -69,7 +72,8 @@
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>Form D02 - Non Individual Customer Data</td>
+                                <td>Form CR009
+                                    - Debitur Perubahan Kualitas Berdasarkan Baki Debet Terbesar</td>
                                 <td><input type="date" class="form-control" /></td>
                                 <td>15/02/2023</td>
                                 <td>15/02/2023</td>
@@ -80,7 +84,8 @@
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
-                                <td>Form K01 - Non Individual Customer's Financial Report Data</td>
+                                <td>Form LQ003
+                                    - 10 Nasabah dengan Dana Masuk Terbesar</td>
                                 <td><input type="date" class="form-control" /></td>
                                 <td>15/02/2023</td>
                                 <td>15/02/2023</td>
@@ -91,7 +96,68 @@
                             </tr>
                             <tr>
                                 <th scope="row">6</th>
-                                <td>Form M01 - Key Management Data (non Individual Customer)</td>
+                                <td>Form LQ004
+                                    - 10 Nasabah dengan Dana Keluar Terbesar</td>
+                                <td><input type="date" class="form-control" /></td>
+                                <td>15/02/2023</td>
+                                <td>15/02/2023</td>
+                                <td>
+                                    <a href="#" class="btn rounded-pill btn-primary">Process
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td>Form LQ005
+                                    - Pemantauan Cash Ratio Mingguan</td>
+                                <td><input type="date" class="form-control" /></td>
+                                <td>15/02/2023</td>
+                                <td>15/02/2023</td>
+                                <td>
+                                    <a href="#" class="btn rounded-pill btn-primary">Process
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td>Form LQ006
+                                    - Pemantauan Loan to Deposit Ratio (LDR)</td>
+                                <td><input type="date" class="form-control" /></td>
+                                <td>15/02/2023</td>
+                                <td>15/02/2023</td>
+                                <td>
+                                    <a href="#" class="btn rounded-pill btn-primary">Process
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9</th>
+                                <td>Form OP001
+                                    - Pemantauan Mutasi Kas Harian</td>
+                                <td><input type="date" class="form-control" /></td>
+                                <td>15/02/2023</td>
+                                <td>15/02/2023</td>
+                                <td>
+                                    <a href="#" class="btn rounded-pill btn-primary">Process
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td>Form OP002
+                                    - Pemantauan Penempatan pada Bank Lain</td>
+                                <td><input type="date" class="form-control" /></td>
+                                <td>15/02/2023</td>
+                                <td>15/02/2023</td>
+                                <td>
+                                    <a href="#" class="btn rounded-pill btn-primary">Process
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td>Form OP003
+                                    - Pengelolaan Buku Tabungan dan Bilyet Deposito</td>
                                 <td><input type="date" class="form-control" /></td>
                                 <td>15/02/2023</td>
                                 <td>15/02/2023</td>

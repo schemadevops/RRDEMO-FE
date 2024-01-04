@@ -21,7 +21,7 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td><a href="<?= base_url('sipina/form_report_isi'); ?>" class="btn btn-primary"> Form
-                                        - SIPINA </a></td>
+                                        - Sistem Penyampaian Informasi Nasabah Asing (SIPINA) </a></td>
                             </tr>
                         </tbody>
                     </table>

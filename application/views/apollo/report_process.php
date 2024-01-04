@@ -34,110 +34,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Form 00.00 - BPR Main Information</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Form 00.00 - BPR Ownership Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Form 00.00 - Data Members of BoD and BoC of BPR</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Form 00.00 - BPR Implementator Member</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Form 00.00 - BPR Office Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Form 00.00 - Other Related Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">7</th>
-                                <td>Form 00.00 - Paid Capital, Donated Capital, Equity</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>Form 00.00 - List of Accepted Loans</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">9</th>
-                                <td>Form 00.00 - Quarterly Financial Rations</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>Form 00.00 - Data BoD/BoC who have stopped serving</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">11</th>
-                                <td>Form 00.00 - Implementing Organs (stop servis)</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">12</th>
-                                <td>Form 00.00 - Cash Office Data</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">13</th>
-                                <td>Form 00.00 - Balance Sheet</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>05/02/2023</td>
-                                <td>07/02/2023</td>
-                                <td><button type="submit" class="btn btn-primary">Process</button></td>
-                            </tr>
+                            <?php
+                            $no = 0;
+                            sort($api_hasil);
+                            foreach ($api_hasil as $key) {
+                                $no++;
+                                $link = 'form_report_isi_' . substr($key->value, 4, 5);
+
+                            ?>
+                                <tr>
+                                    <th scope="row"><?= $no; ?></th>
+                                    <td><?= $key->name; ?></td>
+                                    <td><input type="date" class="form-control" /></td>
+                                    <td>05/02/2023</td>
+                                    <td>07/02/2023</td>
+                                    <td><button type="submit" class="btn btn-primary">Process</button></td>
+                                </tr>
+                            <?php }; ?>
+
                         </tbody>
                     </table>
                 </div>
