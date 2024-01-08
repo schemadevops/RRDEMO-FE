@@ -25,33 +25,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <select name="form_report" id="form_report" class="form-control">
-                                    <option value="1">Form 00.00 - BPR
-                                        Main
-                                        Information</option>
-                                    <option value="2">Form 00.00 - BPR
-                                        Ownership Data</option>
-                                    <option value="3">Form 00.00 - Data
-                                        Members of BoD and BoC of BPR</option>
-                                    <option value="4">Form 00.00 - BPR
-                                        Implementator Member</option>
-                                    <option value="5">Form 00.00 - BPR
-                                        Office Data</option>
-                                    <option value="6">Form 00.00 - Other
-                                        Related Data</option>
-                                    <option value="7">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="8">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="9">Form 00.00 - List
-                                        of Accepted Loans</option>
-                                    <option value="10">Form 00.00 - Data
-                                        BoD/BoC who have stopped serving</option>
-                                    <option value="11">Form 00.00 -
-                                        Implementing Organs (stop servis)</option>
-                                    <option value="12">Form 00.00 - Cash
-                                        Office Data</option>
-                                    <option value="13">Form 00.00 -
-                                        Balance Sheet</option>
+                                    <?php
+                                    $no = 0;
+                                    sort($api_hasil);
+                                    foreach ($api_hasil as $key) {
+                                        $no++;
+
+                                    ?>
+                                        <option value="<?= $no; ?>"><?= $key->name; ?></option>
+                                    <?php }; ?>
+
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -71,138 +54,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td> Form 00.00 - BPR
-                                            Main
-                                            Information
-                                        </td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Form 00.00 - BPR
-                                            Ownership Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Form 00.00 - Data
-                                            Members of BoD and BoC of BPR</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Form 00.00 - BPR
-                                            Implementator Member</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Form 00.00 - BPR
-                                            Office Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Form 00.00 - Other
-                                            Related Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Form 00.00 - Paid
-                                            Capital, Donated Capital, Equity</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Form 00.00 - List
-                                            of Accepted Loans</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>Form 00.00 -
-                                            Quarterly Financial Rations</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>Form 00.00 - Data
-                                            BoD/BoC who have stopped serving</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>Form 00.00 -
-                                            Implementing Organs (stop servis)</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>Form 00.00 - Cash
-                                            Office Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">13</th>
-                                        <td>Form 00.00 -
-                                            Balance Sheet</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $no = 0;
+                                    sort($api_hasil);
+                                    foreach ($api_hasil as $key) {
+                                        $no++;
+
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?= $no; ?></th>
+                                            <td><?= $key->name; ?></td>
+                                            <td>01/03/2023 - 05:15</td>
+                                            <td>APOLLO_00_0145822</td>
+                                            <td><a href="#" class="btn rounded-pill btn-primary">View
+                                                    History</a>
+                                            </td>
+                                        </tr>
+                                    <?php }; ?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -211,33 +80,15 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <select name="form_report" id="form_report" class="form-control">
-                                    <option value="1">Form 00.00 - BPR
-                                        Main
-                                        Information</option>
-                                    <option value="2">Form 00.00 - BPR
-                                        Ownership Data</option>
-                                    <option value="3">Form 00.00 - Data
-                                        Members of BoD and BoC of BPR</option>
-                                    <option value="4">Form 00.00 - BPR
-                                        Implementator Member</option>
-                                    <option value="5">Form 00.00 - BPR
-                                        Office Data</option>
-                                    <option value="6">Form 00.00 - Other
-                                        Related Data</option>
-                                    <option value="7">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="8">Form 00.00 - Paid
-                                        Capital, Donated Capital, Equity</option>
-                                    <option value="9">Form 00.00 - List
-                                        of Accepted Loans</option>
-                                    <option value="10">Form 00.00 - Data
-                                        BoD/BoC who have stopped serving</option>
-                                    <option value="11">Form 00.00 -
-                                        Implementing Organs (stop servis)</option>
-                                    <option value="12">Form 00.00 - Cash
-                                        Office Data</option>
-                                    <option value="13">Form 00.00 -
-                                        Balance Sheet</option>
+                                    <?php
+                                    $no = 0;
+                                    sort($api_hasil);
+                                    foreach ($api_hasil as $key) {
+                                        $no++;
+
+                                    ?>
+                                        <option value="<?= $no; ?>"><?= $key->name; ?></option>
+                                    <?php }; ?>
                                 </select>
 
                             </div>
@@ -267,138 +118,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td> Form 00.00 - BPR
-                                            Main
-                                            Information
-                                        </td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Form 00.00 - BPR
-                                            Ownership Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Form 00.00 - Data
-                                            Members of BoD and BoC of BPR</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Form 00.00 - BPR
-                                            Implementator Member</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Form 00.00 - BPR
-                                            Office Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Form 00.00 - Other
-                                            Related Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Form 00.00 - Paid
-                                            Capital, Donated Capital, Equity</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Form 00.00 - List
-                                            of Accepted Loans</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>Form 00.00 -
-                                            Quarterly Financial Rations</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>Form 00.00 - Data
-                                            BoD/BoC who have stopped serving</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>Form 00.00 -
-                                            Implementing Organs (stop servis)</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>Form 00.00 - Cash
-                                            Office Data</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">13</th>
-                                        <td>Form 00.00 -
-                                            Balance Sheet</td>
-                                        <td>01/03/2023 - 05:15</td>
-                                        <td>APOLLO_00_0145822</td>
-                                        <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                History</a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $no = 0;
+                                    sort($api_hasil);
+                                    foreach ($api_hasil as $key) {
+                                        $no++;
+
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?= $no; ?></th>
+                                            <td><?= $key->name; ?></td>
+                                            <td>01/03/2023 - 05:15</td>
+                                            <td>APOLLO_00_0145822</td>
+                                            <td><a href="#" class="btn rounded-pill btn-primary">View
+                                                    History</a>
+                                            </td>
+                                        </tr>
+                                    <?php }; ?>
+
                                 </tbody>
                             </table>
                         </div>
