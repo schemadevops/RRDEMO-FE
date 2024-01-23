@@ -34,138 +34,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Form CR006
-                                    - Debitur Baru Plafon Terbesar</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Form CR007
-                                    - Debitur Top-Up Plafon Terbesar</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Form CR008
-                                    - Debitur Penurunan Baki Debet Terbesar</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Form CR009
-                                    - Debitur Perubahan Kualitas Berdasarkan Baki Debet Terbesar</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Form LQ003
-                                    - 10 Nasabah dengan Dana Masuk Terbesar</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Form LQ004
-                                    - 10 Nasabah dengan Dana Keluar Terbesar</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">7</th>
-                                <td>Form LQ005
-                                    - Pemantauan Cash Ratio Mingguan</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>Form LQ006
-                                    - Pemantauan Loan to Deposit Ratio (LDR)</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">9</th>
-                                <td>Form OP001
-                                    - Pemantauan Mutasi Kas Harian</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>Form OP002
-                                    - Pemantauan Penempatan pada Bank Lain</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">11</th>
-                                <td>Form OP003
-                                    - Pengelolaan Buku Tabungan dan Bilyet Deposito</td>
-                                <td><input type="date" class="form-control" /></td>
-                                <td>15/02/2023</td>
-                                <td>15/02/2023</td>
-                                <td>
-                                    <a href="#" class="btn rounded-pill btn-primary">Process
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php
+                            $no = 0;
+                            foreach ($api_hasil as $key) {
+                                $no++;
+                            ?>
+
+                                <tr>
+                                    <th scope="row"><?= $no; ?></th>
+                                    <td><?= $key->name; ?></td>
+                                    <td><input type="date" name="pilih_tgl" id="pilih_tgl_<?= $key->id; ?>" class="form-control" /></td>
+                                    <?php
+                                    if ($key->other != null) {
+                                        if ($key->log_processes) {
+                                            $last_report = date('d-m-Y', strtotime($key->log_processes[0]->last_report));
+                                            $last_process = date('d-m-Y', strtotime($key->log_processes[0]->last_process));
+                                        }
+                                        $link_path = $key->other->path_process;
+                                    } else {
+                                        $last_report = "-";
+                                        $last_process = "-";
+                                        $link_path = "-";
+                                    }
+                                    ?>
+                                    <input type="hidden" name="link_path" id="link_path_<?= $key->id; ?>" value="<?= $link_path; ?>">
+                                    <td><?= $last_report; ?></td>
+                                    <td><?= $last_process; ?></td>
+                                    <td>
+                                        <button type="button" onclick="process('<?= $key->id; ?>')" class="btn rounded-pill btn-primary">Process
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            <?php }; ?>
                         </tbody>
                     </table>
                 </div>
@@ -178,3 +79,117 @@
 
 
 <?php $this->view('temp/footer'); ?>
+<script>
+    function process(id) {
+        var pilih_tgl = $('#pilih_tgl_' + id).val();
+        var link_path = $('#link_path_' + id).val();
+
+        if (link_path != "-") {
+            if (pilih_tgl != "") {
+                var url = "<?= base_url('obox/ajax_process'); ?>";
+                // ajax adding data to database
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        formid: id,
+                        date: pilih_tgl,
+                        link: link_path
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+
+                        if (data.status) //if success close modal and reload ajax table
+                        {
+                            Swal.fire(
+                                'Success!',
+                                'Your form as process',
+                                'success'
+                            )
+                            window.setTimeout(function() {
+                                window.location.href = '<?= base_url('obox/form_report'); ?>';
+                            }, 1500);
+                        } else {
+                            Swal.fire(
+                                'Sorryy!',
+                                'Something wrong!!!',
+                                'error'
+                            )
+
+                        }
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error adding / update data');
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Sorryy!',
+                    'Silahkan masukan tanggal proses!',
+                    'warning'
+                )
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Form ini belum bisa di process',
+                'warning'
+            )
+        }
+
+    }
+
+    function save_proces_all() {
+        var date_all = $('#date_all').val();
+
+        if (date_all != "") {
+            var url = "<?= base_url('obox/ajax_process_all'); ?>";
+            // ajax adding data to database
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    date_all: date_all,
+                },
+                dataType: "JSON",
+                success: function(data) {
+
+                    if (data.status) //if success close modal and reload ajax table
+                    {
+                        Swal.fire(
+                            'Success!',
+                            'All data has been process',
+                            'success'
+                        )
+                        window.setTimeout(function() {
+                            window.location.href = '<?= base_url('obox/form_report'); ?>';
+                        }, 1500);
+                    } else {
+                        Swal.fire(
+                            'Sorryy!',
+                            'Something wrong!!!',
+                            'error'
+                        )
+
+                    }
+
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Error adding / update data');
+                }
+            });
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan tanggal proses!',
+                'warning'
+            )
+        }
+
+
+    }
+</script>

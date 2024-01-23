@@ -13,10 +13,33 @@ class Obox extends CI_Controller
 	}
 	public function report_proces()
 	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/form/obox',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			$data['api_hasil'] = $hasil->data;
+		}
 		$this->load->view('temp/head');
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
-		$this->load->view('obox/report_proces');
+		$this->load->view('obox/report_proces', $data);
 	}
 
 	public function form_report()
@@ -57,6 +80,42 @@ class Obox extends CI_Controller
 		$this->load->view('temp/sidebar');
 		$this->load->view('temp/navbar');
 		$this->load->view('obox/backup_restore', $data);
+	}
+
+	public function ajax_process()
+	{
+		$id = $this->input->post('formid');
+		$pilih_tgl = $this->input->post('date');
+		$link_path = $this->input->post('link');
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => $link_path,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => 'formId=' . $id . '&date=' . $pilih_tgl,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		$hasil = json_decode($response);
+
+		if ($hasil->message == "succes") {
+			echo json_encode(array("status" => TRUE));
+		}
 	}
 
 	public function form_report_isi_cr006()
