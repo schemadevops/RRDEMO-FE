@@ -118,6 +118,39 @@ class Obox extends CI_Controller
 		}
 	}
 
+	public function ajax_process_all()
+	{
+		$date_all = $this->input->post('date_all');
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://141.136.47.149:3003/proccess/all',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => 'type_form=obox&date=' . $date_all,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded',
+				'Authorization: Bearer ' . $this->session->access_token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$hasil = json_decode($response);
+		if ($hasil->message == "success") {
+			echo json_encode(array("status" => TRUE, "isi" => $hasil));
+		} else {
+			echo json_encode(array("status" => FALSE, "isi" => "Sepertinya ada yang error!!!"));
+		}
+	}
+
 	public function form_report_isi_cr006()
 	{
 		$tgl_seacrh = $this->session->tgl_periode;
