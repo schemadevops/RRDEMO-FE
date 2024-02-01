@@ -9,15 +9,15 @@
                 Report Process</h4>
             <!-- Responsive Table -->
             <div class="card">
-                <form action="#" method="post">
+                <form action="javascript:;" id="form_process_all">
                     <div class="row mt-3">
                         <label class="col-sm-3 col-form-label" for="basic-default-name">Periode
                             Data</label>
                         <div class="col-sm-6">
-                            <input type="date" class="form-control" id="basic-default-name" placeholder="John Doe" />
+                            <input type="date" class="form-control" id="date_all" name="date_all" placeholder="John Doe" />
                         </div>
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btn-primary">Process All</button>
+                            <button type="submit" class="btn btn-primary" id="btnProcesAll" onclick="save_proces_all()">Process All</button>
                         </div>
                     </div>
                 </form>

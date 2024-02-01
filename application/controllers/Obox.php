@@ -113,7 +113,7 @@ class Obox extends CI_Controller
 
 		$hasil = json_decode($response);
 
-		if ($hasil->message == "succes") {
+		if ($hasil->message == "success") {
 			echo json_encode(array("status" => TRUE));
 		}
 	}
