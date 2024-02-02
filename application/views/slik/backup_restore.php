@@ -120,7 +120,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="form_report">Form</label>
                                                 <select name="form_report" id="form_report_res" class="form-control">
-                                                    <!-- <option value="-">Pilih Form</option> -->
+                                                    <option value="-">Pilih Form</option>
                                                     <?php
                                                     $no = 0;
                                                     foreach ($api_hasil as $key) {
@@ -302,41 +302,28 @@
 
                     $('#isi_detail_backup').show();
                     $('#list_detail_backup').empty();
+
+                    $('#table_list_backup thead').empty();
+                    // Get the keys of the first object in the array
+                    var keys = Object.keys(data.isi[0]);
+
+                    // Now you can use the keys to build your table header
+                    var tableHeader = "<tr>";
+                    $.each(keys, function(index, key) {
+                        tableHeader += "<th>" + key + "</th>";
+                    });
+                    tableHeader += "</tr>";
+                    $('#table_list_backup thead').append(tableHeader);
+
+                    // Populate table with data
                     $.each(data.isi, function(i, v) {
-                        $('#list_detail_backup').append(`
-                        <tr>
-                            <td>` + v.id + `</td>
-                            <td>` + v.flag_detail + `</td>
-                            <td>` + v.register_agunan + `</td>
-                            <td>` + v.rekening + `</td>
-                            <td>` + v.cif + `</td>
-                            <td>` + v.segment_fasilitas + `</td>
-                            <td>` + v.stts_agunan + `</td>
-                            <td>` + v.jenis_agunan + `</td>
-                            <td>` + v.peringkat + `</td>
-                            <td>` + v.pemeringkat + `</td>
-                            <td>` + v.jenis_ikat + `</td>
-                            <td>` + v.tgl_ikat + `</td>
-                            <td>` + v.pemilik_agunan + `</td>
-                            <td>` + v.bukti_milik + `</td>
-                            <td>` + v.alamat_agunan + `</td>
-                            <td>` + v.data_agunan + `</td>
-                            <td>` + v.nilai_agunan_njop + `</td>
-                            <td>` + v.nilai_agunan_bank + `</td>
-                            <td>` + v.tgl_penilaian_bank + `</td>
-                            <td>` + v.nilai_agunan + `</td>
-                            <td>` + v.nama_penilai + `</td>
-                            <td>` + v.tgl_penilai + `</td>
-                            <td>` + v.stts_paripasu + `</td>
-                            <td>` + v.paripasu + `</td>
-                            <td>` + v.stts_kredit_join + `</td>
-                            <td>` + v.asuransi + `</td>
-                            <td>` + v.keterangan + `</td>
-                            <td>` + v.cabang + `</td>
-                            <td>` + v.operation_stastus + `</td>
-                            <td>` + v.createdAt + `</td>
-                        </tr>
-                        `);
+                        var row = "<tr>";
+                        // Loop through object properties and append to the row
+                        $.each(keys, function(index, key) {
+                            row += "<td>" + v[key] + "</td>";
+                        });
+                        row += "</tr>";
+                        $('#table_list_backup tbody').append(row);
                     });
                     $('#table_list_backup').DataTable({});
 

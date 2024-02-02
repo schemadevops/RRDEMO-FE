@@ -22,25 +22,45 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="navs-pills-justified-home" role="tabpanel">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <select name="form_report" id="form_report" class="form-control">
-                                    <?php
-                                    $no = 0;
-                                    sort($api_hasil);
-                                    foreach ($api_hasil as $key) {
-                                        $no++;
+                        <form id="form_backup">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="start_date">Start Date</label>
+                                        <input type="date" class="form-control" name="start_date" id="start_date" placeholder="John Doe" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="end_date">End Date</label>
+                                        <input type="date" class="form-control" name="end_date" id="end_date" placeholder="John Doe" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="end_date">Form</label>
+                                        <select name="form_report" id="form_report" class="form-control">
+                                            <option value="-">Pilih Form</option>
+                                            <?php
+                                            $no = 0;
+                                            foreach ($api_hasil as $key) {
+                                            ?>
+                                                <option value="<?= $key->id; ?>"><?= $key->name; ?></option>
+                                            <?php };
+                                            ?>
 
-                                    ?>
-                                        <option value="<?= $no; ?>"><?= $key->name; ?></option>
-                                    <?php }; ?>
-                                </select>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <br />
+                                        <button type="button" id="btnBackup" onclick="save_backup()" class="btn rounded-pill btn-primary">Backup</button>
+                                        <button type="button" id="btnBackupAll" onclick="save_backupAll()" class="btn rounded-pill btn-secondary">Backup All</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <button type="submit" class="btn rounded-pill btn-primary">Backup</button>
-                                <button type="submit" class="btn rounded-pill btn-secondary">Backup All</button>
-                            </div>
-                        </div>
+                        </form>
                         <div class="table-responsive text-nowrap mt-4">
                             <table class="table">
                                 <thead>
@@ -54,19 +74,24 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $no = 0;
-                                    sort($api_hasil);
+                                    $xno = 0;
                                     foreach ($api_hasil as $key) {
-                                        $no++;
-
+                                        $xno++;
+                                        if (count($key->log_backups) == 0) {
+                                            $last_backup = "-";
+                                            $nm_backup = "-";
+                                        } else {
+                                            $last_backup = date('d-m-Y', strtotime($key->log_backups[0]->createdAt));;
+                                            $nm_backup = $key->log_backups[0]->nm_bu;
+                                        }
                                     ?>
                                         <tr>
-                                            <th scope="row"><?= $no; ?></th>
-                                            <td><?= $key->name; ?></td>
-                                            <td>01/03/2023 - 05:15</td>
-                                            <td>OBOX_00_0145822</td>
-                                            <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                    History</a>
+                                            <th scope="row"><?= $xno; ?></th>
+                                            <td><?= $key->name; ?> </td>
+                                            <td><?= $last_backup; ?> </td>
+                                            <td><?= $nm_backup; ?></td>
+                                            <td><button type="button" id="btn_view_backup" onclick="view_history_bu('<?= $key->id; ?>')" class="btn rounded-pill btn-primary">View
+                                                    History</button>
                                             </td>
                                         </tr>
                                     <?php }; ?>
@@ -77,32 +102,50 @@
                     </div>
                     <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
                         <div class="row">
-                            <div class="col-md-4">
-                                <select name="form_report" id="form_report" class="form-control">
-                                    <?php
-                                    $no = 0;
-                                    sort($api_hasil);
-                                    foreach ($api_hasil as $key) {
-                                        $no++;
-
-                                    ?>
-                                        <option value="<?= $no; ?>"><?= $key->name; ?></option>
-                                    <?php }; ?>
-                                </select>
-
+                            <div class="col-md-10">
+                                <form id="form_restore">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="start_date">Start Date</label>
+                                                <input type="date" class="form-control" id="start_date_res" placeholder="John Doe" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="end_date">End Date</label>
+                                                <input type="date" class="form-control" id="end_date_res" placeholder="John Doe" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="form_report">Form</label>
+                                                <select name="form_report" id="form_report_res" class="form-control">
+                                                    <option value="-">Pilih Form</option>
+                                                    <?php
+                                                    $no = 0;
+                                                    foreach ($api_hasil as $key) {
+                                                    ?>
+                                                        <option value="<?= $key->id; ?>"><?= $key->name; ?></option>
+                                                    <?php };
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="backup_ke">Backup ke?</label>
+                                                <select name="backup_ke" id="backup_ke" class="form-control">
+                                                    <option value="-">Silahkan Pilih form dulu</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="col-md-4">
-                                <select name="form_report" id="form_report" class="form-control">
-                                    <option value="1">Backup ke 1</option>
-                                    <option value="2">Backup ke 2</option>
-                                    <option value="3">Backup ke 3</option>
-                                    <option value="4">Backup ke 4</option>
-                                    <option value="5">Backup ke 5</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <button type="submit" class="btn rounded-pill btn-primary">Restore</button>
-                                <button type="submit" class="btn rounded-pill btn-secondary">Restore All</button>
+                            <div class="col-md-2">
+                                <button type="button" id="btnRestore" onclick="save_restore()" class="btn rounded-pill btn-small btn-primary">Restore</button>
+                                <button type="button" id="btnRestoreAll" onclick="save_restoreAll()" class="btn rounded-pill btn-small btn-secondary">Restore All</button>
                             </div>
                         </div>
                         <div class="table-responsive text-nowrap mt-4">
@@ -118,19 +161,24 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $no = 0;
-                                    sort($api_hasil);
+                                    $xno = 0;
                                     foreach ($api_hasil as $key) {
-                                        $no++;
-
+                                        $xno++;
+                                        if (count($key->log_restores) == 0) {
+                                            $last_restore = "-";
+                                            $nm_restore = "-";
+                                        } else {
+                                            $last_restore = date('d-m-Y', strtotime($key->log_restores[0]->createdAt));;
+                                            $nm_restore = $key->log_restores[0]->nm_res;
+                                        }
                                     ?>
                                         <tr>
-                                            <th scope="row"><?= $no; ?></th>
-                                            <td><?= $key->name; ?></td>
-                                            <td>01/03/2023 - 05:15</td>
-                                            <td>OBOX_00_0145822</td>
-                                            <td><a href="#" class="btn rounded-pill btn-primary">View
-                                                    History</a>
+                                            <th scope="row"><?= $xno; ?></th>
+                                            <td><?= $key->name; ?> </td>
+                                            <td><?= $last_restore; ?> </td>
+                                            <td><?= $nm_restore; ?></td>
+                                            <td><button type="button" id="btn_view_backup" onclick="view_history_res('<?= $key->id; ?>')" class="btn rounded-pill btn-primary">View
+                                                    History</button>
                                             </td>
                                         </tr>
                                     <?php }; ?>
@@ -149,3 +197,485 @@
 </div>
 
 <?php $this->view('temp/footer'); ?>
+<script>
+    function save_backup() {
+        var start_date = $('#start_date').val()
+        var end_date = $('#end_date').val()
+        var form_report = $('#form_report').val()
+
+        if (start_date != "" && end_date != "") {
+            if (start_date > end_date) {
+                Swal.fire(
+                    'Sorryy!',
+                    'Start date harus lebih dulu dari end date!',
+                    'warning'
+                )
+            } else {
+                var url = "<?= base_url('obox/ajax_backup'); ?>";
+                // ajax adding data to database
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        start_date: start_date,
+                        end_date: end_date,
+                        form_report: form_report
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+
+                        if (data.status) //if success close modal and reload ajax table
+                        {
+                            Swal.fire(
+                                'Success!',
+                                'Your form as Backup',
+                                'success'
+                            )
+                            window.setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        } else {
+                            Swal.fire(
+                                'Sorryy!',
+                                data.isi,
+                                'error'
+                            )
+
+                        }
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error adding / update data');
+                    }
+                });
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan start date dan end date terlebih dahulu!!!',
+                'warning'
+            )
+        }
+    }
+
+    $("#form_report_res").change(function() {
+        var value = $(this).val();
+        if (value !== "") {
+            $.ajax({
+                type: "POST",
+                url: '<?php echo base_url(); ?>obox/ambil_data_backup',
+                cache: false,
+                data: {
+                    id: value
+                },
+                success: function(respond) {
+                    $("#backup_ke").html(respond);
+                }
+            })
+        } else {
+            $("#backup_ke").empty();
+        }
+    });
+
+    function save_restore() {
+        var start_date = $('#start_date_res').val()
+        var end_date = $('#end_date_res').val()
+        var form_report = $('#form_report_res').val()
+        var backup_ke = $('#backup_ke').val()
+
+        if (start_date != "" && end_date != "") {
+            if (start_date > end_date) {
+                Swal.fire(
+                    'Sorryy!',
+                    'Start date harus lebih dulu dari end date!',
+                    'warning'
+                )
+            } else {
+                var url = "<?= base_url('obox/ajax_restore'); ?>";
+                // ajax adding data to database
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        start_date: start_date,
+                        end_date: end_date,
+                        form_report: form_report,
+                        backup_ke: backup_ke
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+
+                        if (data.status) //if success close modal and reload ajax table
+                        {
+                            Swal.fire(
+                                'Success!',
+                                'Your form as Restore',
+                                'success'
+                            )
+                            window.setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        } else {
+                            Swal.fire(
+                                'Sorryy!',
+                                data.isi,
+                                'error'
+                            )
+
+                        }
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error adding / update data');
+                    }
+                });
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan start date dan end date terlebih dahulu!!!',
+                'warning'
+            )
+        }
+    }
+
+    function save_backupAll() {
+        var start_date = $('#start_date').val()
+        var end_date = $('#end_date').val()
+
+        if (start_date != "" && end_date != "") {
+            if (start_date > end_date) {
+                Swal.fire(
+                    'Sorryy!',
+                    'Start date harus lebih dulu dari end date!',
+                    'warning'
+                )
+            } else {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Backup semua data memerlukan waktu yang lumayan lama!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "<?= base_url('obox/ajax_backup_all'); ?>";
+                        // ajax adding data to database
+
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                start_date: start_date,
+                                end_date: end_date,
+                                modul: "obox",
+                            },
+                            dataType: "JSON",
+                            success: function(data) {
+
+                                if (data.status) //if success close modal and reload ajax table
+                                {
+                                    Swal.fire(
+                                        'Success!',
+                                        'All form success backup',
+                                        'success'
+                                    )
+                                    window.setTimeout(function() {
+                                        location.reload();
+                                    }, 1500);
+                                } else {
+                                    Swal.fire(
+                                        'Sorryy!',
+                                        data.isi,
+                                        'error'
+                                    )
+
+                                }
+
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                alert('Error adding / update data');
+                            }
+                        });
+
+                    }
+                })
+
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan start date dan end date terlebih dahulu!!!',
+                'warning'
+            )
+        }
+
+    }
+
+    function save_restoreAll() {
+        var start_date = $('#start_date_res').val()
+        var end_date = $('#end_date_res').val()
+
+        if (start_date != "" && end_date != "") {
+            if (start_date > end_date) {
+                Swal.fire(
+                    'Sorryy!',
+                    'Start date harus lebih dulu dari end date!',
+                    'warning'
+                )
+            } else {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Backup semua data memerlukan waktu yang lumayan lama!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "<?= base_url('obox/ajax_restore_all'); ?>";
+                        // ajax adding data to database
+
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                start_date: start_date,
+                                end_date: end_date,
+                                modul: "obox",
+                            },
+                            dataType: "JSON",
+                            success: function(data) {
+
+                                if (data.status) //if success close modal and reload ajax table
+                                {
+                                    Swal.fire(
+                                        'Success!',
+                                        'All form success backup',
+                                        'success'
+                                    )
+                                    window.setTimeout(function() {
+                                        location.reload();
+                                    }, 1500);
+                                } else {
+                                    Swal.fire(
+                                        'Sorryy!',
+                                        data.isi,
+                                        'error'
+                                    )
+
+                                }
+
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                alert('Error adding / update data');
+                            }
+                        });
+
+                    }
+                })
+
+            }
+
+        } else {
+            Swal.fire(
+                'Sorryy!',
+                'Silahkan masukan start date dan end date terlebih dahulu!!!',
+                'warning'
+            )
+        }
+
+    }
+
+    function view_history_bu(id) {
+        $.ajax({
+            url: "<?php echo site_url('obox/view_history_backup/') ?>" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) {
+                    $('#list_backup').empty()
+                    $.each(data.isi, function(i, v) {
+                        $('#list_backup').append(`
+                        <button type="button" onclick="get_detail_bk('` + v.id + `')" class="list-group-item list-group-item-action">Backup ke ` + v.number + `</button>
+                        `)
+
+                    });
+                    $('#modal_detail_backup').modal('show'); // show bootstrap modal when complete loaded
+                    $('.modal-title').text('Detail Backup'); // Set title to Bootstrap modal title
+                    $('#isi_detail_backup').hide()
+                } else {
+                    Swal.fire(
+                        'Sorryy!',
+                        'Belum ada data yang bisa ditampilkan',
+                        'warning'
+                    )
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        });
+    };
+
+    function get_detail_bk(id) {
+        $.ajax({
+            url: "<?php echo site_url('obox/detail_history_backup/') ?>" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) {
+                    $('#table_list_backup').dataTable().fnClearTable();
+                    $('#table_list_backup').dataTable().fnDestroy();
+
+                    $('#isi_detail_backup').show();
+                    $('#list_detail_backup').empty();
+
+                    $('#table_list_backup thead').empty();
+                    // Get the keys of the first object in the array
+                    var keys = Object.keys(data.isi[0]);
+
+                    // Now you can use the keys to build your table header
+                    var tableHeader = "<tr>";
+                    $.each(keys, function(index, key) {
+                        tableHeader += "<th>" + key + "</th>";
+                    });
+                    tableHeader += "</tr>";
+                    $('#table_list_backup thead').append(tableHeader);
+
+                    // Populate table with data
+                    $.each(data.isi, function(i, v) {
+                        var row = "<tr>";
+                        // Loop through object properties and append to the row
+                        $.each(keys, function(index, key) {
+                            row += "<td>" + v[key] + "</td>";
+                        });
+                        row += "</tr>";
+                        $('#table_list_backup tbody').append(row);
+                    });
+                    $('#table_list_backup').DataTable({});
+
+                } else {
+
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        });
+
+    }
+
+    function view_history_res(id) {
+        $.ajax({
+            url: "<?php echo site_url('obox/view_history_restore/') ?>" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+                if (data.status) {
+                    $('#list_restore').empty()
+                    $.each(data.isi, function(i, v) {
+                        $('#list_restore').append(`
+                        <a href="<?= base_url('slik/detail_history_restore/'); ?>` + v.id + `" class="list-group-item list-group-item-action" target="_blank">Nama : ` + v.nm_res + ` Range : ` + v.range + `</a>
+                        `)
+
+                    });
+                    $('#modal_detail_restore').modal('show'); // show bootstrap modal when complete loaded
+                    $('.modal-title').text('Detail Restore'); // Set title to Bootstrap modal title
+                } else {
+                    Swal.fire(
+                        'Sorryy!',
+                        'Belum ada data yang bisa ditampilkan',
+                        'warning'
+                    )
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        });
+    }
+</script>
+<!-- Modal -->
+<div class="modal fade" id="modal_detail_backup" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLongTitle">Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="demo-inline-spacing mt-3">
+                    <div class="list-group" id="list_backup">
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action active">Bear claw cake biscuit</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Soufflé pastry pie ice</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action disabled">Tart tiramisu cake</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Bonbon toffee muffin</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Dragée tootsie roll</a>
+                    </div>
+                </div>
+                <hr>
+                <div id="isi_detail_backup" class="table-responsive text-nowrap">
+                    <table id="table_list_backup" class="table dt-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="list_detail_backup">
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Tutup
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal_detail_restore" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLongTitle">Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="demo-inline-spacing mt-3">
+                    <div class="list-group" id="list_restore">
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action active">Bear claw cake biscuit</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Soufflé pastry pie ice</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action disabled">Tart tiramisu cake</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Bonbon toffee muffin</a>
+                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">Dragée tootsie roll</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Tutup
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
