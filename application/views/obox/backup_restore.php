@@ -586,7 +586,7 @@
                     $('#list_restore').empty()
                     $.each(data.isi, function(i, v) {
                         $('#list_restore').append(`
-                        <a href="<?= base_url('slik/detail_history_restore/'); ?>` + v.id + `" class="list-group-item list-group-item-action" target="_blank">Nama : ` + v.nm_res + ` Range : ` + v.range + `</a>
+                        <a href="<?= base_url('obox/detail_history_restore/'); ?>` + v.id + `" class="list-group-item list-group-item-action" target="_blank">Nama : ` + v.nm_res + ` Range : ` + v.range + `</a>
                         `)
 
                     });
